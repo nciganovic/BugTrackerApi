@@ -5,12 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain;
+using DataAccess.Configurations;
 
 namespace DataAccess
 {
     public class BugTrackerContext : DbContext
     {
         public DbSet<TicketPriority> TicketPriorities { get; set; }
+        public DbSet<ApplicationUser> ApplicaitonUsers { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -19,9 +22,9 @@ namespace DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new ApplicationUserConfiguration());
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
+            modelBuilder.ApplyConfiguration(new TicketPriorityConfiguration());
         }
-
-        
     }
 }
