@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Commands;
+using Domain;
+using Application.Dto;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,36 +15,57 @@ namespace Api.Controllers
     [ApiController]
     public class TicketPriorityController : ControllerBase
     {
+        private readonly ITicketPriorityCommands ticketPriorityCommands;
+
+        public TicketPriorityController(ITicketPriorityCommands ticketPriorityCommands)
+        {
+            this.ticketPriorityCommands = ticketPriorityCommands;
+        }
+
         // GET: api/<TicketPriorityController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            IEnumerable<TicketPriority> ticketPriorities = ticketPriorityCommands.Read();
+            return Ok(ticketPriorities);
         }
 
         // GET api/<TicketPriorityController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            TicketPriority ticketPriority = ticketPriorityCommands.Read(id);
+            return Ok(ticketPriority);
         }
 
         // POST api/<TicketPriorityController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] TicketPriorityDto ticketPriorityDto)
         {
+            TicketPriority ticketPriority = new TicketPriority();
+            ticketPriority.Name = ticketPriorityDto.Name;
+            ticketPriorityCommands.Create(ticketPriority);
+            return Ok("Ticket priority created successfully");
         }
 
         // PUT api/<TicketPriorityController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] TicketPriorityDto ticketPriorityDto)
         {
+            TicketPriority ticketPriority = new TicketPriority();
+            ticketPriority.Id = id;
+            ticketPriority.Name = ticketPriorityDto.Name;
+            ticketPriority.UpdatedAt = DateTime.Now;
+            ticketPriorityCommands.Update(ticketPriority);
+            return Ok("Ticket priority updated successfully");
         }
 
         // DELETE api/<TicketPriorityController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            ticketPriorityCommands.Delete(id);
+            return Ok($"Ticket priority with id = {id} deleted successfully");
         }
     }
 }
