@@ -18,6 +18,8 @@ namespace DataAccess.Configurations
                 .IsRequired();
 
             builder.HasIndex(r => r.Name).IsUnique();
+
+            builder.Property(r => r.CreatedAt).HasDefaultValueSql("GETDATE()");
         }
     }
 }
