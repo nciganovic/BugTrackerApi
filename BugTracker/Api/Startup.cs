@@ -10,6 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Commands;
+using EfCommands;
+using DataAccess;
 
 namespace Api
 {
@@ -31,6 +34,10 @@ namespace Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Api", Version = "v1" });
             });
+
+            services.AddDbContext<BugTrackerContext>();
+            services.AddTransient<ITicketPriorityCommands, TicketPriorityCommands>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
