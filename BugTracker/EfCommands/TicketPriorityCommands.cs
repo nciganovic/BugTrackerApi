@@ -19,6 +19,11 @@ namespace EfCommands
 
         public void Create(TicketPriority ticketPriority)
         {
+            if (IsNameAlreadyTaken(ticketPriority.Name))
+            {
+                throw new EntityAlreadyExists();
+            }
+
             context.Add(ticketPriority);
             context.SaveChanges();
         }
@@ -64,9 +69,21 @@ namespace EfCommands
 
         public void Update(TicketPriority ticketPriority)
         {
+            if (IsNameAlreadyTaken(ticketPriority.Name)) {
+                throw new EntityAlreadyExists();
+            }
+
             var tp = context.TicketPriorities.Attach(ticketPriority);
             tp.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             context.SaveChanges();
+        }
+
+        private bool IsNameAlreadyTaken(string name) {
+            if (context.TicketPriorities.Any(x => x.Name == name)) {
+                return true;
+            }
+
+            return false;
         }
     }
 }
