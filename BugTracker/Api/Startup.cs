@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 using Application.Commands;
 using EfCommands;
 using DataAccess;
+using AutoMapper;
+using Domain;
+using Application.MapperProfiles;
 
 namespace Api
 {
@@ -34,10 +37,18 @@ namespace Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Api", Version = "v1" });
             });
-
+            
             services.AddDbContext<BugTrackerContext>();
             services.AddTransient<ITicketPriorityCommands, TicketPriorityCommands>();
+            services.AddAutoMapper(typeof(DefaultProfile));
 
+            /*
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddMaps(System.Reflection.Assembly.GetExecutingAssembly());
+            });
+            var mapper = new Mapper(config);
+            */
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

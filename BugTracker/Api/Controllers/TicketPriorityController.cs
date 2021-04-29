@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Application.Commands;
 using Domain;
 using Application.Dto;
+using AutoMapper;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,10 +17,12 @@ namespace Api.Controllers
     public class TicketPriorityController : ControllerBase
     {
         private readonly ITicketPriorityCommands ticketPriorityCommands;
+        private readonly IMapper mapper;
 
-        public TicketPriorityController(ITicketPriorityCommands ticketPriorityCommands)
+        public TicketPriorityController(ITicketPriorityCommands ticketPriorityCommands, IMapper mapper)
         {
             this.ticketPriorityCommands = ticketPriorityCommands;
+            this.mapper = mapper;
         }
 
         // GET: api/<TicketPriorityController>
@@ -42,8 +45,7 @@ namespace Api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] TicketPriorityDto ticketPriorityDto)
         {
-            TicketPriority ticketPriority = new TicketPriority();
-            ticketPriority.Name = ticketPriorityDto.Name;
+            TicketPriority ticketPriority = mapper.Map<TicketPriority>(ticketPriorityDto);
             ticketPriorityCommands.Create(ticketPriority);
             return Ok("Ticket priority created successfully");
         }
@@ -52,10 +54,8 @@ namespace Api.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] TicketPriorityDto ticketPriorityDto)
         {
-            TicketPriority ticketPriority = new TicketPriority();
-            ticketPriority.Id = id;
-            ticketPriority.Name = ticketPriorityDto.Name;
-            ticketPriority.UpdatedAt = DateTime.Now;
+            ticketPriorityDto.Id = id;
+            TicketPriority ticketPriority = mapper.Map<TicketPriority>(ticketPriorityDto);
             ticketPriorityCommands.Update(ticketPriority);
             return Ok("Ticket priority updated successfully");
         }
