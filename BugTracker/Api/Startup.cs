@@ -41,14 +41,6 @@ namespace Api
             services.AddDbContext<BugTrackerContext>();
             services.AddTransient<ITicketPriorityCommands, TicketPriorityCommands>();
             services.AddAutoMapper(typeof(DefaultProfile));
-
-            /*
-            var config = new MapperConfiguration(cfg =>
-            {
-                cfg.AddMaps(System.Reflection.Assembly.GetExecutingAssembly());
-            });
-            var mapper = new Mapper(config);
-            */
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
