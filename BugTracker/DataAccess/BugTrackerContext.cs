@@ -14,6 +14,8 @@ namespace DataAccess
         public DbSet<TicketPriority> TicketPriorities { get; set; }
         public DbSet<ApplicationUser> ApplicaitonUsers { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Company> Company { get; set; }
+        public DbSet<CompanyApplicaitonUser> CompanyApplicaitonUsers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
