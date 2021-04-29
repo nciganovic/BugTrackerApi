@@ -9,6 +9,7 @@ namespace Domain
 {
     public class ApplicationUser : BaseEntity
     {
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -17,6 +18,6 @@ namespace Domain
         
         public int RoleId { get; set; }
         public Role Role { get; set; }
-
+        public List<CompanyApplicaitonUser> CompanyApplicaitonUsers { get; set; }
     }
 }
