@@ -34,7 +34,8 @@ namespace DataAccess.Configurations
 
             builder.Property(au => au.CreatedAt).HasDefaultValueSql("GETDATE()");
 
-            builder.HasOne(au => au.Role).WithMany(r => r.ApplicationUsers);
+            builder.HasOne(au => au.Role).WithMany(r => r.ApplicationUsers)
+                .HasForeignKey(au => au.RoleId);
         }
     }
 }
