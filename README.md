@@ -3,3 +3,4 @@
 
 ## TODO
 - Read only items with DeletedAt null
+- Set default value for CreateAt column
