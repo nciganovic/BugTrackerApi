@@ -21,6 +21,7 @@ namespace DataAccess
         public DbSet<CompanyApplicationUser> CompanyApplicationUsers { get; set; }
         public DbSet<ProjectApplicationUser> ProjectApplicationUsers { get; set; }
         public DbSet<Project> Projects { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -39,6 +40,7 @@ namespace DataAccess
             modelBuilder.ApplyConfiguration(new ProjectConfiguration());
             modelBuilder.ApplyConfiguration(new ProjectApplicationUserConfiguration());
             modelBuilder.ApplyConfiguration(new TicketConfiguration());
+            modelBuilder.ApplyConfiguration(new CommentConfiguration());
         }
     }
 }

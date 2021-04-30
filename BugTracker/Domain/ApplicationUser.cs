@@ -22,5 +22,6 @@ namespace Domain
         public List<ProjectApplicationUser> ProjectApplicaitonUsers { get; set; }
         public List<Ticket> IssuerTickets { get; set; }
         public List<Ticket> DeveloperTickets { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 }
