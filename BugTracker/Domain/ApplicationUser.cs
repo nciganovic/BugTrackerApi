@@ -18,6 +18,7 @@ namespace Domain
         
         public int RoleId { get; set; }
         public Role Role { get; set; }
-        public List<CompanyApplicaitonUser> CompanyApplicaitonUsers { get; set; }
+        public List<CompanyApplicationUser> CompanyApplicaitonUsers { get; set; }
+        public List<ProjectApplicationUser> ProjectApplicaitonUsers { get; set; }
     }
 }
