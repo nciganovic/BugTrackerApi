@@ -13,6 +13,7 @@ namespace DataAccess
     {
         public DbSet<TicketPriority> TicketPriorities { get; set; }
         public DbSet<TicketType> TicketTypes { get; set; }
+        public DbSet<TicketStatus> TicketStatuses { get; set; }
         public DbSet<ApplicationUser> ApplicaitonUsers { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Company> Companies { get; set; }
@@ -31,6 +32,7 @@ namespace DataAccess
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
             modelBuilder.ApplyConfiguration(new TicketPriorityConfiguration());
             modelBuilder.ApplyConfiguration(new TicketTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new TicketStatusConfiguration());
             modelBuilder.ApplyConfiguration(new CompanyConfiguration());
             modelBuilder.ApplyConfiguration(new CompanyApplicationUserConfiguration());
             modelBuilder.ApplyConfiguration(new ProjectConfiguration());
