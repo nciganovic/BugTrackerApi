@@ -12,14 +12,13 @@ namespace DataAccess
     public class BugTrackerContext : DbContext
     {
         public DbSet<TicketPriority> TicketPriorities { get; set; }
+        public DbSet<TicketType> TicketTypes { get; set; }
         public DbSet<ApplicationUser> ApplicaitonUsers { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<CompanyApplicationUser> CompanyApplicationUsers { get; set; }
         public DbSet<ProjectApplicationUser> ProjectApplicationUsers { get; set; }
-
         public DbSet<Project> Projects { get; set; }
-
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -31,6 +30,7 @@ namespace DataAccess
             modelBuilder.ApplyConfiguration(new ApplicationUserConfiguration());
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
             modelBuilder.ApplyConfiguration(new TicketPriorityConfiguration());
+            modelBuilder.ApplyConfiguration(new TicketTypeConfiguration());
             modelBuilder.ApplyConfiguration(new CompanyConfiguration());
             modelBuilder.ApplyConfiguration(new CompanyApplicationUserConfiguration());
             modelBuilder.ApplyConfiguration(new ProjectConfiguration());
