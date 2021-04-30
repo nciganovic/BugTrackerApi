@@ -21,6 +21,12 @@ namespace DataAccess.Configurations
                 .HasMaxLength(150)
                 .IsRequired();
 
+            builder.HasOne(t => t.OriginalTicket)
+                .WithMany(th => th.TicketHistories)
+                .HasForeignKey(t => t.OriginalTicketId)
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.NoAction);
+
             builder.HasOne(t => t.TicketType)
                 .WithMany(tt => tt.Tickets)
                 .HasForeignKey(t => t.TicketTypeId);

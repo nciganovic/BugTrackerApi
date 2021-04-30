@@ -9,7 +9,10 @@ namespace Domain
     public class Ticket : BaseEntity
     {
         public int Id { get; set; }
-        
+
+        public int? OriginalTicketId { get; set; }
+        public Ticket OriginalTicket { get; set; }
+
         public int TicketTypeId { get; set; }
         public TicketType TicketType { get; set; }
 
@@ -28,7 +31,10 @@ namespace Domain
         public string Title { get; set; }
 
         public string Description { get; set; }
+
         public List<Comment> Comments { get; set; }
+
+        public List<Ticket> TicketHistories { get; set; }
 
     }
 }
