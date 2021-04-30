@@ -41,8 +41,7 @@ namespace DataAccess.Configurations
             builder.HasOne(t => t.Developer)
                 .WithMany(au => au.DeveloperTickets)
                 .HasForeignKey(t => t.DevloperId)
-                .OnDelete(DeleteBehavior.NoAction); ;
-
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
