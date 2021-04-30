@@ -11,6 +11,7 @@ namespace DataAccess
 {
     public class BugTrackerContext : DbContext
     {
+        public DbSet<Ticket> Tickets { get; set; }
         public DbSet<TicketPriority> TicketPriorities { get; set; }
         public DbSet<TicketType> TicketTypes { get; set; }
         public DbSet<TicketStatus> TicketStatuses { get; set; }
@@ -37,6 +38,7 @@ namespace DataAccess
             modelBuilder.ApplyConfiguration(new CompanyApplicationUserConfiguration());
             modelBuilder.ApplyConfiguration(new ProjectConfiguration());
             modelBuilder.ApplyConfiguration(new ProjectApplicationUserConfiguration());
+            modelBuilder.ApplyConfiguration(new TicketConfiguration());
         }
     }
 }

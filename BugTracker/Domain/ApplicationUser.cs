@@ -20,5 +20,7 @@ namespace Domain
         public Role Role { get; set; }
         public List<CompanyApplicationUser> CompanyApplicaitonUsers { get; set; }
         public List<ProjectApplicationUser> ProjectApplicaitonUsers { get; set; }
+        public List<Ticket> IssuerTickets { get; set; }
+        public List<Ticket> DeveloperTickets { get; set; }
     }
 }
