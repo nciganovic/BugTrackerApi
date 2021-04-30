@@ -15,8 +15,11 @@ namespace DataAccess
         public DbSet<ApplicationUser> ApplicaitonUsers { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Company> Companies { get; set; }
-        public DbSet<CompanyApplicaitonUser> CompanyApplicationUsers { get; set; }
+        public DbSet<CompanyApplicationUser> CompanyApplicationUsers { get; set; }
+        public DbSet<ProjectApplicationUser> ProjectApplicationUsers { get; set; }
+
         public DbSet<Project> Projects { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -31,6 +34,7 @@ namespace DataAccess
             modelBuilder.ApplyConfiguration(new CompanyConfiguration());
             modelBuilder.ApplyConfiguration(new CompanyApplicationUserConfiguration());
             modelBuilder.ApplyConfiguration(new ProjectConfiguration());
+            modelBuilder.ApplyConfiguration(new ProjectApplicationUserConfiguration());
         }
     }
 }
