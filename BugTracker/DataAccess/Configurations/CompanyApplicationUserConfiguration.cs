@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DataAccess.Configurations
 {
-    public class CompanyApplicationUserConfiguration : IEntityTypeConfiguration<CompanyApplicaitonUser>
+    public class CompanyApplicationUserConfiguration : IEntityTypeConfiguration<CompanyApplicationUser>
     {
-        public void Configure(EntityTypeBuilder<CompanyApplicaitonUser> builder)
+        public void Configure(EntityTypeBuilder<CompanyApplicationUser> builder)
         {
             builder.HasKey(x => new { x.CompanyId, x.ApplicationUserId });
 

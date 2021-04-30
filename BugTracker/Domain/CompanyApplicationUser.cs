@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class CompanyApplicaitonUser : BaseEntity
+    public class CompanyApplicationUser : BaseEntity
     {
         public int CompanyId { get; set; }
         public Company Company { get; set; }
