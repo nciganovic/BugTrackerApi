@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Application.Commands;
+using Application.Dto;
+using AutoMapper;
+using Domain;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,36 +16,56 @@ namespace Api.Controllers
     [ApiController]
     public class TicketStatusController : ControllerBase
     {
+        private readonly ITicketStatusCommands ticketStatusCommands;
+        private readonly IMapper mapper;
+
+        public TicketStatusController(ITicketStatusCommands ticketStatusCommands, IMapper mapper)
+        {
+            this.ticketStatusCommands = ticketStatusCommands;
+            this.mapper = mapper;
+        }
+
         // GET: api/<TicketStatusController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            IEnumerable<TicketStatus> ticketStatus = ticketStatusCommands.Read();
+            return Ok(ticketStatus);
         }
 
         // GET api/<TicketStatusController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            TicketStatus ticketStatus = ticketStatusCommands.Read(id);
+            return Ok(ticketStatus);
         }
 
         // POST api/<TicketStatusController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] TicketStatusDto ticketStatusDto)
         {
+            TicketStatus ticketStatus = mapper.Map<TicketStatus>(ticketStatusDto);
+            ticketStatusCommands.Create(ticketStatus);
+            return Ok("Ticket status created successfully");
         }
 
         // PUT api/<TicketStatusController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] TicketStatusDto ticketStatusDto)
         {
+            ticketStatusDto.Id = id;
+            TicketStatus ticketStatus = mapper.Map<TicketStatus>(ticketStatusDto);
+            ticketStatusCommands.Update(ticketStatus);
+            return Ok("Ticket status updated successfully");
         }
 
         // DELETE api/<TicketStatusController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            ticketStatusCommands.Delete(id);
+            return Ok($"Ticket status with id = {id} deleted successfully");
         }
     }
 }
