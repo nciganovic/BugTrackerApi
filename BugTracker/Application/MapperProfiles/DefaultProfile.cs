@@ -14,6 +14,7 @@ namespace Application.MapperProfiles
         public DefaultProfile()
         {
             CreateMap<TicketPriority, TicketPriorityDto>().ReverseMap();
+            CreateMap<TicketStatus, TicketStatusDto>().ReverseMap();
         }
     }
 }
