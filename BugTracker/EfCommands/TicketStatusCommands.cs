@@ -68,10 +68,11 @@ namespace EfCommands
         public void Update(TicketStatus ticketStatus)
         {
             TicketStatus item = context.TicketStatuses.Find(ticketStatus.Id);
-            context.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
 
             if (item == null)
                 throw new EntityNotFoundException();
+
+            context.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
 
             if (IsNameAlreadyTaken(ticketStatus.Name))
                 throw new EntityAlreadyExists();
