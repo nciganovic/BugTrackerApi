@@ -42,7 +42,9 @@ namespace Api
             services.AddTransient<ITicketPriorityCommands, TicketPriorityCommands>();
             services.AddTransient<ITicketStatusCommands, TicketStatusCommands>();
             services.AddTransient<ITicketTypeCommands, TicketTypeCommands>();
+            services.AddTransient<IApplicationUserCommands, ApplicationUserCommands>();
             services.AddTransient<IRoleCommands, RoleCommands>();
+            services.AddTransient<ICompanyCommands, CompanyCommands>();
             services.AddAutoMapper(typeof(DefaultProfile));
         }
 

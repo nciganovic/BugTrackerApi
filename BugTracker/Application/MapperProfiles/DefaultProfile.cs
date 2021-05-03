@@ -17,6 +17,8 @@ namespace Application.MapperProfiles
             CreateMap<TicketStatus, TicketStatusDto>().ReverseMap();
             CreateMap<TicketType, TicketTypeDto>().ReverseMap();
             CreateMap<Role, RoleDto>().ReverseMap();
+            CreateMap<ApplicationUser, ApplicationUserDto>().ReverseMap();
+            CreateMap<Company, CompanyDto>().ReverseMap();
         }
     }
 }
