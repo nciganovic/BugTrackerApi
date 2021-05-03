@@ -78,7 +78,9 @@ namespace EfCommands
             if (IsNameAlreadyTaken(ticketType.Name))
                 throw new EntityAlreadyExists();
 
+            ticketType.CreatedAt = item.CreatedAt;
             ticketType.UpdatedAt = DateTime.Now;
+            ticketType.DeletedAt = item.DeletedAt;
 
             var tp = context.TicketTypes.Attach(ticketType);
             tp.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
