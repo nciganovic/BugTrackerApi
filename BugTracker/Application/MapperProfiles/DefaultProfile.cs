@@ -15,6 +15,7 @@ namespace Application.MapperProfiles
         {
             CreateMap<TicketPriority, TicketPriorityDto>().ReverseMap();
             CreateMap<TicketStatus, TicketStatusDto>().ReverseMap();
+            CreateMap<TicketType, TicketTypeDto>().ReverseMap();
         }
     }
 }
