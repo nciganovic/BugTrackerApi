@@ -78,6 +78,8 @@ namespace EfCommands
             if (IsNameAlreadyTaken(role.Name))
                 throw new EntityAlreadyExists();
 
+            role.UpdatedAt = DateTime.Now;
+
             var tp = context.Roles.Attach(role);
             tp.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             context.SaveChanges();
