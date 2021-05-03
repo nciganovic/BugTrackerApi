@@ -69,9 +69,14 @@ namespace EfCommands
 
         public void Update(TicketPriority ticketPriority)
         {
-            if (IsNameAlreadyTaken(ticketPriority.Name)) {
+            TicketPriority item = context.TicketPriorities.Find(ticketPriority.Id);
+            context.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
+
+            if (item == null)
+                throw new EntityNotFoundException();
+
+            if (IsNameAlreadyTaken(ticketPriority.Name)) 
                 throw new EntityAlreadyExists();
-            }
 
             var tp = context.TicketPriorities.Attach(ticketPriority);
             tp.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
