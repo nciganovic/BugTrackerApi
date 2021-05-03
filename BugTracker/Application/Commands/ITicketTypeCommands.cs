@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Commands
 {
-    public interface ITicketType
+    public interface ITicketTypeCommands
     {
         public void Create(TicketType ticketType);
         public IEnumerable<TicketType> Read();
