@@ -68,10 +68,14 @@ namespace EfCommands
 
         public void Update(TicketType ticketType)
         {
+            TicketType item = context.TicketTypes.Find(ticketType.Id);
+            context.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
+
+            if (item == null)
+                throw new EntityNotFoundException();
+
             if (IsNameAlreadyTaken(ticketType.Name))
-            {
                 throw new EntityAlreadyExists();
-            }
 
             var tp = context.TicketTypes.Attach(ticketType);
             tp.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
