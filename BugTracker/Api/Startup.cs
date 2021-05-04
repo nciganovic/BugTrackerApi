@@ -45,6 +45,7 @@ namespace Api
             services.AddTransient<IApplicationUserCommands, ApplicationUserCommands>();
             services.AddTransient<IRoleCommands, RoleCommands>();
             services.AddTransient<ICompanyCommands, CompanyCommands>();
+            services.AddTransient<IProjectCommands, ProjectCommands>();
             services.AddAutoMapper(typeof(DefaultProfile));
         }
 
