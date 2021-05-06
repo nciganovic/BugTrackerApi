@@ -24,6 +24,10 @@ namespace EfCommands
                 throw new EntityAlreadyExists();
             }
 
+            if (!RoleExists(applicationUser.RoleId)){
+                throw new EntityNotFoundException();
+            }
+
             context.Add(applicationUser);
             context.SaveChanges();
         }
@@ -96,6 +100,11 @@ namespace EfCommands
             if (IsEmailAlreadyTaken(applicationUser.Email))
                 throw new EntityAlreadyExists();
 
+            if (!RoleExists(applicationUser.RoleId))
+            {
+                throw new EntityNotFoundException();
+            }
+
             applicationUser.CreatedAt = item.CreatedAt;
             applicationUser.UpdatedAt = DateTime.Now;
             applicationUser.DeletedAt = item.DeletedAt;
@@ -110,6 +119,14 @@ namespace EfCommands
             if (context.ApplicaitonUsers.Any(x => x.Email == email))
             {
                 return true;
+            }
+
+            return false;
+        }
+
+        private bool RoleExists(int roleId) {
+            if (context.Roles.Any(x => x.Id == roleId)) {
+                return true;   
             }
 
             return false;
