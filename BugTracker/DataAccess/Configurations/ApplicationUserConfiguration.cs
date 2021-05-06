@@ -24,9 +24,6 @@ namespace DataAccess.Configurations
             builder.Property(au => au.Email)
                 .IsRequired();
 
-            builder.Property(au => au.Password)
-                .IsRequired();
-
             builder.Property(au => au.RoleId)
                 .IsRequired();
 
