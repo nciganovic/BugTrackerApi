@@ -20,6 +20,12 @@ namespace Api.Controllers
         private readonly IApplicationUserCommands applicationUserCommands;
         private readonly IMapper mapper;
 
+        public ApplicationUserController(IApplicationUserCommands applicationUserCommands, IMapper mapper)
+        {
+            this.applicationUserCommands = applicationUserCommands;
+            this.mapper = mapper;
+        }
+
         // GET: api/<ApplicationUserController>
         [HttpGet]
         public IActionResult Get()
