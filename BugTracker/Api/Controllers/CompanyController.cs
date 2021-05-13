@@ -1,5 +1,7 @@
 ﻿using Application.Commands;
+using Application.Commands.CompanyCommands;
 using Application.Dto;
+using Application.Searches;
 using AutoMapper;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
@@ -16,55 +18,53 @@ namespace Api.Controllers
     [ApiController]
     public class CompanyController : ControllerBase
     {
-        private readonly ICompanyCommands companyCommands;
         private readonly IMapper mapper;
 
-        public CompanyController(ICompanyCommands companyCommands, IMapper mapper)
+        public CompanyController(IMapper mapper)
         {
-            this.companyCommands = companyCommands;
             this.mapper = mapper;
         }
 
         // GET: api/<CompanyController>
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get([FromQuery] CompanySearch query, [FromServices] IGetCompaniesCommand getCompaniesCommand)
         {
-            IEnumerable<Company> companies = companyCommands.Read();
+            IEnumerable<CompanyDto> companies = getCompaniesCommand.Execute(query);
             return Ok(companies);
         }
 
         // GET api/<CompanyController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public IActionResult Get(int id, [FromServices] IGetOneCompanyCommand getOneCompanyCommand)
         {
-            Company company = companyCommands.Read(id);
+            CompanyDto company = getOneCompanyCommand.Execute(id);
             return Ok(company);
         }
 
         // POST api/<CompanyController>
         [HttpPost]
-        public IActionResult Post([FromBody] CompanyDto companyDto)
+        public IActionResult Post([FromBody] CompanyDto companyDto, [FromServices] IAddCompanyCommand addCompanyCommand)
         {
             Company company = mapper.Map<Company>(companyDto);
-            companyCommands.Create(company);
+            addCompanyCommand.Execute(company);
             return Ok("Company created successfully");
         }
 
         // PUT api/<CompanyController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] CompanyDto companyDto)
+        public IActionResult Put(int id, [FromBody] CompanyDto companyDto, [FromServices] IChangeCompanyCommand changeCompanyCommand)
         {
             companyDto.Id = id;
             Company company = mapper.Map<Company>(companyDto);
-            companyCommands.Update(company);
+            changeCompanyCommand.Execute(company);
             return Ok("Company updated successfully");
         }
 
         // DELETE api/<CompanyController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int id, [FromServices] IRemoveCompanyCommand removeCompanyCommand)
         {
-            companyCommands.Delete(id);
+            removeCompanyCommand.Execute(id);
             return Ok($"Company with id = {id} deleted successfully");
         }
     }

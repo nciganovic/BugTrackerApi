@@ -11,13 +11,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Commands;
-using EfCommands.Roles;
 using DataAccess;
 using AutoMapper;
 using Domain;
 using Application.MapperProfiles;
 using Application.Commands.Roles;
 using EfCommands;
+using EfCommands.EfRoleCommands;
+using Application.Commands.CompanyCommands;
+using EfCommands.EfCompanyCommands;
 
 namespace Api
 {
@@ -45,7 +47,6 @@ namespace Api
             services.AddTransient<ITicketStatusCommands, TicketStatusCommands>();
             services.AddTransient<ITicketTypeCommands, TicketTypeCommands>();
             services.AddTransient<IApplicationUserCommands, ApplicationUserCommands>();
-            services.AddTransient<ICompanyCommands, CompanyCommands>();
             services.AddTransient<IProjectCommands, ProjectCommands>();
 
             services.AddTransient<IGetRolesCommand, EfGetRolesCommand>();
@@ -53,6 +54,12 @@ namespace Api
             services.AddTransient<IAddRoleCommand, EfAddRoleCommand>();
             services.AddTransient<IChangeRoleCommand, EfChangeRoleCommand>();
             services.AddTransient<IRemoveRoleCommand, EfRemoveRoleCommand>();
+
+            services.AddTransient<IGetCompaniesCommand, EfGetCompaniesCommand>();
+            services.AddTransient<IGetOneCompanyCommand, EfGetOneCompanyCommand>();
+            services.AddTransient<IAddCompanyCommand, EfAddCompanyCommand>();
+            services.AddTransient<IChangeCompanyCommand, EfChangeCompanyCommand>();
+            services.AddTransient<IRemoveCompanyCommand, EfRemoveCompanyCommand>();
 
             services.AddAutoMapper(typeof(DefaultProfile));
         }
