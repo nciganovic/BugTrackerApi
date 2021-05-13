@@ -1,5 +1,7 @@
 ﻿using Application.Commands;
+using Application.Commands.Roles;
 using Application.Dto;
+using Application.Searches;
 using AutoMapper;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
@@ -27,9 +29,9 @@ namespace Api.Controllers
 
         // GET: api/<RoleController>
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get([FromQuery] RoleSearch query, [FromServices] IGetRolesCommand getRolesCommand)
         {
-            IEnumerable<Role> role = roleCommands.Read();
+            IEnumerable<RoleDto> role = getRolesCommand.Execute(query);
             return Ok(role);
         }
 

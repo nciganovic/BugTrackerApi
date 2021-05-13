@@ -16,6 +16,7 @@ using DataAccess;
 using AutoMapper;
 using Domain;
 using Application.MapperProfiles;
+using Application.Commands.Roles;
 
 namespace Api
 {
@@ -46,6 +47,9 @@ namespace Api
             services.AddTransient<IRoleCommands, RoleCommands>();
             services.AddTransient<ICompanyCommands, CompanyCommands>();
             services.AddTransient<IProjectCommands, ProjectCommands>();
+
+            services.AddTransient<IGetRolesCommand, EfGetRolesCommand>();
+
             services.AddAutoMapper(typeof(DefaultProfile));
         }
 
