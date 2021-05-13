@@ -49,6 +49,7 @@ namespace Api
             services.AddTransient<IProjectCommands, ProjectCommands>();
 
             services.AddTransient<IGetRolesCommand, EfGetRolesCommand>();
+            services.AddTransient<IGetOneRoleCommand, EfGetOneRoleCommand>();
 
             services.AddAutoMapper(typeof(DefaultProfile));
         }

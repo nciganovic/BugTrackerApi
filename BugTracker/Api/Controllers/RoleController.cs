@@ -37,9 +37,9 @@ namespace Api.Controllers
 
         // GET api/<RoleController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public IActionResult Get(int id, [FromServices] IGetOneRoleCommand getOneRoleCommand)
         {
-            Role role = roleCommands.Read(id);
+            RoleDto role = getOneRoleCommand.Execute(id);
             return Ok(role);
         }
 
