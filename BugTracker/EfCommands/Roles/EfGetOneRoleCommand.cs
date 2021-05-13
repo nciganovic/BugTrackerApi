@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Commands.Roles;
 
-namespace EfCommands
+namespace EfCommands.Roles
 {
     public class EfGetOneRoleCommand : BaseCommands, IGetOneRoleCommand
     {

@@ -11,12 +11,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Commands;
-using EfCommands;
+using EfCommands.Roles;
 using DataAccess;
 using AutoMapper;
 using Domain;
 using Application.MapperProfiles;
 using Application.Commands.Roles;
+using EfCommands;
 
 namespace Api
 {
@@ -44,7 +45,6 @@ namespace Api
             services.AddTransient<ITicketStatusCommands, TicketStatusCommands>();
             services.AddTransient<ITicketTypeCommands, TicketTypeCommands>();
             services.AddTransient<IApplicationUserCommands, ApplicationUserCommands>();
-            services.AddTransient<IRoleCommands, RoleCommands>();
             services.AddTransient<ICompanyCommands, CompanyCommands>();
             services.AddTransient<IProjectCommands, ProjectCommands>();
 

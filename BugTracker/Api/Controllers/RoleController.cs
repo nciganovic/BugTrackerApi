@@ -18,12 +18,10 @@ namespace Api.Controllers
     [ApiController]
     public class RoleController : ControllerBase
     {
-        private readonly IRoleCommands roleCommands;
         private readonly IMapper mapper;
 
-        public RoleController(IRoleCommands roleCommands, IMapper mapper)
+        public RoleController(IMapper mapper)
         {
-            this.roleCommands = roleCommands;
             this.mapper = mapper;
         }
 
