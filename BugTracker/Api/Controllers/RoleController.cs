@@ -54,19 +54,19 @@ namespace Api.Controllers
 
         // PUT api/<RoleController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] RoleDto roleDto)
+        public IActionResult Put(int id, [FromBody] RoleDto roleDto, [FromServices] IChangeRoleCommand changeRoleCommand)
         {
             roleDto.Id = id;
             Role role = mapper.Map<Role>(roleDto);
-            roleCommands.Update(role);
+            changeRoleCommand.Execute(role);
             return Ok("Role updated successfully");
         }
 
         // DELETE api/<RoleController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int id, [FromServices] IRemoveRoleCommand removeRoleCommand)
         {
-            roleCommands.Delete(id);
+            removeRoleCommand.Execute(id);
             return Ok($"Role with id = {id} deleted successfully");
         }
     }

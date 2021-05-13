@@ -51,6 +51,8 @@ namespace Api
             services.AddTransient<IGetRolesCommand, EfGetRolesCommand>();
             services.AddTransient<IGetOneRoleCommand, EfGetOneRoleCommand>();
             services.AddTransient<IAddRoleCommand, EfAddRoleCommand>();
+            services.AddTransient<IChangeRoleCommand, EfChangeRoleCommand>();
+            services.AddTransient<IRemoveRoleCommand, EfRemoveRoleCommand>();
 
             services.AddAutoMapper(typeof(DefaultProfile));
         }
