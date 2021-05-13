@@ -45,10 +45,10 @@ namespace Api.Controllers
 
         // POST api/<RoleController>
         [HttpPost]
-        public IActionResult Post([FromBody] RoleDto roleDto)
+        public IActionResult Post([FromBody] RoleDto roleDto, [FromServices] IAddRoleCommand addRoleCommand)
         {
             Role role = mapper.Map<Role>(roleDto);
-            roleCommands.Create(role);
+            addRoleCommand.Execute(role);
             return Ok("Role created successfully");
         }
 
