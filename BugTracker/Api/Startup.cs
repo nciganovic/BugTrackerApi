@@ -49,7 +49,6 @@ namespace Api
             services.AddTransient<ITicketStatusCommands, TicketStatusCommands>();
             services.AddTransient<ITicketTypeCommands, TicketTypeCommands>();
             services.AddTransient<IApplicationUserCommands, ApplicationUserCommands>();
-            services.AddTransient<IProjectCommands, ProjectCommands>();
 
             services.AddTransient<IGetRolesCommand, EfGetRolesCommand>();
             services.AddTransient<IGetOneRoleCommand, EfGetOneRoleCommand>();
