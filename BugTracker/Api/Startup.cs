@@ -20,6 +20,8 @@ using EfCommands;
 using EfCommands.EfRoleCommands;
 using Application.Commands.CompanyCommands;
 using EfCommands.EfCompanyCommands;
+using Application.Commands.ProjectCommands;
+using EfCommands.EfProjectCommands;
 
 namespace Api
 {
@@ -60,6 +62,12 @@ namespace Api
             services.AddTransient<IAddCompanyCommand, EfAddCompanyCommand>();
             services.AddTransient<IChangeCompanyCommand, EfChangeCompanyCommand>();
             services.AddTransient<IRemoveCompanyCommand, EfRemoveCompanyCommand>();
+
+            services.AddTransient<IGetProjectsCommand, EfGetProjectsCommand>();
+            services.AddTransient<IGetOneProjectCommand, EfGetOneProjectCommand>();
+            services.AddTransient<IAddProjectCommand, EfAddProjectCommand>();
+            services.AddTransient<IChangeProjectCommand, EfChangeProjectCommand>();
+            services.AddTransient<IRemoveProjectCommand, EfRemoveProjectCommand>();
 
             services.AddAutoMapper(typeof(DefaultProfile));
         }

@@ -1,5 +1,7 @@
 ﻿using Application.Commands;
+using Application.Commands.ProjectCommands;
 using Application.Dto;
+using Application.Searches;
 using AutoMapper;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
@@ -16,55 +18,53 @@ namespace Api.Controllers
     [ApiController]
     public class ProjectController : ControllerBase
     {
-        private readonly IProjectCommands projectCommands;
         private readonly IMapper mapper;
 
-        public ProjectController(IProjectCommands projectCommands, IMapper mapper)
+        public ProjectController(IMapper mapper)
         {
-            this.projectCommands = projectCommands;
             this.mapper = mapper;
         }
 
         // GET: api/<ProjectController>
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get([FromQuery] ProjectSearch query, [FromServices] IGetProjectsCommand getProjectsCommand)
         {
-            IEnumerable<Project> projects = projectCommands.Read();
+            IEnumerable<ProjectDto> projects = getProjectsCommand.Execute(query);
             return Ok(projects);
         }
 
         // GET api/<ProjectController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public IActionResult Get(int id, [FromServices] IGetOneProjectCommand getOneProjectCommand)
         {
-            Project project = projectCommands.Read(id);
+            ProjectDto project = getOneProjectCommand.Execute(id);
             return Ok(project);
         }
 
         // POST api/<ProjectController>
         [HttpPost]
-        public IActionResult Post([FromBody] ProjectDto projectDto)
+        public IActionResult Post([FromBody] ProjectDto projectDto, [FromServices] IAddProjectCommand addProjectCommand)
         {
             Project project = mapper.Map<Project>(projectDto);
-            projectCommands.Create(project);
+            addProjectCommand.Execute(project);
             return Ok("Project created successfully");
         }
 
         // PUT api/<ProjectController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] ProjectDto projectDto)
+        public IActionResult Put(int id, [FromBody] ProjectDto projectDto, [FromServices] IChangeProjectCommand changeProjectCommand)
         {
             projectDto.Id = id;
             Project project = mapper.Map<Project>(projectDto);
-            projectCommands.Update(project);
+            changeProjectCommand.Execute(project);
             return Ok("Project updated successfully");
         }
 
         // DELETE api/<ProjectController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int id, [FromServices] IRemoveProjectCommand removeProjectCommand)
         {
-            projectCommands.Delete(id);
+            removeProjectCommand.Execute(id);
             return Ok($"Project with id = {id} deleted successfully");
         }
     }
