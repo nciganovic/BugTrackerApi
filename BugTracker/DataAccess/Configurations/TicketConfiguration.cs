@@ -21,13 +21,25 @@ namespace DataAccess.Configurations
                 .HasMaxLength(150)
                 .IsRequired();
 
+            builder.Property(x => x.Status)
+                .IsRequired()
+                .HasConversion<int>();
+
+            builder.Property(x => x.Priority)
+                .IsRequired()
+                .HasConversion<int>();
+
+            builder.Property(x => x.Type)
+                .IsRequired()
+                .HasConversion<int>();
+
             builder.HasOne(t => t.OriginalTicket)
                 .WithMany(th => th.TicketHistories)
                 .HasForeignKey(t => t.OriginalTicketId)
                 .IsRequired(false)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            builder.HasOne(t => t.TicketType)
+          /*  builder.HasOne(t => t.TicketType)
                 .WithMany(tt => tt.Tickets)
                 .HasForeignKey(t => t.TicketTypeId);
 
@@ -37,7 +49,7 @@ namespace DataAccess.Configurations
 
             builder.HasOne(t => t.TicketPriority)
                 .WithMany(tp => tp.Tickets)
-                .HasForeignKey(t => t.TicketPriorityId);
+                .HasForeignKey(t => t.TicketPriorityId); */
 
             builder.HasOne(t => t.Issuer)
                 .WithMany(au => au.IssuerTickets)

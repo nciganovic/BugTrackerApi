@@ -45,9 +45,6 @@ namespace Api
             });
             
             services.AddDbContext<BugTrackerContext>();
-            services.AddTransient<ITicketPriorityCommands, TicketPriorityCommands>();
-            services.AddTransient<ITicketStatusCommands, TicketStatusCommands>();
-            services.AddTransient<ITicketTypeCommands, TicketTypeCommands>();
             services.AddTransient<IApplicationUserCommands, ApplicationUserCommands>();
 
             services.AddTransient<IGetRolesCommand, EfGetRolesCommand>();
