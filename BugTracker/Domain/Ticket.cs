@@ -13,14 +13,10 @@ namespace Domain
         public int? OriginalTicketId { get; set; }
         public Ticket OriginalTicket { get; set; }
 
-        public int TicketTypeId { get; set; }
-        public TicketType TicketType { get; set; }
+        public TicketPriority Priority { get; set; }
+        public TicketStatus Status { get; set; }
+        public TicketType Type { get; set; }
 
-        public int TicketStatusId { get; set; }
-        public TicketStatus TicketStatus { get; set; }
-
-        public int TicketPriorityId { get; set; }
-        public TicketPriority TicketPriority { get; set; }
 
         public int IssuerId { get; set; }
         public ApplicationUser Issuer { get; set; }
@@ -36,5 +32,27 @@ namespace Domain
 
         public List<Ticket> TicketHistories { get; set; }
 
+        public enum TicketPriority
+        {
+            None,
+            Low,
+            Medium,
+            High
+        }
+
+        public enum TicketStatus
+        {
+            New,
+            Open,
+            InProgess,
+            Resolved,
+            AdditionalInfo
+        }
+
+        public enum TicketType
+        {
+            Bug,
+            Feature
+        }
     }
 }
