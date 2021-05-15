@@ -26,6 +26,8 @@ namespace Application.Dto
         [Required]
         public string Password { get; set; }
 
+        public string Salt { get; set; }
+
         public List<CompanyApplicationUser> CompanyApplicaitonUsers { get; set; }
         public List<ProjectApplicationUser> ProjectApplicaitonUsers { get; set; }
         public List<Ticket> IssuerTickets { get; set; }
