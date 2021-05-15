@@ -22,11 +22,6 @@ namespace Application.Dto
 
         [Required]
         public string Email { get; set; }
-
-        [Required]
-        [Range(1, int.MaxValue)]
-        public int RoleId { get; set; }
-        public Role Role { get; set; }
         
         public List<CompanyApplicationUser> CompanyApplicaitonUsers { get; set; }
         public List<ProjectApplicationUser> ProjectApplicaitonUsers { get; set; }
