@@ -13,6 +13,7 @@ namespace Domain
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+        public string Password { get; set; }
         public List<CompanyApplicationUser> CompanyApplicaitonUsers { get; set; }
         public List<ProjectApplicationUser> ProjectApplicaitonUsers { get; set; }
         public List<Ticket> IssuerTickets { get; set; }
