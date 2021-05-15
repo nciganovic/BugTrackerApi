@@ -1,4 +1,5 @@
 ﻿using Application.Commands;
+using Application.Commands.ApplicationUserCommands;
 using Application.Dto;
 using AutoMapper;
 using Domain;
@@ -44,10 +45,10 @@ namespace Api.Controllers
 
         // POST api/<ApplicationUserController>
         [HttpPost]
-        public IActionResult Post([FromBody] ApplicationUserDto applicationUserDto)
+        public IActionResult Post([FromBody] ApplicationUserDto applicationUserDto, [FromServices] IAddApplicationUserCommand addApplicationUserCommand)
         {
             ApplicationUser applicationUser = mapper.Map<ApplicationUser>(applicationUserDto);
-            applicationUserCommands.Create(applicationUser);
+            addApplicationUserCommand.Execute(applicationUser);
             return Ok("Application user created successfully");
         }
 
