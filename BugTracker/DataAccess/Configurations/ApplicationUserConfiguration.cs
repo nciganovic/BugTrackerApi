@@ -27,6 +27,9 @@ namespace DataAccess.Configurations
             builder.Property(au => au.Password)
                 .IsRequired();
 
+            builder.Property(au => au.Salt)
+                .IsRequired();
+
             builder.HasIndex(au => au.Email).IsUnique();
 
             builder.Property(au => au.CreatedAt).HasDefaultValueSql("GETDATE()");
