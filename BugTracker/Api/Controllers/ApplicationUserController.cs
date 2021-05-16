@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Hash;
+using Application.Searches;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -30,9 +31,9 @@ namespace Api.Controllers
 
         // GET: api/<ApplicationUserController>
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get([FromQuery] ApplicationUserSearch query, [FromServices] IGetApplicationUsersCommand getApplicationUsersCommand)
         {
-            IEnumerable<ApplicationUser> applicationUsers = applicationUserCommands.Read();
+            IEnumerable<ApplicationUserDto> applicationUsers = getApplicationUsersCommand.Execute(query);
             return Ok(applicationUsers);
         }
 
