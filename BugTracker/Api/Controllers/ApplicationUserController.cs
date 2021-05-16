@@ -56,19 +56,19 @@ namespace Api.Controllers
 
         // PUT api/<ApplicationUserController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] ApplicationUserDto applicationUserDto)
+        public IActionResult Put(int id, [FromBody] ApplicationUserDto applicationUserDto, [FromServices] IChangeApplicationUserCommand changeApplicationUserCommand)
         {
             applicationUserDto.Id = id;
             ApplicationUser applicationUser = mapper.Map<ApplicationUser>(applicationUserDto);
-            applicationUserCommands.Update(applicationUser);
+            changeApplicationUserCommand.Execute(applicationUser);
             return Ok("Application user updated successfully");
         }
 
         // DELETE api/<ApplicationUserController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int id, [FromServices] IRemoveApplicationUserCommand removeApplicationUserCommand)
         {
-            applicationUserCommands.Delete(id);
+            removeApplicationUserCommand.Execute(id);
             return Ok($"Application user with id = {id} deleted successfully");
         }
 
