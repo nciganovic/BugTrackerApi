@@ -25,7 +25,7 @@ namespace EfCommands.EfApplicationUserCommand
                 throw new EntityAlreadyExists();
             }
 
-            HashSalt hashSalt = Encryption.GenerateSaltedHash(64, request.Password);
+            HashSalt hashSalt = Password.GenerateSaltedHash(64, request.Password);
 
             request.Password = hashSalt.Hash;
             request.Salt = hashSalt.Salt;
