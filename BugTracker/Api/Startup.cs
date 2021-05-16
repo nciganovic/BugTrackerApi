@@ -47,7 +47,6 @@ namespace Api
             });
             
             services.AddDbContext<BugTrackerContext>();
-            services.AddTransient<IApplicationUserCommands, ApplicationUserCommands>();
 
             services.AddTransient<IGetRolesCommand, EfGetRolesCommand>();
             services.AddTransient<IGetOneRoleCommand, EfGetOneRoleCommand>();

@@ -20,12 +20,10 @@ namespace Api.Controllers
     [ApiController]
     public class ApplicationUserController : ControllerBase
     {
-        private readonly IApplicationUserCommands applicationUserCommands;
         private readonly IMapper mapper;
 
-        public ApplicationUserController(IApplicationUserCommands applicationUserCommands, IMapper mapper)
+        public ApplicationUserController(IMapper mapper)
         {
-            this.applicationUserCommands = applicationUserCommands;
             this.mapper = mapper;
         }
 
