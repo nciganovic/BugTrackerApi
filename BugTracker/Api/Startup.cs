@@ -70,6 +70,7 @@ namespace Api
             services.AddTransient<IAddApplicationUserCommand, EfAddApplicationUserCommand>();
             services.AddTransient<IGetApplicationUserByEmailCommand, EfGetApplicationUserByEmailCommand>();
             services.AddTransient<IGetApplicationUsersCommand, EfGetApplicationUsersCommand>();
+            services.AddTransient<IGetOneApplicationUserCommand, EfGetOneApplicationUserCommand>();
 
 
             services.AddAutoMapper(typeof(DefaultProfile));

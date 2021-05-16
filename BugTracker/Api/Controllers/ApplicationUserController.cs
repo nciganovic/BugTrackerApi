@@ -39,9 +39,9 @@ namespace Api.Controllers
 
         // GET api/<ApplicationUserController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public IActionResult Get(int id, [FromServices] IGetOneApplicationUserCommand getOneApplicationUserCommand)
         {
-            ApplicationUser applicationUser = applicationUserCommands.Read(id);
+            ApplicationUserDto applicationUser = getOneApplicationUserCommand.Execute(id);
             return Ok(applicationUser);
         }
 
