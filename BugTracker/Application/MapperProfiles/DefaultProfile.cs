@@ -13,13 +13,11 @@ namespace Application.MapperProfiles
     {
         public DefaultProfile()
         {
-            CreateMap<TicketPriority, TicketPriorityDto>().ReverseMap();
-            CreateMap<TicketStatus, TicketStatusDto>().ReverseMap();
-            CreateMap<TicketType, TicketTypeDto>().ReverseMap();
             CreateMap<Role, RoleDto>().ReverseMap();
             CreateMap<ApplicationUser, ApplicationUserDto>().ReverseMap();
             CreateMap<Company, CompanyDto>().ReverseMap();
             CreateMap<Project, ProjectDto>().ReverseMap();
+            CreateMap<Ticket, TicketDto>().ReverseMap();
         }
     }
 }
