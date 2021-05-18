@@ -1,6 +1,8 @@
 ﻿using Application.Commands.TicketCommands;
 using Application.Dto;
 using Application.Searches;
+using AutoMapper;
+using Domain;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -15,9 +17,11 @@ namespace Api.Controllers
     [ApiController]
     public class TicketController : ControllerBase
     {
-        public TicketController()
-        {
+        private readonly IMapper _mapper;
 
+        public TicketController(IMapper mapper)
+        {
+            _mapper = mapper;
         }
 
         // GET: api/<TicketController>
@@ -30,15 +34,19 @@ namespace Api.Controllers
 
         // GET api/<TicketController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id, [FromServices] IGetOneTicketCommand getOneTicketCommand)
         {
-            return "value";
+            TicketDto ticket = getOneTicketCommand.Execute(id);
+            return Ok(ticket);
         }
 
         // POST api/<TicketController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] TicketDto ticketDto, [FromServices] IAddTicketCommand addTicketCommand)
         {
+            Ticket ticket = _mapper.Map<Ticket>(ticketDto);
+            addTicketCommand.Execute(ticket);
+            return Ok("Ticket created successfully");
         }
 
         // PUT api/<TicketController>/5
