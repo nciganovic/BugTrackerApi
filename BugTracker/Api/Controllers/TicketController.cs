@@ -61,8 +61,10 @@ namespace Api.Controllers
 
         // DELETE api/<TicketController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id, [FromServices] IRemoveTicketCommand removeTicketCommand)
         {
+            removeTicketCommand.Execute(id);
+            return Ok("Ticket removed successfully");
         }
     }
 }
