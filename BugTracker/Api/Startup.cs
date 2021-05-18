@@ -26,6 +26,8 @@ using Application.Commands.ApplicationUserCommands;
 using EfCommands.EfApplicationUserCommands;
 using Application.Commands.TicketCommands;
 using EfCommands.EfTicketCommands;
+using Application.Commands.CommentCommands;
+using EfCommands.EfCommentCommands;
 
 namespace Api
 {
@@ -80,6 +82,8 @@ namespace Api
             services.AddTransient<IAddTicketCommand, EfAddTicketCommand>();
             services.AddTransient<IChangeTicketCommand, EfChangeTicketCommand>();
             services.AddTransient<IRemoveTicketCommand, EfRemoveTicketCommand>();
+
+            services.AddTransient<IGetCommentsCommand, EfGetCommentsCommand>();
 
             services.AddAutoMapper(typeof(DefaultProfile));
         }
