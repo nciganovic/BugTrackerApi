@@ -24,6 +24,8 @@ using Application.Commands.ProjectCommands;
 using EfCommands.EfProjectCommands;
 using Application.Commands.ApplicationUserCommands;
 using EfCommands.EfApplicationUserCommand;
+using Application.Commands.TicketCommands;
+using EfCommands.EfTicketCommands;
 
 namespace Api
 {
@@ -72,6 +74,8 @@ namespace Api
             services.AddTransient<IGetOneApplicationUserCommand, EfGetOneApplicationUserCommand>();
             services.AddTransient<IChangeApplicationUserCommand, EfChangeApplicationUserCommand>();
             services.AddTransient<IRemoveApplicationUserCommand, EfRemoveApplicationUserCommand>();
+
+            services.AddTransient<IGetTicketsCommand, EfGetTicketsCommand>();
 
             services.AddAutoMapper(typeof(DefaultProfile));
         }
