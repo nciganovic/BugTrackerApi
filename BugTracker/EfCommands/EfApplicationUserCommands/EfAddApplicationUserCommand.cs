@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Hash;
 
-namespace EfCommands.EfApplicationUserCommand
+namespace EfCommands.EfApplicationUserCommands
 {
     public class EfAddApplicationUserCommand : BaseCommands, IAddApplicationUserCommand
     {

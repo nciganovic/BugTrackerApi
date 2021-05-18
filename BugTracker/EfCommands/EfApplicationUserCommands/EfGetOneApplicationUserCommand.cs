@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Application.Exceptions;
 using AutoMapper;
 
-namespace EfCommands.EfApplicationUserCommand
+namespace EfCommands.EfApplicationUserCommands
 {
     public class EfGetOneApplicationUserCommand : BaseCommands, IGetOneApplicationUserCommand
     {

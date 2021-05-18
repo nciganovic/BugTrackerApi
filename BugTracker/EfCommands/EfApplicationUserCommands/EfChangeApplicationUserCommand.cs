@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EfCommands.EfCompanyCommands
+namespace EfCommands.EfApplicationUserCommands
 {
     public class EfChangeApplicationUserCommand : BaseCommands, IChangeApplicationUserCommand
     {

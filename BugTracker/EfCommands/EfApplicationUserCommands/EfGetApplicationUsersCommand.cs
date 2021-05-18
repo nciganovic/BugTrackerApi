@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EfCommands.EfApplicationUserCommand
+namespace EfCommands.EfApplicationUserCommands
 {
     public class EfGetApplicationUsersCommand : BaseCommands, IGetApplicationUsersCommand
     {

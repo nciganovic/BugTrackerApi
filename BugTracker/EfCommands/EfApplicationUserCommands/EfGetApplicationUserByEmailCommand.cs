@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Exceptions;
 
-namespace EfCommands.EfApplicationUserCommand
+namespace EfCommands.EfApplicationUserCommands
 {
     public class EfGetApplicationUserByEmailCommand : BaseCommands, IGetApplicationUserByEmailCommand
     {

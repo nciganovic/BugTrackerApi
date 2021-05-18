@@ -23,7 +23,7 @@ using EfCommands.EfCompanyCommands;
 using Application.Commands.ProjectCommands;
 using EfCommands.EfProjectCommands;
 using Application.Commands.ApplicationUserCommands;
-using EfCommands.EfApplicationUserCommand;
+using EfCommands.EfApplicationUserCommands;
 using Application.Commands.TicketCommands;
 using EfCommands.EfTicketCommands;
 
