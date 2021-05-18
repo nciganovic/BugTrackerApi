@@ -51,8 +51,12 @@ namespace Api.Controllers
 
         // PUT api/<TicketController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] TicketDto ticketDto, [FromServices] IChangeTicketCommand changeTicketCommand)
         {
+            ticketDto.Id = id;
+            Ticket ticket = _mapper.Map<Ticket>(ticketDto);
+            changeTicketCommand.Execute(ticket);
+            return Ok("Ticket changed successfully");
         }
 
         // DELETE api/<TicketController>/5

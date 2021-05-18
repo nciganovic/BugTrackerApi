@@ -78,6 +78,7 @@ namespace Api
             services.AddTransient<IGetTicketsCommand, EfGetTicketsCommand>();
             services.AddTransient<IGetOneTicketCommand, EfGetOneTicketCommand>();
             services.AddTransient<IAddTicketCommand, EfAddTicketCommand>();
+            services.AddTransient<IChangeTicketCommand, EfChangeTicketCommand>();
 
             services.AddAutoMapper(typeof(DefaultProfile));
         }
