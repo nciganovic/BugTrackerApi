@@ -21,7 +21,7 @@ namespace Domain
         public int IssuerId { get; set; }
         public ApplicationUser Issuer { get; set; }
 
-        public int DevloperId { get; set; }
+        public int DeveloperId { get; set; }
         public ApplicationUser Developer { get; set; }
 
         public string Title { get; set; }
