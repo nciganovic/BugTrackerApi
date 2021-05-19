@@ -1,6 +1,8 @@
 ﻿using Application.Commands.CommentCommands;
 using Application.Dto;
 using Application.Searches;
+using AutoMapper;
+using Domain;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -15,9 +17,11 @@ namespace Api.Controllers
     [ApiController]
     public class CommentController : ControllerBase
     {
-        public CommentController()
+        private readonly IMapper _mapper;
+
+        public CommentController(IMapper mapper)
         {
-                
+            _mapper = mapper;
         }
 
         // GET: api/<CommentController>
@@ -37,8 +41,11 @@ namespace Api.Controllers
 
         // POST api/<CommentController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] CommentDto commentDto, [FromServices] IAddCommentCommand addCommentCommand)
         {
+            Comment comment = _mapper.Map<Comment>(commentDto);
+            addCommentCommand.Execute(comment);
+            return Ok("Comment created successfully");
         }
 
         // PUT api/<CommentController>/5
