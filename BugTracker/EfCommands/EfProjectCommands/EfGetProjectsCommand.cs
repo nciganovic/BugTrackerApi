@@ -1,7 +1,9 @@
 ﻿using Application.Commands.ProjectCommands;
 using Application.Dto;
 using Application.Searches;
+using AutoMapper;
 using DataAccess;
+using Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +14,11 @@ namespace EfCommands.EfProjectCommands
 {
     public class EfGetProjectsCommand : BaseCommands, IGetProjectsCommand
     {
-        public EfGetProjectsCommand(BugTrackerContext context) : base(context)
-        {
+        private readonly IMapper _mapper;
 
+        public EfGetProjectsCommand(BugTrackerContext context, IMapper mapper) : base(context)
+        {
+            _mapper = mapper;
         }
 
         public IEnumerable<ProjectDto> Execute(ProjectSearch request)
@@ -36,15 +40,7 @@ namespace EfCommands.EfProjectCommands
                 }
             }
 
-            return query.Select(x => new ProjectDto
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Description = x.Description,
-                Company = x.Company,
-                CompanyId = x.CompanyId,
-                ProjectApplicationUsers = x.ProjectApplicationUsers
-            }).ToList();
+            return query.Select(x => _mapper.Map<Project, ProjectDto>(x)).ToList();
         }
     }
 }
