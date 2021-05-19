@@ -1,0 +1,64 @@
+﻿using Application.Commands.ApplicationUserCommands;
+using Application.Commands.CommentCommands;
+using Application.Commands.TicketCommands;
+using Application.Exceptions;
+using DataAccess;
+using Domain;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EfCommands.EfCommentCommands
+{
+    public class EfChangeCommentCommand : BaseCommands, IChangeCommentCommand
+    {
+        private readonly IGetOneApplicationUserCommand _getOneApplicationUserCommand;
+        private readonly IGetOneTicketCommand _getOneTicketCommand;
+
+        public EfChangeCommentCommand(BugTrackerContext context,
+            IGetOneApplicationUserCommand getOneApplicationUserCommand,
+            IGetOneTicketCommand getOneTicketCommand) : base(context)
+        {
+            _getOneApplicationUserCommand = getOneApplicationUserCommand;
+            _getOneTicketCommand = getOneTicketCommand;
+        }
+
+        public void Execute(Comment request)
+        {
+            Comment item = context.Comments.Find(request.Id);
+
+            if (item == null)
+                throw new EntityNotFoundException();
+
+            context.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
+
+            if (request.ApplicationUserId != 0)
+            {
+                _getOneApplicationUserCommand.Execute(request.ApplicationUserId);
+            }
+            else
+            {
+                throw new Exception("ApplicationUserId is required field and cannot be 0");
+            }
+
+            if (request.TicketId != 0)
+            {
+                _getOneTicketCommand.Execute(request.TicketId);
+            }
+            else
+            {
+                throw new Exception("TicketId is required field and cannot be 0");
+            }
+
+            request.CreatedAt = item.CreatedAt;
+            request.UpdatedAt = DateTime.Now;
+            request.DeletedAt = item.DeletedAt;
+
+            var tp = context.Comments.Attach(request);
+            tp.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            context.SaveChanges();
+        }
+    }
+}

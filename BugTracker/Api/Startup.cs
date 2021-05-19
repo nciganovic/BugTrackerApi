@@ -91,6 +91,7 @@ namespace Api
             services.AddTransient<IGetCommentsCommand, EfGetCommentsCommand>();
             services.AddTransient<IAddCommentCommand, EfAddCommentCommand>();
             services.AddTransient<IGetOneCommentCommand, EfGetOneCommentCommand>();
+            services.AddTransient<IChangeCommentCommand, EfChangeCommentCommand>();
 
             services.AddAutoMapper(typeof(DefaultProfile));
         }
