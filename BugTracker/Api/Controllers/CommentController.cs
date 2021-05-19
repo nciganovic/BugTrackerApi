@@ -61,8 +61,10 @@ namespace Api.Controllers
 
         // DELETE api/<CommentController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id, [FromServices] IRemoveCommentCommand removeCommentCommand)
         {
+            removeCommentCommand.Execute(id);
+            return Ok("Comment deleted successfully");
         }
     }
 }
