@@ -34,9 +34,10 @@ namespace Api.Controllers
 
         // GET api/<CommentController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id, [FromServices] IGetOneCommentCommand getOneCommentCommand)
         {
-            return "value";
+            CommentDto comment = getOneCommentCommand.Execute(id);
+            return Ok(comment);
         }
 
         // POST api/<CommentController>
