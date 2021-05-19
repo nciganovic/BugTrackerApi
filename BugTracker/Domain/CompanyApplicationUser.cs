@@ -12,5 +12,8 @@ namespace Domain
         public Company Company { get; set; }
         public int ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
+
+        public int RoleId { get; set; }
+        public Role Role { get; set; }    
     }
 }

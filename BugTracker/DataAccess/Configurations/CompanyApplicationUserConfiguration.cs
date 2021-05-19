@@ -22,6 +22,10 @@ namespace DataAccess.Configurations
             builder.HasOne(cau => cau.ApplicationUser)
                 .WithMany(au => au.CompanyApplicaitonUsers)
                 .HasForeignKey(cau => cau.ApplicationUserId);
+
+            builder.HasOne(cau => cau.Role)
+                .WithMany(r => r.CompanyApplicationUsers)
+                .HasForeignKey(cau => cau.RoleId);
         }
     }
 }
