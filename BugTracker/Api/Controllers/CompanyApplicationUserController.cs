@@ -49,9 +49,12 @@ namespace Api.Controllers
         }
 
         // PUT api/<CompanyApplicationUserController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public IActionResult Put([FromBody] CompanyApplicationUserDto companyApplicationUserDto, [FromServices] IChangeCompanyApplicationUserCommand changeCompanyApplicationUserCommand)
         {
+            CompanyApplicationUser companyApplicationUser = _mapper.Map<CompanyApplicationUserDto, CompanyApplicationUser>(companyApplicationUserDto);
+            changeCompanyApplicationUserCommand.Execute(companyApplicationUser);
+            return Ok("CompanyApplicationUser update successfully");
         }
 
         // DELETE api/<CompanyApplicationUserController>/5

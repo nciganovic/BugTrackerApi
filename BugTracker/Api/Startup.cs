@@ -98,6 +98,7 @@ namespace Api
 
             services.AddTransient<IAddCompanyApplicationUserCommand, EfAddCompanyApplicationUserCommand>();
             services.AddTransient<IGetOneCompanyApplicationUserCommand, EfGetOneCompanyApplicationUserCommand>();
+            services.AddTransient<IChangeCompanyApplicationUserCommand, EfChangeCompanyApplicationUserCommand>();
 
             services.AddAutoMapper(typeof(DefaultProfile));
         }
