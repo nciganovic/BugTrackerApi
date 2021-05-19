@@ -97,6 +97,7 @@ namespace Api
             services.AddTransient<IRemoveCommentCommand, EfRemoveCommentCommand>();
 
             services.AddTransient<IAddCompanyApplicationUserCommand, EfAddCompanyApplicationUserCommand>();
+            services.AddTransient<IGetOneCompanyApplicationUserCommand, EfGetOneCompanyApplicationUserCommand>();
 
             services.AddAutoMapper(typeof(DefaultProfile));
         }
