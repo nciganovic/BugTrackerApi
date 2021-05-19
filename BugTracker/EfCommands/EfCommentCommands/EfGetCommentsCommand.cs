@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace EfCommands.EfCommentCommands
 {
@@ -23,7 +24,7 @@ namespace EfCommands.EfCommentCommands
 
         public IEnumerable<CommentDto> Execute(CommentSearch request)
         {
-            var query = context.Comments.AsQueryable();
+            var query = context.Comments.Include(x => x.ApplicationUser).AsQueryable();
 
             if (request.Keyword != null) {
                 query = query.Where(x => x.Text.ToLower().Contains(request.Keyword.ToLower()));
