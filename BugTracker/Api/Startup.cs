@@ -84,6 +84,7 @@ namespace Api
             services.AddTransient<IRemoveTicketCommand, EfRemoveTicketCommand>();
 
             services.AddTransient<IGetCommentsCommand, EfGetCommentsCommand>();
+            services.AddTransient<IAddCommentCommand, EfAddCommentCommand>();
 
             services.AddAutoMapper(typeof(DefaultProfile));
         }
