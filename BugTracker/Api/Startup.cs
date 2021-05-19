@@ -49,7 +49,12 @@ namespace Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Api", Version = "v1" });
             });
-            
+
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
+
             services.AddDbContext<BugTrackerContext>();
 
             services.AddTransient<IGetRolesCommand, EfGetRolesCommand>();
