@@ -20,6 +20,7 @@ namespace Application.MapperProfiles
             CreateMap<Ticket, TicketDto>().ReverseMap();
             CreateMap<Comment, CommentDto>().ReverseMap();
             CreateMap<CompanyApplicationUser, CompanyApplicationUserDto>().ReverseMap();
+            CreateMap<ProjectApplicationUser, ProjectApplicationUserDto>().ReverseMap();
         }
     }
 }
