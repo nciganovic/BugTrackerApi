@@ -30,6 +30,8 @@ using Application.Commands.CommentCommands;
 using EfCommands.EfCommentCommands;
 using Application.Commands.CompanyApplicationUserCommands;
 using EfCommands.EfCompanyApplicationUserCommands;
+using Application.Commands.ProjectApplicationUserCommands;
+using EfCommands.EfProjectApplicationUserCommands;
 
 namespace Api
 {
@@ -99,6 +101,8 @@ namespace Api
             services.AddTransient<IAddCompanyApplicationUserCommand, EfAddCompanyApplicationUserCommand>();
             services.AddTransient<IGetOneCompanyApplicationUserCommand, EfGetOneCompanyApplicationUserCommand>();
             services.AddTransient<IChangeCompanyApplicationUserCommand, EfChangeCompanyApplicationUserCommand>();
+
+            services.AddTransient<IAddProjectApplicationUserCommand, EfAddProjectApplicationUserCommand>();
 
             services.AddAutoMapper(typeof(DefaultProfile));
         }
