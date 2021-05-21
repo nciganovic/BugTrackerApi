@@ -103,6 +103,7 @@ namespace Api
             services.AddTransient<IChangeCompanyApplicationUserCommand, EfChangeCompanyApplicationUserCommand>();
 
             services.AddTransient<IAddProjectApplicationUserCommand, EfAddProjectApplicationUserCommand>();
+            services.AddTransient<IGetApplicationUsersForProjectCommand, EfGetApplicationUsersForProjectCommand>();
 
             services.AddAutoMapper(typeof(DefaultProfile));
         }

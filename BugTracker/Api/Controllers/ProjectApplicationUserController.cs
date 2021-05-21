@@ -25,10 +25,11 @@ namespace Api.Controllers
         }
 
         // GET: api/<ProjectApplicationUserController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [HttpGet("[action]")]
+        public IActionResult GetApplicationUsers(int projectId, [FromServices] IGetApplicationUsersForProjectCommand getApplicationUsersForProjectCommand)
         {
-            return new string[] { "value1", "value2" };
+            IEnumerable<ApplicationUserDto> applicationUserDtos = getApplicationUsersForProjectCommand.Execute(projectId);
+            return Ok(applicationUserDtos);
         }
 
         // GET api/<ProjectApplicationUserController>/5
