@@ -16,22 +16,21 @@ using AutoMapper;
 using Domain;
 using Application.MapperProfiles;
 using Application.Commands.Roles;
-using EfCommands;
-using EfCommands.EfRoleCommands;
 using Application.Commands.CompanyCommands;
-using EfCommands.EfCompanyCommands;
 using Application.Commands.ProjectCommands;
-using EfCommands.EfProjectCommands;
 using Application.Commands.ApplicationUserCommands;
-using EfCommands.EfApplicationUserCommands;
 using Application.Commands.TicketCommands;
-using EfCommands.EfTicketCommands;
 using Application.Commands.CommentCommands;
-using EfCommands.EfCommentCommands;
 using Application.Commands.CompanyApplicationUserCommands;
-using EfCommands.EfCompanyApplicationUserCommands;
 using Application.Commands.ProjectApplicationUserCommands;
-using EfCommands.EfProjectApplicationUserCommands;
+using Implementation.EfCommands.EfApplicationUserCommands;
+using Implementation.EfCommands.EfRoleCommands;
+using Implementation.EfCommands.EfCompanyCommands;
+using Implementation.EfCommands.EfProjectCommands;
+using Implementation.EfCommands.EfTicketCommands;
+using Implementation.EfCommands.EfCommentCommands;
+using Implementation.EfCommands.EfCompanyApplicationUserCommands;
+using Implementation.EfCommands.EfProjectApplicationUserCommands;
 
 namespace Api
 {

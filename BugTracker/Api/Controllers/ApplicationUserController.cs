@@ -3,7 +3,6 @@ using Application.Commands.ApplicationUserCommands;
 using Application.Dto;
 using AutoMapper;
 using Domain;
-using EfCommands;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
