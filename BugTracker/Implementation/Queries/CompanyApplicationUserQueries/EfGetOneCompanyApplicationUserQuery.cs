@@ -7,19 +7,20 @@ using Application.Searches;
 using AutoMapper;
 using DataAccess;
 using Domain;
+using Implementation.EfCommands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Implementation.EfCommands.EfCompanyApplicationUserCommands
+namespace Implementation.Queries.CompanyApplicationUserQueries
 {
-    public class EfGetOneCompanyApplicationUserCommand : BaseCommands, IGetOneCompanyApplicationUserQuery
+    public class EfGetOneCompanyApplicationUserQuery : BaseCommands, IGetOneCompanyApplicationUserQuery
     {
         private readonly IMapper _mapper;
 
-        public EfGetOneCompanyApplicationUserCommand(BugTrackerContext context, IMapper mapper) : base(context)
+        public EfGetOneCompanyApplicationUserQuery(BugTrackerContext context, IMapper mapper) : base(context)
         {
             _mapper = mapper;
         }

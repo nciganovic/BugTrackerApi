@@ -40,6 +40,8 @@ using Application.Queries.ProjectQueries;
 using Application.Queries.RoleQueries;
 using Application.Queries.TicketQueries;
 using Implementation.Queries.ApplicationUserQueries;
+using Implementation.Queries.CommentQueries;
+using Implementation.Queries.CompanyApplicationUserQueries;
 
 namespace Api
 {
@@ -100,14 +102,14 @@ namespace Api
             services.AddTransient<IChangeTicketCommand, EfChangeTicketCommand>();
             services.AddTransient<IRemoveTicketCommand, EfRemoveTicketCommand>();
 
-            services.AddTransient<IGetCommentsQuery, EfGetCommentsCommand>();
+            services.AddTransient<IGetCommentsQuery, EfGetCommentsQuery>();
             services.AddTransient<IAddCommentCommand, EfAddCommentCommand>();
-            services.AddTransient<IGetOneCommentQuery, EfGetOneCommentCommand>();
+            services.AddTransient<IGetOneCommentQuery, EfGetOneCommentQuery>();
             services.AddTransient<IChangeCommentCommand, EfChangeCommentCommand>();
             services.AddTransient<IRemoveCommentCommand, EfRemoveCommentCommand>();
 
             services.AddTransient<IAddCompanyApplicationUserCommand, EfAddCompanyApplicationUserCommand>();
-            services.AddTransient<IGetOneCompanyApplicationUserQuery, EfGetOneCompanyApplicationUserCommand>();
+            services.AddTransient<IGetOneCompanyApplicationUserQuery, EfGetOneCompanyApplicationUserQuery>();
             services.AddTransient<IChangeCompanyApplicationUserCommand, EfChangeCompanyApplicationUserCommand>();
 
             services.AddTransient<IAddProjectApplicationUserCommand, EfAddProjectApplicationUserCommand>();

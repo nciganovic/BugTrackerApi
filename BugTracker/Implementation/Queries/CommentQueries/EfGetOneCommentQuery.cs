@@ -5,19 +5,20 @@ using Application.Queries.CommentQueries;
 using AutoMapper;
 using DataAccess;
 using Domain;
+using Implementation.EfCommands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Implementation.EfCommands.EfCommentCommands
+namespace Implementation.Queries.CommentQueries
 {
-    public class EfGetOneCommentCommand : BaseCommands, IGetOneCommentQuery
+    public class EfGetOneCommentQuery : BaseCommands, IGetOneCommentQuery
     {
         private readonly IMapper _mapper;
 
-        public EfGetOneCommentCommand(BugTrackerContext context, IMapper mapper) : base(context)
+        public EfGetOneCommentQuery(BugTrackerContext context, IMapper mapper) : base(context)
         {
             _mapper = mapper;
         }

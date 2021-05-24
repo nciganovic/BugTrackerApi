@@ -10,14 +10,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Implementation.EfCommands;
 
-namespace Implementation.EfCommands.EfCommentCommands
+namespace Implementation.Queries.CommentQueries
 {
-    public class EfGetCommentsCommand : BaseCommands, IGetCommentsQuery
+    public class EfGetCommentsQuery : BaseCommands, IGetCommentsQuery
     {
         private readonly IMapper _mapper;
 
-        public EfGetCommentsCommand(BugTrackerContext context, IMapper mapper) : base(context)
+        public EfGetCommentsQuery(BugTrackerContext context, IMapper mapper) : base(context)
         {
             _mapper = mapper;
         }

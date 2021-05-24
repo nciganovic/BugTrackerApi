@@ -10,8 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Queries\CommentQueries\" />
-    <Folder Include="Queries\CompanyApplicationUserQueries\" />
     <Folder Include="Queries\CompanyQueries\" />
     <Folder Include="Queries\TicketQueries\" />
     <Folder Include="Queries\RoleQueries\" />
