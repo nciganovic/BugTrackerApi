@@ -12,6 +12,7 @@ using Application.Hash;
 using Application.Searches;
 using Application.Queries.ApplicationUserQueries;
 using Application;
+using Implementation.Validators;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -48,11 +49,24 @@ namespace Api.Controllers
 
         // POST api/<ApplicationUserController>
         [HttpPost]
-        public IActionResult Post([FromBody] ApplicationUserDto applicationUserDto, [FromServices] IAddApplicationUserCommand command)
+        public IActionResult Post([FromBody] CreateApplicationUserDto dto
+            , [FromServices] IAddApplicationUserCommand command
+            , [FromServices] CreateApplicationUserValidator validator)
         {
-            ApplicationUser applicationUser = _mapper.Map<ApplicationUser>(applicationUserDto);
-            _useCaseExecutor.ExecuteCommand(command, applicationUser);
-            return Ok("Application user created successfully");
+            var result = validator.Validate(dto);
+
+            if (result.IsValid) { 
+                ApplicationUser applicationUser = _mapper.Map<ApplicationUser>(dto);
+                _useCaseExecutor.ExecuteCommand(command, applicationUser);
+                return Ok("Application user created successfully");
+            }
+
+            string errors = "";
+            foreach (var error in result.Errors) {
+                errors += error.ErrorMessage + " ";
+            }
+
+            return UnprocessableEntity(errors);
         }
 
         // PUT api/<ApplicationUserController>/5

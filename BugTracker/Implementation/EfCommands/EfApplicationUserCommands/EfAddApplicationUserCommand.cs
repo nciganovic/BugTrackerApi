@@ -24,11 +24,6 @@ namespace Implementation.EfCommands.EfApplicationUserCommands
 
         public void Execute(ApplicationUser request)
         {
-            if (IsEmailAlreadyTaken(request.Email))
-            {
-                throw new EntityAlreadyExists();
-            }
-
             HashSalt hashSalt = Password.GenerateSaltedHash(64, request.Password);
 
             request.Password = hashSalt.Hash;

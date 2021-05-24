@@ -51,6 +51,7 @@ using Application;
 using Application.Interfaces;
 using Implementation.Logging;
 using Api.Core;
+using Implementation.Validators;
 
 namespace Api
 {
@@ -127,6 +128,8 @@ namespace Api
 
             services.AddTransient<IAddProjectApplicationUserCommand, EfAddProjectApplicationUserCommand>();
             services.AddTransient<IGetApplicationUsersForProjectQuery, EfGetApplicationUsersForProjectQuery>();
+
+            services.AddTransient<CreateApplicationUserValidator>();
 
             services.AddAutoMapper(typeof(DefaultProfile));
         }
