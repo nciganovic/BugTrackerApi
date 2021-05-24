@@ -1,5 +1,4 @@
-﻿using Application.Commands.ApplicationUserCommands;
-using Application.Dto;
+﻿using Application.Dto;
 using AutoMapper;
 using DataAccess;
 using Domain;
@@ -9,10 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Exceptions;
+using Application.Queries.ApplicationUserQueries;
 
 namespace Implementation.EfCommands.EfApplicationUserCommands
 {
-    public class EfGetApplicationUserByEmailCommand : BaseCommands, IGetApplicationUserByEmailCommand
+    public class EfGetApplicationUserByEmailCommand : BaseCommands, IGetApplicationUserByEmailQuery
     {
         private readonly IMapper _mapper;
 

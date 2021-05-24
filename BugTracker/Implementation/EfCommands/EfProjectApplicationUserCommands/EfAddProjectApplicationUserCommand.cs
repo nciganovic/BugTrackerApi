@@ -1,6 +1,7 @@
 ﻿using Application.Commands.ApplicationUserCommands;
 using Application.Commands.ProjectApplicationUserCommands;
 using Application.Commands.ProjectCommands;
+using Application.Queries.ApplicationUserQueries;
 using DataAccess;
 using Domain;
 using System;
@@ -14,11 +15,11 @@ namespace Implementation.EfCommands.EfProjectApplicationUserCommands
     public class EfAddProjectApplicationUserCommand : BaseCommands, IAddProjectApplicationUserCommand
     {
         private readonly IGetOneProjectCommand _getOneProjectCommand;
-        private readonly IGetOneApplicationUserCommand _getOneApplicationUserCommand;
+        private readonly IGetOneApplicationUserQuery _getOneApplicationUserCommand;
 
         public EfAddProjectApplicationUserCommand(BugTrackerContext context ,
             IGetOneProjectCommand getOneProjectCommand ,
-            IGetOneApplicationUserCommand getOneApplicationUserCommand) : base(context)
+            IGetOneApplicationUserQuery getOneApplicationUserCommand) : base(context)
         {
             _getOneProjectCommand = getOneProjectCommand;
             _getOneApplicationUserCommand = getOneApplicationUserCommand;

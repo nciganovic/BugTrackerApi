@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Hash;
 using Application.Searches;
+using Application.Queries.ApplicationUserQueries;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -28,15 +29,15 @@ namespace Api.Controllers
 
         // GET: api/<ApplicationUserController>
         [HttpGet]
-        public IActionResult Get([FromQuery] ApplicationUserSearch query, [FromServices] IGetApplicationUsersCommand getApplicationUsersCommand)
+        public IActionResult Get([FromQuery] ApplicationUserSearch search, [FromServices] IGetApplicationUsersQuery query)
         {
-            IEnumerable<ApplicationUserDto> applicationUsers = getApplicationUsersCommand.Execute(query);
+            IEnumerable<ApplicationUserDto> applicationUsers = query.Execute(search);
             return Ok(applicationUsers);
         }
 
         // GET api/<ApplicationUserController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id, [FromServices] IGetOneApplicationUserCommand getOneApplicationUserCommand)
+        public IActionResult Get(int id, [FromServices] IGetOneApplicationUserQuery getOneApplicationUserCommand)
         {
             ApplicationUserDto applicationUser = getOneApplicationUserCommand.Execute(id);
             return Ok(applicationUser);
@@ -70,7 +71,7 @@ namespace Api.Controllers
         }
 
         [HttpPost("[action]")]
-        public IActionResult Login([FromBody] LoginDto loginDto, [FromServices] IGetApplicationUserByEmailCommand getApplicationUserByEmailCommand) 
+        public IActionResult Login([FromBody] LoginDto loginDto, [FromServices] IGetApplicationUserByEmailQuery getApplicationUserByEmailCommand) 
         {
             ApplicationUserDto applicationUserDto = getApplicationUserByEmailCommand.Execute(loginDto.Email);
 

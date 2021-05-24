@@ -31,6 +31,7 @@ using Implementation.EfCommands.EfTicketCommands;
 using Implementation.EfCommands.EfCommentCommands;
 using Implementation.EfCommands.EfCompanyApplicationUserCommands;
 using Implementation.EfCommands.EfProjectApplicationUserCommands;
+using Application.Queries.ApplicationUserQueries;
 
 namespace Api
 {
@@ -79,9 +80,9 @@ namespace Api
             services.AddTransient<IRemoveProjectCommand, EfRemoveProjectCommand>();
 
             services.AddTransient<IAddApplicationUserCommand, EfAddApplicationUserCommand>();
-            services.AddTransient<IGetApplicationUserByEmailCommand, EfGetApplicationUserByEmailCommand>();
-            services.AddTransient<IGetApplicationUsersCommand, EfGetApplicationUsersCommand>();
-            services.AddTransient<IGetOneApplicationUserCommand, EfGetOneApplicationUserCommand>();
+            services.AddTransient<IGetApplicationUserByEmailQuery, EfGetApplicationUserByEmailCommand>();
+            services.AddTransient<IGetApplicationUsersQuery, EfGetApplicationUsersCommand>();
+            services.AddTransient<IGetOneApplicationUserQuery, EfGetOneApplicationUserCommand>();
             services.AddTransient<IChangeApplicationUserCommand, EfChangeApplicationUserCommand>();
             services.AddTransient<IRemoveApplicationUserCommand, EfRemoveApplicationUserCommand>();
 

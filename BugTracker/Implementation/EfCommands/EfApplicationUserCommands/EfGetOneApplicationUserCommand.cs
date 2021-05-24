@@ -9,10 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Exceptions;
 using AutoMapper;
+using Application.Queries.ApplicationUserQueries;
 
 namespace Implementation.EfCommands.EfApplicationUserCommands
 {
-    public class EfGetOneApplicationUserCommand : BaseCommands, IGetOneApplicationUserCommand
+    public class EfGetOneApplicationUserCommand : BaseCommands, IGetOneApplicationUserQuery
     {
         private IMapper _mapper;
 

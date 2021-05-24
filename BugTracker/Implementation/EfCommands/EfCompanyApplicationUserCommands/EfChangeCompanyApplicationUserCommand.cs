@@ -3,6 +3,7 @@ using Application.Commands.CompanyApplicationUserCommands;
 using Application.Commands.CompanyCommands;
 using Application.Commands.Roles;
 using Application.Exceptions;
+using Application.Queries.ApplicationUserQueries;
 using DataAccess;
 using Domain;
 using System;
@@ -16,12 +17,12 @@ namespace Implementation.EfCommands.EfCompanyApplicationUserCommands
     public class EfChangeCompanyApplicationUserCommand : BaseCommands, IChangeCompanyApplicationUserCommand
     {
         private readonly IGetOneCompanyCommand _getOneCompanyCommand;
-        private readonly IGetOneApplicationUserCommand _getOneApplicationUserCommand;
+        private readonly IGetOneApplicationUserQuery _getOneApplicationUserCommand;
         private readonly IGetOneRoleCommand _getOneRoleCommand;
 
         public EfChangeCompanyApplicationUserCommand(BugTrackerContext context, 
             IGetOneCompanyCommand getOneCompanyCommand,
-            IGetOneApplicationUserCommand getOneApplicationUserCommand,
+            IGetOneApplicationUserQuery getOneApplicationUserCommand,
             IGetOneRoleCommand getOneRoleCommand) : base(context)
         {
             _getOneApplicationUserCommand = getOneApplicationUserCommand;

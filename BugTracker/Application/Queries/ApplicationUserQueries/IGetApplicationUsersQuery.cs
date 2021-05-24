@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Commands.ApplicationUserCommands
+namespace Application.Queries.ApplicationUserQueries
 {
-    public interface IGetApplicationUsersCommand : IQuery<ApplicationUserSearch, IEnumerable<ApplicationUserDto>>
+    public interface IGetApplicationUsersQuery : IQuery<ApplicationUserSearch, IEnumerable<ApplicationUserDto>>
     {
     }
 }

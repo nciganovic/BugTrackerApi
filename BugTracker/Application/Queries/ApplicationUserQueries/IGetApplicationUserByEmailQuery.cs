@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Commands.ApplicationUserCommands
+namespace Application.Queries.ApplicationUserQueries
 {
-    public interface IGetOneApplicationUserCommand : IQuery<int, ApplicationUserDto>
+    public interface IGetApplicationUserByEmailQuery : IQuery<string, ApplicationUserDto>
     {
     }
 }

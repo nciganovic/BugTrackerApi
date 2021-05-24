@@ -2,6 +2,7 @@
 using Application.Commands.ProjectApplicationUserCommands;
 using Application.Commands.ProjectCommands;
 using Application.Dto;
+using Application.Queries.ApplicationUserQueries;
 using AutoMapper;
 using DataAccess;
 using Domain;
@@ -17,10 +18,10 @@ namespace Implementation.EfCommands.EfProjectApplicationUserCommands
     {
         private readonly IMapper _mapper;
         private readonly IGetOneProjectCommand _getOneProjectCommand;
-        private readonly IGetOneApplicationUserCommand _getOneApplicationUserCommand;
+        private readonly IGetOneApplicationUserQuery _getOneApplicationUserCommand;
 
         public EfGetApplicationUsersForProjectCommand(BugTrackerContext context, IGetOneProjectCommand getOneProjectCommand, IMapper mapper,
-            IGetOneApplicationUserCommand getOneApplicationUserCommand) : base(context)
+            IGetOneApplicationUserQuery getOneApplicationUserCommand) : base(context)
         {
             _getOneProjectCommand = getOneProjectCommand;
             _mapper = mapper;

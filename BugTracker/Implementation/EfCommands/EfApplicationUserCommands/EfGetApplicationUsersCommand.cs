@@ -1,5 +1,5 @@
-﻿using Application.Commands.ApplicationUserCommands;
-using Application.Dto;
+﻿using Application.Dto;
+using Application.Queries.ApplicationUserQueries;
 using Application.Searches;
 using AutoMapper;
 using DataAccess;
@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfApplicationUserCommands
 {
-    public class EfGetApplicationUsersCommand : BaseCommands, IGetApplicationUsersCommand
+    public class EfGetApplicationUsersCommand : BaseCommands, IGetApplicationUsersQuery
     {
         private IMapper _mapper;
 
