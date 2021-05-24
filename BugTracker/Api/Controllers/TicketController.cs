@@ -1,4 +1,5 @@
-﻿using Application.Commands.TicketCommands;
+﻿using Application;
+using Application.Commands.TicketCommands;
 using Application.Dto;
 using Application.Queries.TicketQueries;
 using Application.Searches;
@@ -19,52 +20,54 @@ namespace Api.Controllers
     public class TicketController : ControllerBase
     {
         private readonly IMapper _mapper;
+        private readonly UseCaseExecutor _useCaseExecutor;
 
-        public TicketController(IMapper mapper)
+        public TicketController(IMapper mapper, UseCaseExecutor useCaseExecutor)
         {
             _mapper = mapper;
+            _useCaseExecutor = useCaseExecutor;
         }
 
         // GET: api/<TicketController>
         [HttpGet]
         public IActionResult Get([FromQuery] TicketSearch search, [FromServices] IGetTicketsQuery query)
         {
-            IEnumerable<TicketDto> tickets = query.Execute(search);
+            IEnumerable<TicketDto> tickets = _useCaseExecutor.ExecuteQuery(query, search);
             return Ok(tickets);
         }
 
         // GET api/<TicketController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id, [FromServices] IGetOneTicketQuery getOneTicketCommand)
+        public IActionResult Get(int id, [FromServices] IGetOneTicketQuery query)
         {
-            TicketDto ticket = getOneTicketCommand.Execute(id);
+            TicketDto ticket = _useCaseExecutor.ExecuteQuery(query, id);
             return Ok(ticket);
         }
 
         // POST api/<TicketController>
         [HttpPost]
-        public IActionResult Post([FromBody] TicketDto ticketDto, [FromServices] IAddTicketCommand addTicketCommand)
+        public IActionResult Post([FromBody] TicketDto ticketDto, [FromServices] IAddTicketCommand command)
         {
             Ticket ticket = _mapper.Map<Ticket>(ticketDto);
-            addTicketCommand.Execute(ticket);
+            _useCaseExecutor.ExecuteCommand(command, ticket);
             return Ok("Ticket created successfully");
         }
 
         // PUT api/<TicketController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] TicketDto ticketDto, [FromServices] IChangeTicketCommand changeTicketCommand)
+        public IActionResult Put(int id, [FromBody] TicketDto ticketDto, [FromServices] IChangeTicketCommand command)
         {
             ticketDto.Id = id;
             Ticket ticket = _mapper.Map<Ticket>(ticketDto);
-            changeTicketCommand.Execute(ticket);
+            _useCaseExecutor.ExecuteCommand(command, ticket);
             return Ok("Ticket changed successfully");
         }
 
         // DELETE api/<TicketController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id, [FromServices] IRemoveTicketCommand removeTicketCommand)
+        public IActionResult Delete(int id, [FromServices] IRemoveTicketCommand command)
         {
-            removeTicketCommand.Execute(id);
+            _useCaseExecutor.ExecuteCommand(command, id);
             return Ok("Ticket removed successfully");
         }
     }
