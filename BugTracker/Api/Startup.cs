@@ -47,6 +47,10 @@ using Implementation.Queries.ProjectApplicationUserQueries;
 using Implementation.Queries.ProjectCommandsQueries;
 using Implementation.Queries.RoleQueries;
 using Implementation.Queries.TicketCommandsQueries;
+using Application;
+using Application.Interfaces;
+using Implementation.Logging;
+using Api.Core;
 
 namespace Api
 {
@@ -75,6 +79,10 @@ namespace Api
             );
 
             services.AddDbContext<BugTrackerContext>();
+
+            services.AddTransient<UseCaseExecutor>();
+            services.AddTransient<IUseCaseLogger, ConsoleUseCaseLogger>();
+            services.AddTransient<IApplicationActor, AdminFakeApiActor>();
 
             services.AddTransient<IGetRolesQuery, EfGetRolesQuery>();
             services.AddTransient<IGetOneRoleQuery, EfGetOneRoleQuery>();
