@@ -39,6 +39,7 @@ using Application.Queries.ProjectApplicationUserQueries;
 using Application.Queries.ProjectQueries;
 using Application.Queries.RoleQueries;
 using Application.Queries.TicketQueries;
+using Implementation.Queries.ApplicationUserQueries;
 
 namespace Api
 {
@@ -87,9 +88,9 @@ namespace Api
             services.AddTransient<IRemoveProjectCommand, EfRemoveProjectCommand>();
 
             services.AddTransient<IAddApplicationUserCommand, EfAddApplicationUserCommand>();
-            services.AddTransient<IGetApplicationUserByEmailQuery, EfGetApplicationUserByEmailCommand>();
-            services.AddTransient<IGetApplicationUsersQuery, EfGetApplicationUsersCommand>();
-            services.AddTransient<IGetOneApplicationUserQuery, EfGetOneApplicationUserCommand>();
+            services.AddTransient<IGetApplicationUserByEmailQuery, EfGetApplicationUserByEmailQuery>();
+            services.AddTransient<IGetApplicationUsersQuery, EfGetApplicationUsersQuery>();
+            services.AddTransient<IGetOneApplicationUserQuery, EfGetOneApplicationUserQuery>();
             services.AddTransient<IChangeApplicationUserCommand, EfChangeApplicationUserCommand>();
             services.AddTransient<IRemoveApplicationUserCommand, EfRemoveApplicationUserCommand>();
 

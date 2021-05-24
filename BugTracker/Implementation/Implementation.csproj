@@ -10,7 +10,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Queries\" />
+    <Folder Include="Queries\CommentQueries\" />
+    <Folder Include="Queries\CompanyApplicationUserQueries\" />
+    <Folder Include="Queries\CompanyQueries\" />
+    <Folder Include="Queries\TicketQueries\" />
+    <Folder Include="Queries\RoleQueries\" />
+    <Folder Include="Queries\ProjectQueries\" />
+    <Folder Include="Queries\ProjectApplicationUserQueries\" />
   </ItemGroup>
 
 </Project>

@@ -10,14 +10,15 @@ using System.Threading.Tasks;
 using Application.Exceptions;
 using AutoMapper;
 using Application.Queries.ApplicationUserQueries;
+using Implementation.EfCommands;
 
-namespace Implementation.EfCommands.EfApplicationUserCommands
+namespace Implementation.Queries.ApplicationUserQueries
 {
-    public class EfGetOneApplicationUserCommand : BaseCommands, IGetOneApplicationUserQuery
+    public class EfGetOneApplicationUserQuery : BaseCommands, IGetOneApplicationUserQuery
     {
         private IMapper _mapper;
 
-        public EfGetOneApplicationUserCommand(BugTrackerContext context, IMapper mapper) : base(context)
+        public EfGetOneApplicationUserQuery(BugTrackerContext context, IMapper mapper) : base(context)
         {
             _mapper = mapper;
         }

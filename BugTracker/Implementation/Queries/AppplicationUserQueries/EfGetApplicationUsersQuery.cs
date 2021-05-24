@@ -4,19 +4,20 @@ using Application.Searches;
 using AutoMapper;
 using DataAccess;
 using Domain;
+using Implementation.EfCommands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Implementation.EfCommands.EfApplicationUserCommands
+namespace Implementation.Queries.ApplicationUserQueries
 {
-    public class EfGetApplicationUsersCommand : BaseCommands, IGetApplicationUsersQuery
+    public class EfGetApplicationUsersQuery : BaseCommands, IGetApplicationUsersQuery
     {
         private IMapper _mapper;
 
-        public EfGetApplicationUsersCommand(BugTrackerContext context, IMapper mapper) : base(context)
+        public EfGetApplicationUsersQuery(BugTrackerContext context, IMapper mapper) : base(context)
         {
             _mapper = mapper;
         }

@@ -9,14 +9,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Exceptions;
 using Application.Queries.ApplicationUserQueries;
+using Implementation.EfCommands;
 
-namespace Implementation.EfCommands.EfApplicationUserCommands
+namespace Implementation.Queries.ApplicationUserQueries
 {
-    public class EfGetApplicationUserByEmailCommand : BaseCommands, IGetApplicationUserByEmailQuery
+    public class EfGetApplicationUserByEmailQuery : BaseCommands, IGetApplicationUserByEmailQuery
     {
         private readonly IMapper _mapper;
 
-        public EfGetApplicationUserByEmailCommand(BugTrackerContext context, IMapper mapper) : base(context)
+        public EfGetApplicationUserByEmailQuery(BugTrackerContext context, IMapper mapper) : base(context)
         {
             _mapper = mapper;
         }
