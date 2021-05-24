@@ -44,6 +44,7 @@ using Implementation.Queries.CommentQueries;
 using Implementation.Queries.CompanyApplicationUserQueries;
 using Implementation.Queries.CompanyQueries;
 using Implementation.Queries.ProjectApplicationUserQueries;
+using Implementation.Queries.ProjectCommandsQueries;
 
 namespace Api
 {
@@ -85,8 +86,8 @@ namespace Api
             services.AddTransient<IChangeCompanyCommand, EfChangeCompanyCommand>();
             services.AddTransient<IRemoveCompanyCommand, EfRemoveCompanyCommand>();
 
-            services.AddTransient<IGetProjectsQuery, EfGetProjectsCommand>();
-            services.AddTransient<IGetOneProjectQuery, EfGetOneProjectCommand>();
+            services.AddTransient<IGetProjectsQuery, EfGetProjectsQuery>();
+            services.AddTransient<IGetOneProjectQuery, EfGetOneProjectQuery>();
             services.AddTransient<IAddProjectCommand, EfAddProjectCommand>();
             services.AddTransient<IChangeProjectCommand, EfChangeProjectCommand>();
             services.AddTransient<IRemoveProjectCommand, EfRemoveProjectCommand>();

@@ -5,19 +5,20 @@ using Application.Searches;
 using AutoMapper;
 using DataAccess;
 using Domain;
+using Implementation.EfCommands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Implementation.EfCommands.EfProjectCommands
+namespace Implementation.Queries.ProjectCommandsQueries
 {
-    public class EfGetProjectsCommand : BaseCommands, IGetProjectsQuery
+    public class EfGetProjectsQuery : BaseCommands, IGetProjectsQuery
     {
         private readonly IMapper _mapper;
 
-        public EfGetProjectsCommand(BugTrackerContext context, IMapper mapper) : base(context)
+        public EfGetProjectsQuery(BugTrackerContext context, IMapper mapper) : base(context)
         {
             _mapper = mapper;
         }
