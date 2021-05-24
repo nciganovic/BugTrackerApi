@@ -42,6 +42,7 @@ using Application.Queries.TicketQueries;
 using Implementation.Queries.ApplicationUserQueries;
 using Implementation.Queries.CommentQueries;
 using Implementation.Queries.CompanyApplicationUserQueries;
+using Implementation.Queries.CompanyQueries;
 
 namespace Api
 {
@@ -77,8 +78,8 @@ namespace Api
             services.AddTransient<IChangeRoleCommand, EfChangeRoleCommand>();
             services.AddTransient<IRemoveRoleCommand, EfRemoveRoleCommand>();
 
-            services.AddTransient<IGetCompaniesQuery, EfGetCompaniesCommand>();
-            services.AddTransient<IGetOneCompanyQuery, EfGetOneCompanyCommand>();
+            services.AddTransient<IGetCompaniesQuery, EfGetCompaniesQuery>();
+            services.AddTransient<IGetOneCompanyQuery, EfGetOneCompanyQuery>();
             services.AddTransient<IAddCompanyCommand, EfAddCompanyCommand>();
             services.AddTransient<IChangeCompanyCommand, EfChangeCompanyCommand>();
             services.AddTransient<IRemoveCompanyCommand, EfRemoveCompanyCommand>();

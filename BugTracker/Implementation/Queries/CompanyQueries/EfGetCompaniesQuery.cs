@@ -3,17 +3,18 @@ using Application.Dto;
 using Application.Queries.CompanyQueries;
 using Application.Searches;
 using DataAccess;
+using Implementation.EfCommands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Implementation.EfCommands.EfCompanyCommands
+namespace Implementation.Queries.CompanyQueries
 {
-    public class EfGetCompaniesCommand : BaseCommands,  IGetCompaniesQuery
+    public class EfGetCompaniesQuery : BaseCommands,  IGetCompaniesQuery
     {
-        public EfGetCompaniesCommand(BugTrackerContext context) : base(context)
+        public EfGetCompaniesQuery(BugTrackerContext context) : base(context)
         {
 
         }

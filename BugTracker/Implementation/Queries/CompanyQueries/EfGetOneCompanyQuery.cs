@@ -3,17 +3,18 @@ using Application.Dto;
 using Application.Exceptions;
 using Application.Queries.CompanyQueries;
 using DataAccess;
+using Implementation.EfCommands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Implementation.EfCommands.EfCompanyCommands
+namespace Implementation.Queries.CompanyQueries
 {
-    public class EfGetOneCompanyCommand : BaseCommands, IGetOneCompanyQuery
+    public class EfGetOneCompanyQuery : BaseCommands, IGetOneCompanyQuery
     {
-        public EfGetOneCompanyCommand(BugTrackerContext context) : base(context)
+        public EfGetOneCompanyQuery(BugTrackerContext context) : base(context)
         {
 
         }
