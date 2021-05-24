@@ -1,4 +1,5 @@
-﻿using Application.Commands.ProjectApplicationUserCommands;
+﻿using Application;
+using Application.Commands.ProjectApplicationUserCommands;
 using Application.Dto;
 using Application.Queries.ProjectApplicationUserQueries;
 using Application.Searches;
@@ -19,17 +20,19 @@ namespace Api.Controllers
     public class ProjectApplicationUserController : ControllerBase
     {
         private readonly IMapper _mapper;
+        private readonly UseCaseExecutor _useCaseExecutor;
 
-        public ProjectApplicationUserController(IMapper mapper)
+        public ProjectApplicationUserController(IMapper mapper, UseCaseExecutor useCaseExecutor)
         {
             _mapper = mapper;
+            _useCaseExecutor = useCaseExecutor;
         }
 
         // GET: api/<ProjectApplicationUserController>
         [HttpGet("[action]")]
         public IActionResult GetApplicationUsers(int projectId, [FromServices] IGetApplicationUsersForProjectQuery query)
         {
-            IEnumerable<ApplicationUserDto> applicationUserDtos = query.Execute(projectId);
+            IEnumerable<ApplicationUserDto> applicationUserDtos = _useCaseExecutor.ExecuteQuery(query, projectId);
             return Ok(applicationUserDtos);
         }
 
@@ -42,10 +45,10 @@ namespace Api.Controllers
 
         // POST api/<ProjectApplicationUserController>
         [HttpPost]
-        public IActionResult Post([FromBody] ProjectApplicationUserDto dto, [FromServices] IAddProjectApplicationUserCommand addProjectApplicationUserCommand)
+        public IActionResult Post([FromBody] ProjectApplicationUserDto dto, [FromServices] IAddProjectApplicationUserCommand command)
         {
             ProjectApplicationUser projectApplicationUser = _mapper.Map<ProjectApplicationUserDto, ProjectApplicationUser>(dto);
-            addProjectApplicationUserCommand.Execute(projectApplicationUser);
+            _useCaseExecutor.ExecuteCommand(command, projectApplicationUser);
             return Ok("ProjectApplicationUser created successfully");
         }
 
