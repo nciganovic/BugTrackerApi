@@ -10,14 +10,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Exceptions;
 using Application.Queries.TicketQueries;
+using Implementation.EfCommands;
 
-namespace Implementation.EfCommands.EfTicketCommands
+namespace Implementation.Queries.TicketCommandsQueries
 {
-    public class EfGetOneTicketCommand : BaseCommands, IGetOneTicketQuery
+    public class EfGetOneTicketQuery : BaseCommands, IGetOneTicketQuery
     {
         private readonly IMapper _mapper;
 
-        public EfGetOneTicketCommand(BugTrackerContext context, IMapper mapper) : base(context)
+        public EfGetOneTicketQuery(BugTrackerContext context, IMapper mapper) : base(context)
         {
             _mapper = mapper;
         }

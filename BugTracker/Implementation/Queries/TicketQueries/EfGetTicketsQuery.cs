@@ -6,19 +6,20 @@ using Application.Searches;
 using AutoMapper;
 using DataAccess;
 using Domain;
+using Implementation.EfCommands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Implementation.EfCommands.EfTicketCommands
+namespace Implementation.Queries.TicketCommandsQueries
 {
-    public class EfGetTicketsCommand : BaseCommands, IGetTicketsQuery
+    public class EfGetTicketsQuery : BaseCommands, IGetTicketsQuery
     {
         private readonly IMapper _mapper;
 
-        public EfGetTicketsCommand(BugTrackerContext context, IMapper mapper) : base(context)
+        public EfGetTicketsQuery(BugTrackerContext context, IMapper mapper) : base(context)
         {
             _mapper = mapper;
         }

@@ -45,6 +45,8 @@ using Implementation.Queries.CompanyApplicationUserQueries;
 using Implementation.Queries.CompanyQueries;
 using Implementation.Queries.ProjectApplicationUserQueries;
 using Implementation.Queries.ProjectCommandsQueries;
+using Implementation.Queries.RoleQueries;
+using Implementation.Queries.TicketCommandsQueries;
 
 namespace Api
 {
@@ -74,8 +76,8 @@ namespace Api
 
             services.AddDbContext<BugTrackerContext>();
 
-            services.AddTransient<IGetRolesQuery, EfGetRolesCommand>();
-            services.AddTransient<IGetOneRoleQuery, EfGetOneRoleCommand>();
+            services.AddTransient<IGetRolesQuery, EfGetRolesQuery>();
+            services.AddTransient<IGetOneRoleQuery, EfGetOneRoleQuery>();
             services.AddTransient<IAddRoleCommand, EfAddRoleCommand>();
             services.AddTransient<IChangeRoleCommand, EfChangeRoleCommand>();
             services.AddTransient<IRemoveRoleCommand, EfRemoveRoleCommand>();
@@ -99,8 +101,8 @@ namespace Api
             services.AddTransient<IChangeApplicationUserCommand, EfChangeApplicationUserCommand>();
             services.AddTransient<IRemoveApplicationUserCommand, EfRemoveApplicationUserCommand>();
 
-            services.AddTransient<IGetTicketsQuery, EfGetTicketsCommand>();
-            services.AddTransient<IGetOneTicketQuery, EfGetOneTicketCommand>();
+            services.AddTransient<IGetTicketsQuery, EfGetTicketsQuery>();
+            services.AddTransient<IGetOneTicketQuery, EfGetOneTicketQuery>();
             services.AddTransient<IAddTicketCommand, EfAddTicketCommand>();
             services.AddTransient<IChangeTicketCommand, EfChangeTicketCommand>();
             services.AddTransient<IRemoveTicketCommand, EfRemoveTicketCommand>();

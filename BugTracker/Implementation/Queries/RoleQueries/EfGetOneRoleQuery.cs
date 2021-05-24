@@ -9,12 +9,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Commands.Roles;
 using Application.Queries.RoleQueries;
+using Implementation.EfCommands;
 
-namespace Implementation.EfCommands.EfRoleCommands
+namespace Implementation.Queries.RoleQueries
 {
-    public class EfGetOneRoleCommand : BaseCommands, IGetOneRoleQuery
+    public class EfGetOneRoleQuery : BaseCommands, IGetOneRoleQuery
     {
-        public EfGetOneRoleCommand(BugTrackerContext context) : base(context)
+        public EfGetOneRoleQuery(BugTrackerContext context) : base(context)
         {
             
         }

@@ -4,17 +4,18 @@ using Application.Queries.RoleQueries;
 using Application.Searches;
 using DataAccess;
 using Domain;
+using Implementation.EfCommands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Implementation.EfCommands.EfRoleCommands
+namespace Implementation.Queries.RoleQueries
 {
-    public class EfGetRolesCommand : BaseCommands, IGetRolesQuery
+    public class EfGetRolesQuery : BaseCommands, IGetRolesQuery
     {
-        public EfGetRolesCommand(BugTrackerContext context) : base(context)
+        public EfGetRolesQuery(BugTrackerContext context) : base(context)
         {
 
         }

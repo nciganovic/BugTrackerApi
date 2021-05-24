@@ -9,9 +9,4 @@
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Queries\TicketQueries\" />
-    <Folder Include="Queries\RoleQueries\" />
-  </ItemGroup>
-
 </Project>
