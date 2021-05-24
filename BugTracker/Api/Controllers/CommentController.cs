@@ -1,4 +1,5 @@
-﻿using Application.Commands.CommentCommands;
+﻿using Application;
+using Application.Commands.CommentCommands;
 using Application.Dto;
 using Application.Queries.CommentQueries;
 using Application.Searches;
@@ -19,52 +20,54 @@ namespace Api.Controllers
     public class CommentController : ControllerBase
     {
         private readonly IMapper _mapper;
+        private readonly UseCaseExecutor _useCaseExecutor;
 
-        public CommentController(IMapper mapper)
+        public CommentController(IMapper mapper, UseCaseExecutor useCaseExecutor)
         {
             _mapper = mapper;
+            _useCaseExecutor = useCaseExecutor;
         }
 
         // GET: api/<CommentController>
         [HttpGet]
         public IActionResult Get([FromQuery] CommentSearch search, [FromServices] IGetCommentsQuery query)
         {
-            IEnumerable<CommentDto> comments = query.Execute(search);
+            IEnumerable<CommentDto> comments = _useCaseExecutor.ExecuteQuery(query, search);
             return Ok(comments);
         }
 
         // GET api/<CommentController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id, [FromServices] IGetOneCommentQuery getOneCommentCommand)
+        public IActionResult Get(int id, [FromServices] IGetOneCommentQuery query)
         {
-            CommentDto comment = getOneCommentCommand.Execute(id);
+            CommentDto comment = _useCaseExecutor.ExecuteQuery(query, id);
             return Ok(comment);
         }
 
         // POST api/<CommentController>
         [HttpPost]
-        public IActionResult Post([FromBody] CommentDto commentDto, [FromServices] IAddCommentCommand addCommentCommand)
+        public IActionResult Post([FromBody] CommentDto commentDto, [FromServices] IAddCommentCommand command)
         {
             Comment comment = _mapper.Map<Comment>(commentDto);
-            addCommentCommand.Execute(comment);
+            _useCaseExecutor.ExecuteCommand(command, comment);
             return Ok("Comment created successfully");
         }
 
         // PUT api/<CommentController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] CommentDto commentDto, [FromServices] IChangeCommentCommand changeCommentCommand)
+        public IActionResult Put(int id, [FromBody] CommentDto commentDto, [FromServices] IChangeCommentCommand command)
         {
             commentDto.Id = id;
             Comment comment = _mapper.Map<CommentDto, Comment>(commentDto);
-            changeCommentCommand.Execute(comment);
+            _useCaseExecutor.ExecuteCommand(command, comment);
             return Ok("Comment updated successfully");
         }
 
         // DELETE api/<CommentController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id, [FromServices] IRemoveCommentCommand removeCommentCommand)
+        public IActionResult Delete(int id, [FromServices] IRemoveCommentCommand command)
         {
-            removeCommentCommand.Execute(id);
+            _useCaseExecutor.ExecuteCommand(command, id);
             return Ok("Comment deleted successfully");
         }
     }
