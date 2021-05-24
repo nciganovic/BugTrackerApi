@@ -68,7 +68,7 @@ namespace Api.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id, [FromServices] IRemoveProjectCommand command)
         {
-            command.Execute(id);
+            _useCaseExecutor.ExecuteCommand(command, id);
             return Ok($"Project with id = {id} deleted successfully");
         }
     }
