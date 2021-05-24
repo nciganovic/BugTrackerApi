@@ -13,7 +13,6 @@
     <Folder Include="Queries\TicketQueries\" />
     <Folder Include="Queries\RoleQueries\" />
     <Folder Include="Queries\ProjectQueries\" />
-    <Folder Include="Queries\ProjectApplicationUserQueries\" />
   </ItemGroup>
 
 </Project>

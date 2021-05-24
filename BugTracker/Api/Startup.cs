@@ -43,6 +43,7 @@ using Implementation.Queries.ApplicationUserQueries;
 using Implementation.Queries.CommentQueries;
 using Implementation.Queries.CompanyApplicationUserQueries;
 using Implementation.Queries.CompanyQueries;
+using Implementation.Queries.ProjectApplicationUserQueries;
 
 namespace Api
 {
@@ -114,7 +115,7 @@ namespace Api
             services.AddTransient<IChangeCompanyApplicationUserCommand, EfChangeCompanyApplicationUserCommand>();
 
             services.AddTransient<IAddProjectApplicationUserCommand, EfAddProjectApplicationUserCommand>();
-            services.AddTransient<IGetApplicationUsersForProjectQuery, EfGetApplicationUsersForProjectCommand>();
+            services.AddTransient<IGetApplicationUsersForProjectQuery, EfGetApplicationUsersForProjectQuery>();
 
             services.AddAutoMapper(typeof(DefaultProfile));
         }

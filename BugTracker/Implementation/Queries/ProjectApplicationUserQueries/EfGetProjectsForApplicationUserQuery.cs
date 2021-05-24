@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Implementation.EfCommands.EfProjectApplicationUserCommands
+namespace Implementation.Queries.ProjectApplicationUserQueries
 {
-    class EfGetProjectsForApplicationUserCommand
+    class EfGetProjectsForApplicationUserQuery
     {
     }
 }

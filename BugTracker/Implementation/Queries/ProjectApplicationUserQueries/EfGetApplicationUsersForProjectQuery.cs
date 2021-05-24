@@ -8,21 +8,22 @@ using Application.Queries.ProjectQueries;
 using AutoMapper;
 using DataAccess;
 using Domain;
+using Implementation.EfCommands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Implementation.EfCommands.EfProjectApplicationUserCommands
+namespace Implementation.Queries.ProjectApplicationUserQueries
 {
-    public class EfGetApplicationUsersForProjectCommand : BaseCommands, IGetApplicationUsersForProjectQuery
+    public class EfGetApplicationUsersForProjectQuery : BaseCommands, IGetApplicationUsersForProjectQuery
     {
         private readonly IMapper _mapper;
         private readonly IGetOneProjectQuery _getOneProjectQuery;
         private readonly IGetOneApplicationUserQuery _getOneApplicationUserCommand;
 
-        public EfGetApplicationUsersForProjectCommand(BugTrackerContext context, IGetOneProjectQuery getOneProjectQuery, IMapper mapper,
+        public EfGetApplicationUsersForProjectQuery(BugTrackerContext context, IGetOneProjectQuery getOneProjectQuery, IMapper mapper,
             IGetOneApplicationUserQuery getOneApplicationUserCommand) : base(context)
         {
             _getOneProjectQuery = getOneProjectQuery;
