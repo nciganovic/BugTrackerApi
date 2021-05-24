@@ -1,4 +1,5 @@
-﻿using Application.Commands;
+﻿using Application;
+using Application.Commands;
 using Application.Commands.Roles;
 using Application.Dto;
 using Application.Queries.RoleQueries;
@@ -19,18 +20,20 @@ namespace Api.Controllers
     [ApiController]
     public class RoleController : ControllerBase
     {
-        private readonly IMapper mapper;
+        private readonly IMapper _mapper;
+        private readonly UseCaseExecutor _useCaseExecutor;
 
-        public RoleController(IMapper mapper)
+        public RoleController(IMapper mapper, UseCaseExecutor useCaseExecutor)
         {
-            this.mapper = mapper;
+            _mapper = mapper;
+            _useCaseExecutor = useCaseExecutor;
         }
 
         // GET: api/<RoleController>
         [HttpGet]
         public IActionResult Get([FromQuery] RoleSearch search, [FromServices] IGetRolesQuery query)
         {
-            IEnumerable<RoleDto> role = query.Execute(search);
+            IEnumerable<RoleDto> role = _useCaseExecutor.ExecuteQuery(query, search);
             return Ok(role);
         }
 
@@ -38,34 +41,34 @@ namespace Api.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id, [FromServices] IGetOneRoleQuery query)
         {
-            RoleDto role = query.Execute(id);
+            RoleDto role = _useCaseExecutor.ExecuteQuery(query, id);
             return Ok(role);
         }
 
         // POST api/<RoleController>
         [HttpPost]
-        public IActionResult Post([FromBody] RoleDto roleDto, [FromServices] IAddRoleCommand addRoleCommand)
+        public IActionResult Post([FromBody] RoleDto roleDto, [FromServices] IAddRoleCommand command)
         {
-            Role role = mapper.Map<Role>(roleDto);
-            addRoleCommand.Execute(role);
+            Role role = _mapper.Map<Role>(roleDto);
+            _useCaseExecutor.ExecuteCommand(command, role);
             return Ok("Role created successfully");
         }
 
         // PUT api/<RoleController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] RoleDto roleDto, [FromServices] IChangeRoleCommand changeRoleCommand)
+        public IActionResult Put(int id, [FromBody] RoleDto roleDto, [FromServices] IChangeRoleCommand command)
         {
             roleDto.Id = id;
-            Role role = mapper.Map<Role>(roleDto);
-            changeRoleCommand.Execute(role);
+            Role role = _mapper.Map<Role>(roleDto);
+            _useCaseExecutor.ExecuteCommand(command, role);
             return Ok("Role updated successfully");
         }
 
         // DELETE api/<RoleController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id, [FromServices] IRemoveRoleCommand removeRoleCommand)
+        public IActionResult Delete(int id, [FromServices] IRemoveRoleCommand command)
         {
-            removeRoleCommand.Execute(id);
+            _useCaseExecutor.ExecuteCommand(command, id);
             return Ok($"Role with id = {id} deleted successfully");
         }
     }
