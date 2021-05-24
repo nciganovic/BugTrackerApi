@@ -6,12 +6,19 @@ using System.Threading.Tasks;
 
 namespace Application.Interfaces
 {
-    public interface ICommand<TRequest>
+    public interface ICommand<TRequest> : IUseCase
     {
         void Execute(TRequest request);
     }
 
-    public interface ICommand<TRequest, TResult> {
-        TResult Execute(TRequest request);
+    public interface IQuery<TSearch, TResult> : IUseCase
+    {
+        TResult Execute(TSearch search);
+    }
+
+    public interface IUseCase
+    { 
+        int Id { get; }
+        string Name { get; }
     }
 }

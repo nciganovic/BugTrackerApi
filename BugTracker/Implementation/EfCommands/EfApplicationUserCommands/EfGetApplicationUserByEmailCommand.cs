@@ -21,6 +21,10 @@ namespace Implementation.EfCommands.EfApplicationUserCommands
             _mapper = mapper;
         }
 
+        public int Id => 8;
+
+        public string Name => "Get applicationUser by email";
+
         public ApplicationUserDto Execute(string request)
         {
             ApplicationUser user = context.ApplicaitonUsers.Where(x => x.Email == request).FirstOrDefault();

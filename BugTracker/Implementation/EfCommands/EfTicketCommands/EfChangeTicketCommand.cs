@@ -24,6 +24,10 @@ namespace Implementation.EfCommands.EfTicketCommands
             _getOneApplicationUserCommand = getOneApplicationUserCommand;
         }
 
+        public int Id => 34;
+
+        public string Name => "Change ticket";
+
         public void Execute(Ticket request)
         {
             Ticket item = context.Tickets.Find(request.Id);

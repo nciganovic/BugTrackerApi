@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Commands.ProjectApplicationUserCommands
 {
-    public interface IGetApplicationUsersForProjectCommand : IQuery<int, IEnumerable<ApplicationUserDto>>
+    public interface IGetProjectsForApplicationUserCommand : IQuery<int, IEnumerable<ProjectDto>>
     {
     }
 }

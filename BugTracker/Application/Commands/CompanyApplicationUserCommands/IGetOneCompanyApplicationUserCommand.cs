@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.Commands.CompanyApplicationUserCommands
 {
-    public interface IGetOneCompanyApplicationUserCommand : ICommand<CompanyApplicationUserSearch, CompanyApplicationUserDto>
+    public interface IGetOneCompanyApplicationUserCommand : IQuery<CompanyApplicationUserSearch, CompanyApplicationUserDto>
     {
     }
 }

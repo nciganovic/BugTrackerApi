@@ -17,6 +17,10 @@ namespace Implementation.EfCommands.EfCompanyCommands
 
         }
 
+        public int Id => 17;
+
+        public string Name => "Get companies";
+
         public IEnumerable<CompanyDto> Execute(CompanySearch request)
         {
             var query = context.Companies.AsQueryable();

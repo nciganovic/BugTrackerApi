@@ -12,6 +12,10 @@ namespace Implementation.EfCommands.EfProjectCommands
 {
     public class EfAddProjectCommand : BaseCommands, IAddProjectCommand
     {
+        public int Id => 23;
+
+        public string Name => "Add project";
+
         public EfAddProjectCommand(BugTrackerContext context) : base(context)
         {
 

@@ -22,6 +22,10 @@ namespace Implementation.EfCommands.EfCommentCommands
             _mapper = mapper;
         }
 
+        public int Id => 3;
+
+        public string Name => "Get comments";
+
         public IEnumerable<CommentDto> Execute(CommentSearch request)
         {
             var query = context.Comments.Include(x => x.ApplicationUser).AsQueryable();

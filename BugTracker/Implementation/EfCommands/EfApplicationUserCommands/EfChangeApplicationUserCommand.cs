@@ -18,6 +18,10 @@ namespace Implementation.EfCommands.EfApplicationUserCommands
 
         }
 
+        public int Id => 7;
+
+        public string Name => "Change applicationUser";
+
         public void Execute(ApplicationUser request)
         {
             ApplicationUser item = context.ApplicaitonUsers.Find(request.Id);

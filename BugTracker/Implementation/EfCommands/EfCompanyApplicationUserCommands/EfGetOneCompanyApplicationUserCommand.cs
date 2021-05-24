@@ -23,6 +23,10 @@ namespace Implementation.EfCommands.EfCompanyApplicationUserCommands
             _mapper = mapper;
         }
 
+        public int Id => 14;
+
+        public string Name => "Get one company applicationUser";
+
         public CompanyApplicationUserDto Execute(CompanyApplicationUserSearch request)
         {
             CompanyApplicationUser item = context.CompanyApplicationUsers

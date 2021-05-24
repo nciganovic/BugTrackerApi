@@ -17,6 +17,10 @@ namespace Implementation.EfCommands.EfProjectCommands
 
         }
 
+        public int Id => 27;
+
+        public string Name => "Remove project";
+
         public void Execute(int request)
         {
             Project item = context.Projects.Find(request);

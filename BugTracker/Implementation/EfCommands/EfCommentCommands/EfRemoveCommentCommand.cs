@@ -16,6 +16,10 @@ namespace Implementation.EfCommands.EfCommentCommands
 
         }
 
+        public int Id => 5;
+
+        public string Name => "Remove comment";
+
         public void Execute(int request)
         {
             var item = context.Comments.Find(request);

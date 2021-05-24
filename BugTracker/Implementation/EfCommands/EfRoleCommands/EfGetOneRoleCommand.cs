@@ -18,6 +18,10 @@ namespace Implementation.EfCommands.EfRoleCommands
             
         }
 
+        public int Id => 30;
+
+        public string Name => "Get one role";
+
         public RoleDto Execute(int request)
         {
             var role = context.Roles.Find(request);

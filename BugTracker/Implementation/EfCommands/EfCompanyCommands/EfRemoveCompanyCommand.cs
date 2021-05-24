@@ -16,6 +16,10 @@ namespace Implementation.EfCommands.EfCompanyCommands
 
         }
 
+        public int Id => 19;
+
+        public string Name => "Remove company";
+
         public void Execute(int request)
         {
             Domain.Company item = context.Companies.Find(request);

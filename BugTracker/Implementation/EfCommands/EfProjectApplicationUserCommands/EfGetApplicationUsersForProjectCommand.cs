@@ -27,6 +27,10 @@ namespace Implementation.EfCommands.EfProjectApplicationUserCommands
             _getOneApplicationUserCommand = getOneApplicationUserCommand;
         }
 
+        public int Id => 21;
+
+        public string Name => "Get applicationUsers for project";
+
         public IEnumerable<ApplicationUserDto> Execute(int request)
         {
             if (request != 0)

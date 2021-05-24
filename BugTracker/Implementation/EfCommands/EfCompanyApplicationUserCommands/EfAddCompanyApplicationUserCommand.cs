@@ -29,6 +29,10 @@ namespace Implementation.EfCommands.EfCompanyApplicationUserCommands
             _getOneRoleCommand = getOneRoleCommand;
         }
 
+        public int Id => 12;
+
+        public string Name => "Add company applicationUser";
+
         public void Execute(CompanyApplicationUser request)
         {
             var query = context.CompanyApplicationUsers.AsQueryable();

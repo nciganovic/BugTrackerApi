@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.Commands.ProjectCommands
 {
-    public interface IGetProjectsCommand : ICommand<ProjectSearch, IEnumerable<ProjectDto>>
+    public interface IGetProjectsCommand : IQuery<ProjectSearch, IEnumerable<ProjectDto>>
     {
     }
 }

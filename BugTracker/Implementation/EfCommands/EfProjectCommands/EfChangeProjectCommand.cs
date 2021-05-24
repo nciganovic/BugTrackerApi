@@ -12,6 +12,10 @@ namespace Implementation.EfCommands.EfProjectCommands
 {
     public class EfChangeProjectCommand : BaseCommands, IChangeProjectCommand
     {
+        public int Id => 24;
+
+        public string Name => "Change project";
+
         public EfChangeProjectCommand(BugTrackerContext context) : base(context)
         {
 

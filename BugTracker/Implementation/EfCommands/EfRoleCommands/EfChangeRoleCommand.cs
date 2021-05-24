@@ -17,6 +17,10 @@ namespace Implementation.EfCommands.EfRoleCommands
 
         }
 
+        public int Id => 29;
+
+        public string Name => "Change role";
+
         public void Execute(Role request)
         {
             Role item = context.Roles.Find(request.Id);

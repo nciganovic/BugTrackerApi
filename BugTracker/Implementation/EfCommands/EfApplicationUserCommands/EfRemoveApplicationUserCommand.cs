@@ -17,6 +17,10 @@ namespace Implementation.EfCommands.EfApplicationUserCommands
 
         }
 
+        public int Id => 11;
+
+        public string Name => "Remove applicationUser";
+
         public void Execute(int request)
         {
             ApplicationUser user = context.ApplicaitonUsers.Find(request);

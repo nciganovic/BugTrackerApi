@@ -21,6 +21,10 @@ namespace Implementation.EfCommands.EfCommentCommands
             _mapper = mapper;
         }
 
+        public int Id => 4;
+
+        public string Name => "Get one comment";
+
         public CommentDto Execute(int request)
         {
             Comment comment = context.Comments.Find(request);

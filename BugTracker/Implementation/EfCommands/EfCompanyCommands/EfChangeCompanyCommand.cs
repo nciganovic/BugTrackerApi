@@ -16,6 +16,10 @@ namespace Implementation.EfCommands.EfCompanyCommands
 
         }
 
+        public int Id => 16;
+
+        public string Name => "Change company";
+
         public void Execute(Domain.Company request)
         {
             Domain.Company item = context.Companies.Find(request.Id);

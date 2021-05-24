@@ -17,6 +17,10 @@ namespace Implementation.EfCommands.EfCompanyCommands
 
         }
 
+        public int Id => 18;
+
+        public string Name => "Get one company";
+
         public CompanyDto Execute(int request)
         {
             var company = context.Companies.Find(request);

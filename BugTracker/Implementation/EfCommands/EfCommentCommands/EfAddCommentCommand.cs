@@ -24,6 +24,10 @@ namespace Implementation.EfCommands.EfCommentCommands
             _getOneTicketCommand = getOneTicketCommand;
         }
 
+        public int Id => 1;
+
+        public string Name => "Add comment";
+
         public void Execute(Comment request)
         {
             if (request.ApplicationUserId != 0)

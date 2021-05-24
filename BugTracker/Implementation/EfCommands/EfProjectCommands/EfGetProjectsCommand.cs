@@ -21,6 +21,10 @@ namespace Implementation.EfCommands.EfProjectCommands
             _mapper = mapper;
         }
 
+        public int Id => 26;
+
+        public string Name => "Get projects";
+
         public IEnumerable<ProjectDto> Execute(ProjectSearch request)
         {
             var query = context.Projects.AsQueryable();

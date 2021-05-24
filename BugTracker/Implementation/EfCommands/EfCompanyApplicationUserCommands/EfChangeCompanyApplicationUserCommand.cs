@@ -29,6 +29,10 @@ namespace Implementation.EfCommands.EfCompanyApplicationUserCommands
             _getOneRoleCommand = getOneRoleCommand;
         }
 
+        public int Id => 13;
+
+        public string Name => "Chaneg company applicationUser";
+
         public void Execute(CompanyApplicationUser request)
         {
             CompanyApplicationUser item = context.CompanyApplicationUsers

@@ -22,6 +22,10 @@ namespace Implementation.EfCommands.EfTicketCommands
             _mapper = mapper;
         }
 
+        public int Id => 36;
+
+        public string Name => "Get tickets";
+
         public IEnumerable<TicketDto> Execute(TicketSearch request)
         {
             var query = context.Tickets.AsQueryable();

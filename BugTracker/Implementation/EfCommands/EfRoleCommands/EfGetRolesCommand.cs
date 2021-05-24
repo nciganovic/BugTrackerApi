@@ -18,6 +18,10 @@ namespace Implementation.EfCommands.EfRoleCommands
 
         }
 
+        public int Id => 31;
+
+        public string Name => "Get roles";
+
         public IEnumerable<RoleDto> Execute(RoleSearch request)
         {
             var query = context.Roles.AsQueryable();

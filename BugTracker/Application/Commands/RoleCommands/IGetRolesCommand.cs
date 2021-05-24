@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.Commands.Roles
 {
-    public interface IGetRolesCommand : ICommand<RoleSearch, IEnumerable<RoleDto>>
+    public interface IGetRolesCommand : IQuery<RoleSearch, IEnumerable<RoleDto>>
     {
 
     }

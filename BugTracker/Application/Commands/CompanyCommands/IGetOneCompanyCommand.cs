@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Commands.CompanyCommands
 {
-    public interface IGetOneCompanyCommand : ICommand<int, CompanyDto>
+    public interface IGetOneCompanyCommand : IQuery<int, CompanyDto>
     {
     }
 }

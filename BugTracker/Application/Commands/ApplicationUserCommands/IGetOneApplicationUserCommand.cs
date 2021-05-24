@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Commands.ApplicationUserCommands
 {
-    public interface IGetOneApplicationUserCommand : ICommand<int, ApplicationUserDto>
+    public interface IGetOneApplicationUserCommand : IQuery<int, ApplicationUserDto>
     {
     }
 }

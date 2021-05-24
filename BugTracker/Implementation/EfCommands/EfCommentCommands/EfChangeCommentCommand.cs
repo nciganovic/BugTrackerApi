@@ -25,6 +25,10 @@ namespace Implementation.EfCommands.EfCommentCommands
             _getOneTicketCommand = getOneTicketCommand;
         }
 
+        public int Id => 2;
+
+        public string Name => "Change comment";
+
         public void Execute(Comment request)
         {
             Comment item = context.Comments.Find(request.Id);

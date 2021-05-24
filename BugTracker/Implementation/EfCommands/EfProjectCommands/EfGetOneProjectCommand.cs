@@ -17,6 +17,10 @@ namespace Implementation.EfCommands.EfProjectCommands
 
         }
 
+        public int Id => 25;
+
+        public string Name => "Get one project";
+
         public ProjectDto Execute(int request)
         {
             var project = context.Projects.Find(request);

@@ -21,6 +21,10 @@ namespace Implementation.EfCommands.EfTicketCommands
             _mapper = mapper;
         }
 
+        public int Id => 35;
+
+        public string Name => "Get one ticket";
+
         public TicketDto Execute(int request)
         {
             Ticket item = context.Tickets.Find(request);

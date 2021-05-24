@@ -21,6 +21,10 @@ namespace Implementation.EfCommands.EfApplicationUserCommands
             _mapper = mapper;
         }
 
+        public int Id => 9;
+
+        public string Name => "Get applicationUsers";
+
         public IEnumerable<ApplicationUserDto> Execute(ApplicationUserSearch request)
         {
             var query = context.ApplicaitonUsers.AsQueryable();

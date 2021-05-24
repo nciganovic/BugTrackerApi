@@ -17,6 +17,10 @@ namespace Implementation.EfCommands.EfTicketCommands
 
         }
 
+        public int Id => 37;
+
+        public string Name => "Remove ticket";
+
         public void Execute(int request)
         {
             Ticket ticket = context.Tickets.Find(request);

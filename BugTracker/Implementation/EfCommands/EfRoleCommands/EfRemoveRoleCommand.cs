@@ -17,6 +17,10 @@ namespace Implementation.EfCommands.EfRoleCommands
 
         }
 
+        public int Id => 32;
+
+        public string Name => "Remove role";
+
         public void Execute(int request)
         {
             Role item = context.Roles.Find(request);

@@ -17,6 +17,10 @@ namespace Implementation.EfCommands.EfRoleCommands
                 
         }
 
+        public int Id => 28;
+
+        public string Name => "Add role";
+
         public void Execute(Role request)
         {
             if (IsNameAlreadyTaken(request.Name))

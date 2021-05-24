@@ -16,6 +16,10 @@ namespace Implementation.EfCommands.EfCompanyCommands
 
         }
 
+        public int Id => 15;
+
+        public string Name => "Add company";
+
         public void Execute(Domain.Company request)
         {
             if (IsNameAlreadyTaken(request.Name))

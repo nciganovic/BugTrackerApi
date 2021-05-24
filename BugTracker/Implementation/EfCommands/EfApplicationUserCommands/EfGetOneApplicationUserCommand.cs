@@ -21,6 +21,10 @@ namespace Implementation.EfCommands.EfApplicationUserCommands
             _mapper = mapper;
         }
 
+        public int Id => 10;
+
+        public string Name => "Get one applicationUser";
+
         public ApplicationUserDto Execute(int request)
         {
             ApplicationUser user = context.ApplicaitonUsers.Find(request);

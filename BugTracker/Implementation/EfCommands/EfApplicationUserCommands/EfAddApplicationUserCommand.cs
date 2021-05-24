@@ -18,6 +18,10 @@ namespace Implementation.EfCommands.EfApplicationUserCommands
 
         }
 
+        public int Id => 6;
+
+        public string Name => "Add applicationUser";
+
         public void Execute(ApplicationUser request)
         {
             if (IsEmailAlreadyTaken(request.Email))

@@ -24,6 +24,10 @@ namespace Implementation.EfCommands.EfProjectApplicationUserCommands
             _getOneApplicationUserCommand = getOneApplicationUserCommand;
         }
 
+        public int Id => 20;
+
+        public string Name => "Add project applicationUser";
+
         public void Execute(ProjectApplicationUser request)
         {
             if (request.ProjectId != 0)

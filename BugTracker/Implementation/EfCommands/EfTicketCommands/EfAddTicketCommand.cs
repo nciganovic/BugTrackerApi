@@ -24,6 +24,10 @@ namespace Implementation.EfCommands.EfTicketCommands
             _getOneApplicationUserCommand = getOneApplicationUserCommand;
         }
 
+        public int Id => 33;
+
+        public string Name => "Add ticket";
+
         public void Execute(Ticket request)
         {
             if (request.OriginalTicketId != null) {
