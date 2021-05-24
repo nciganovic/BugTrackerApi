@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Application.Hash;
 using Application.Searches;
 using Application.Queries.ApplicationUserQueries;
+using Application;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,60 +21,62 @@ namespace Api.Controllers
     [ApiController]
     public class ApplicationUserController : ControllerBase
     {
-        private readonly IMapper mapper;
+        private readonly IMapper _mapper;
+        private readonly UseCaseExecutor _useCaseExecutor;
 
-        public ApplicationUserController(IMapper mapper)
+        public ApplicationUserController(IMapper mapper, UseCaseExecutor useCaseExecutor)
         {
-            this.mapper = mapper;
+            _mapper = mapper;
+            _useCaseExecutor = useCaseExecutor;
         }
 
         // GET: api/<ApplicationUserController>
         [HttpGet]
         public IActionResult Get([FromQuery] ApplicationUserSearch search, [FromServices] IGetApplicationUsersQuery query)
         {
-            IEnumerable<ApplicationUserDto> applicationUsers = query.Execute(search);
+            IEnumerable<ApplicationUserDto> applicationUsers = _useCaseExecutor.ExecuteQuery(query, search);
             return Ok(applicationUsers);
         }
 
         // GET api/<ApplicationUserController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id, [FromServices] IGetOneApplicationUserQuery getOneApplicationUserCommand)
+        public IActionResult Get(int id, [FromServices] IGetOneApplicationUserQuery query)
         {
-            ApplicationUserDto applicationUser = getOneApplicationUserCommand.Execute(id);
+            ApplicationUserDto applicationUser = _useCaseExecutor.ExecuteQuery(query, id);
             return Ok(applicationUser);
         }
 
         // POST api/<ApplicationUserController>
         [HttpPost]
-        public IActionResult Post([FromBody] ApplicationUserDto applicationUserDto, [FromServices] IAddApplicationUserCommand addApplicationUserCommand)
+        public IActionResult Post([FromBody] ApplicationUserDto applicationUserDto, [FromServices] IAddApplicationUserCommand command)
         {
-            ApplicationUser applicationUser = mapper.Map<ApplicationUser>(applicationUserDto);
-            addApplicationUserCommand.Execute(applicationUser);
+            ApplicationUser applicationUser = _mapper.Map<ApplicationUser>(applicationUserDto);
+            _useCaseExecutor.ExecuteCommand(command, applicationUser);
             return Ok("Application user created successfully");
         }
 
         // PUT api/<ApplicationUserController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] ApplicationUserDto applicationUserDto, [FromServices] IChangeApplicationUserCommand changeApplicationUserCommand)
+        public IActionResult Put(int id, [FromBody] ApplicationUserDto applicationUserDto, [FromServices] IChangeApplicationUserCommand command)
         {
             applicationUserDto.Id = id;
-            ApplicationUser applicationUser = mapper.Map<ApplicationUser>(applicationUserDto);
-            changeApplicationUserCommand.Execute(applicationUser);
+            ApplicationUser applicationUser = _mapper.Map<ApplicationUser>(applicationUserDto);
+            _useCaseExecutor.ExecuteCommand(command, applicationUser);
             return Ok("Application user updated successfully");
         }
 
         // DELETE api/<ApplicationUserController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id, [FromServices] IRemoveApplicationUserCommand removeApplicationUserCommand)
+        public IActionResult Delete(int id, [FromServices] IRemoveApplicationUserCommand command)
         {
-            removeApplicationUserCommand.Execute(id);
+            _useCaseExecutor.ExecuteCommand(command, id);
             return Ok($"Application user with id = {id} deleted successfully");
         }
 
         [HttpPost("[action]")]
-        public IActionResult Login([FromBody] LoginDto loginDto, [FromServices] IGetApplicationUserByEmailQuery getApplicationUserByEmailCommand) 
+        public IActionResult Login([FromBody] LoginDto loginDto, [FromServices] IGetApplicationUserByEmailQuery command) 
         {
-            ApplicationUserDto applicationUserDto = getApplicationUserByEmailCommand.Execute(loginDto.Email);
+            ApplicationUserDto applicationUserDto = _useCaseExecutor.ExecuteQuery(command, loginDto.Email);
 
             if (Password.VerifyPassword(loginDto.Password, applicationUserDto.Password, applicationUserDto.Salt))
             {
