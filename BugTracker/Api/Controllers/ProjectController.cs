@@ -1,4 +1,5 @@
-﻿using Application.Commands;
+﻿using Application;
+using Application.Commands;
 using Application.Commands.ProjectCommands;
 using Application.Dto;
 using Application.Queries.ProjectQueries;
@@ -19,18 +20,20 @@ namespace Api.Controllers
     [ApiController]
     public class ProjectController : ControllerBase
     {
-        private readonly IMapper mapper;
+        private readonly IMapper _mapper;
+        private readonly UseCaseExecutor _useCaseExecutor;
 
-        public ProjectController(IMapper mapper)
+        public ProjectController(IMapper mapper, UseCaseExecutor useCaseExecutor)
         {
-            this.mapper = mapper;
+            _mapper = mapper;
+            _useCaseExecutor = useCaseExecutor;
         }
 
         // GET: api/<ProjectController>
         [HttpGet]
-        public IActionResult Get([FromQuery] ProjectSearch query, [FromServices] IGetProjectsQuery getProjectsCommand)
+        public IActionResult Get([FromQuery] ProjectSearch search, [FromServices] IGetProjectsQuery command)
         {
-            IEnumerable<ProjectDto> projects = getProjectsCommand.Execute(query);
+            IEnumerable<ProjectDto> projects = _useCaseExecutor.ExecuteQuery(command, search);
             return Ok(projects);
         }
 
@@ -38,34 +41,34 @@ namespace Api.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id, [FromServices] IGetOneProjectQuery query)
         {
-            ProjectDto project = query.Execute(id);
+            ProjectDto project = _useCaseExecutor.ExecuteQuery(query, id);
             return Ok(project);
         }
 
         // POST api/<ProjectController>
         [HttpPost]
-        public IActionResult Post([FromBody] ProjectDto projectDto, [FromServices] IAddProjectCommand addProjectCommand)
+        public IActionResult Post([FromBody] ProjectDto projectDto, [FromServices] IAddProjectCommand command)
         {
-            Project project = mapper.Map<Project>(projectDto);
-            addProjectCommand.Execute(project);
+            Project project = _mapper.Map<Project>(projectDto);
+            _useCaseExecutor.ExecuteCommand(command, project);
             return Ok("Project created successfully");
         }
 
         // PUT api/<ProjectController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] ProjectDto projectDto, [FromServices] IChangeProjectCommand changeProjectCommand)
+        public IActionResult Put(int id, [FromBody] ProjectDto projectDto, [FromServices] IChangeProjectCommand command)
         {
             projectDto.Id = id;
-            Project project = mapper.Map<Project>(projectDto);
-            changeProjectCommand.Execute(project);
+            Project project = _mapper.Map<Project>(projectDto);
+            _useCaseExecutor.ExecuteCommand(command, project);
             return Ok("Project updated successfully");
         }
 
         // DELETE api/<ProjectController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id, [FromServices] IRemoveProjectCommand removeProjectCommand)
+        public IActionResult Delete(int id, [FromServices] IRemoveProjectCommand command)
         {
-            removeProjectCommand.Execute(id);
+            command.Execute(id);
             return Ok($"Project with id = {id} deleted successfully");
         }
     }
