@@ -1,5 +1,6 @@
 ﻿using Application.Commands.CompanyCommands;
 using Application.Dto;
+using Application.Queries.CompanyQueries;
 using Application.Searches;
 using DataAccess;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfCompanyCommands
 {
-    public class EfGetCompaniesCommand : BaseCommands,  IGetCompaniesCommand
+    public class EfGetCompaniesCommand : BaseCommands,  IGetCompaniesQuery
     {
         public EfGetCompaniesCommand(BugTrackerContext context) : base(context)
         {

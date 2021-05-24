@@ -1,6 +1,7 @@
 ﻿using Application.Commands.ApplicationUserCommands;
 using Application.Commands.TicketCommands;
 using Application.Dto;
+using Application.Queries.TicketQueries;
 using Application.Searches;
 using AutoMapper;
 using DataAccess;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfTicketCommands
 {
-    public class EfGetTicketsCommand : BaseCommands, IGetTicketsCommand
+    public class EfGetTicketsCommand : BaseCommands, IGetTicketsQuery
     {
         private readonly IMapper _mapper;
 

@@ -2,6 +2,7 @@
 using Application.Commands.TicketCommands;
 using Application.Exceptions;
 using Application.Queries.ApplicationUserQueries;
+using Application.Queries.TicketQueries;
 using DataAccess;
 using Domain;
 using System;
@@ -14,14 +15,14 @@ namespace Implementation.EfCommands.EfTicketCommands
 {
     public class EfChangeTicketCommand : BaseCommands, IChangeTicketCommand
     {
-        private readonly IGetOneTicketCommand _getOneTicketCommand;
+        private readonly IGetOneTicketQuery _getOneTicketQuery;
         private readonly IGetOneApplicationUserQuery _getOneApplicationUserCommand;
 
         public EfChangeTicketCommand(BugTrackerContext context
-            , IGetOneTicketCommand getOneTicketCommand
+            , IGetOneTicketQuery getOneTicketCommand
             , IGetOneApplicationUserQuery getOneApplicationUserCommand) : base(context)
         {
-            _getOneTicketCommand = getOneTicketCommand;
+            _getOneTicketQuery = getOneTicketCommand;
             _getOneApplicationUserCommand = getOneApplicationUserCommand;
         }
 
@@ -40,7 +41,7 @@ namespace Implementation.EfCommands.EfTicketCommands
 
             if (request.OriginalTicketId != null)
             {
-                _getOneTicketCommand.Execute((int)request.OriginalTicketId);
+                _getOneTicketQuery.Execute((int)request.OriginalTicketId);
             }
 
             if (request.DeveloperId != 0)

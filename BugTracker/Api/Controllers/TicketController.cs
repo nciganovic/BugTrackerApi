@@ -1,5 +1,6 @@
 ﻿using Application.Commands.TicketCommands;
 using Application.Dto;
+using Application.Queries.TicketQueries;
 using Application.Searches;
 using AutoMapper;
 using Domain;
@@ -26,15 +27,15 @@ namespace Api.Controllers
 
         // GET: api/<TicketController>
         [HttpGet]
-        public IActionResult Get([FromQuery] TicketSearch query, [FromServices] IGetTicketsCommand getTicketsCommand)
+        public IActionResult Get([FromQuery] TicketSearch search, [FromServices] IGetTicketsQuery query)
         {
-            IEnumerable<TicketDto> tickets = getTicketsCommand.Execute(query);
+            IEnumerable<TicketDto> tickets = query.Execute(search);
             return Ok(tickets);
         }
 
         // GET api/<TicketController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id, [FromServices] IGetOneTicketCommand getOneTicketCommand)
+        public IActionResult Get(int id, [FromServices] IGetOneTicketQuery getOneTicketCommand)
         {
             TicketDto ticket = getOneTicketCommand.Execute(id);
             return Ok(ticket);

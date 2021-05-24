@@ -4,6 +4,8 @@ using Application.Commands.CompanyCommands;
 using Application.Commands.Roles;
 using Application.Exceptions;
 using Application.Queries.ApplicationUserQueries;
+using Application.Queries.CompanyQueries;
+using Application.Queries.RoleQueries;
 using DataAccess;
 using Domain;
 using System;
@@ -16,18 +18,18 @@ namespace Implementation.EfCommands.EfCompanyApplicationUserCommands
 {
     public class EfAddCompanyApplicationUserCommand : BaseCommands, IAddCompanyApplicationUserCommand
     {
-        private readonly IGetOneCompanyCommand _getOneCompanyCommand;
+        private readonly IGetOneCompanyQuery _getOneCompanyCommand;
         private readonly IGetOneApplicationUserQuery _getOneApplicationUserCommand;
-        private readonly IGetOneRoleCommand _getOneRoleCommand;
+        private readonly IGetOneRoleQuery _getOneRoleQuery;
 
         public EfAddCompanyApplicationUserCommand(BugTrackerContext context,
-            IGetOneCompanyCommand getOneCompanyCommand,
+            IGetOneCompanyQuery getOneCompanyCommand,
             IGetOneApplicationUserQuery getOneApplicationUserCommand,
-            IGetOneRoleCommand getOneRoleCommand) : base(context)
+            IGetOneRoleQuery getOneRoleQuery) : base(context)
         {
             _getOneApplicationUserCommand = getOneApplicationUserCommand;
             _getOneCompanyCommand = getOneCompanyCommand;
-            _getOneRoleCommand = getOneRoleCommand;
+            _getOneRoleQuery = getOneRoleQuery;
         }
 
         public int Id => 12;
@@ -60,7 +62,7 @@ namespace Implementation.EfCommands.EfCompanyApplicationUserCommands
 
             if (request.RoleId != 0)
             {
-                _getOneRoleCommand.Execute(request.RoleId);
+                _getOneRoleQuery.Execute(request.RoleId);
             }
             else
             {

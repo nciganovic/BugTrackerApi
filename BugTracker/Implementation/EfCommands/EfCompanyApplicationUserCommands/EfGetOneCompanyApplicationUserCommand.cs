@@ -2,6 +2,7 @@
 using Application.Commands.CompanyApplicationUserCommands;
 using Application.Dto;
 using Application.Exceptions;
+using Application.Queries.CompanyApplicationUserQueries;
 using Application.Searches;
 using AutoMapper;
 using DataAccess;
@@ -14,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfCompanyApplicationUserCommands
 {
-    public class EfGetOneCompanyApplicationUserCommand : BaseCommands, IGetOneCompanyApplicationUserCommand
+    public class EfGetOneCompanyApplicationUserCommand : BaseCommands, IGetOneCompanyApplicationUserQuery
     {
         private readonly IMapper _mapper;
 

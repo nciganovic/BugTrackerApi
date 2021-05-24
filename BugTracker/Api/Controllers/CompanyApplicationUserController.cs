@@ -1,5 +1,6 @@
 ﻿using Application.Commands.CompanyApplicationUserCommands;
 using Application.Dto;
+using Application.Queries.CompanyApplicationUserQueries;
 using Application.Searches;
 using AutoMapper;
 using Domain;
@@ -26,9 +27,9 @@ namespace Api.Controllers
 
         // GET: api/<CompanyApplicationUserController>
         [HttpGet]
-        public IActionResult Get([FromBody] CompanyApplicationUserSearch query, [FromServices] IGetOneCompanyApplicationUserCommand command)
+        public IActionResult Get([FromBody] CompanyApplicationUserSearch search, [FromServices] IGetOneCompanyApplicationUserQuery query)
         {
-            CompanyApplicationUserDto companyApplicationUserDto = command.Execute(query);
+            CompanyApplicationUserDto companyApplicationUserDto = query.Execute(search);
             return Ok(companyApplicationUserDto);
         }
 

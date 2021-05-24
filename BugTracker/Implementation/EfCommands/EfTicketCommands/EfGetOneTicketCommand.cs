@@ -9,10 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Exceptions;
+using Application.Queries.TicketQueries;
 
 namespace Implementation.EfCommands.EfTicketCommands
 {
-    public class EfGetOneTicketCommand : BaseCommands, IGetOneTicketCommand
+    public class EfGetOneTicketCommand : BaseCommands, IGetOneTicketQuery
     {
         private readonly IMapper _mapper;
 

@@ -7,10 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Commands.Roles
+namespace Application.Queries.CompanyQueries
 {
-    public interface IGetRolesCommand : IQuery<RoleSearch, IEnumerable<RoleDto>>
+    public interface IGetCompaniesQuery : IQuery<CompanySearch, IEnumerable<CompanyDto>>
     {
-
     }
 }

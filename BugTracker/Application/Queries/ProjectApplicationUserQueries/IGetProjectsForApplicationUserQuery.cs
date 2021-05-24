@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Commands.ProjectApplicationUserCommands
+namespace Application.Queries.ProjectApplicationUserQueries
 {
-    public interface IGetProjectsForApplicationUserCommand : IQuery<int, IEnumerable<ProjectDto>>
+    public interface IGetProjectsForApplicationUserQuery : IQuery<int, IEnumerable<ProjectDto>>
     {
     }
 }

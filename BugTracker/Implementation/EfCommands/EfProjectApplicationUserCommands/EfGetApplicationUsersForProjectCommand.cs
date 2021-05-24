@@ -3,6 +3,8 @@ using Application.Commands.ProjectApplicationUserCommands;
 using Application.Commands.ProjectCommands;
 using Application.Dto;
 using Application.Queries.ApplicationUserQueries;
+using Application.Queries.ProjectApplicationUserQueries;
+using Application.Queries.ProjectQueries;
 using AutoMapper;
 using DataAccess;
 using Domain;
@@ -14,16 +16,16 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfProjectApplicationUserCommands
 {
-    public class EfGetApplicationUsersForProjectCommand : BaseCommands, IGetApplicationUsersForProjectCommand
+    public class EfGetApplicationUsersForProjectCommand : BaseCommands, IGetApplicationUsersForProjectQuery
     {
         private readonly IMapper _mapper;
-        private readonly IGetOneProjectCommand _getOneProjectCommand;
+        private readonly IGetOneProjectQuery _getOneProjectQuery;
         private readonly IGetOneApplicationUserQuery _getOneApplicationUserCommand;
 
-        public EfGetApplicationUsersForProjectCommand(BugTrackerContext context, IGetOneProjectCommand getOneProjectCommand, IMapper mapper,
+        public EfGetApplicationUsersForProjectCommand(BugTrackerContext context, IGetOneProjectQuery getOneProjectQuery, IMapper mapper,
             IGetOneApplicationUserQuery getOneApplicationUserCommand) : base(context)
         {
-            _getOneProjectCommand = getOneProjectCommand;
+            _getOneProjectQuery = getOneProjectQuery;
             _mapper = mapper;
             _getOneApplicationUserCommand = getOneApplicationUserCommand;
         }
@@ -36,7 +38,7 @@ namespace Implementation.EfCommands.EfProjectApplicationUserCommands
         {
             if (request != 0)
             {
-                _getOneProjectCommand.Execute(request);
+                _getOneProjectQuery.Execute(request);
             }
             else
             {

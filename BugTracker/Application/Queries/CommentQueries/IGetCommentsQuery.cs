@@ -7,9 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Commands.CompanyCommands
+namespace Application.Queries.CommentQueries
 {
-    public interface IGetCompaniesCommand : IQuery<CompanySearch, IEnumerable<CompanyDto>>
+    public interface IGetCommentsQuery : IQuery<CommentSearch, IEnumerable<CommentDto>>
     {
+
     }
 }

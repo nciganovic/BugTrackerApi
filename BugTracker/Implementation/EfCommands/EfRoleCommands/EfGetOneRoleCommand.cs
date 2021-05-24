@@ -8,10 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Commands.Roles;
+using Application.Queries.RoleQueries;
 
 namespace Implementation.EfCommands.EfRoleCommands
 {
-    public class EfGetOneRoleCommand : BaseCommands, IGetOneRoleCommand
+    public class EfGetOneRoleCommand : BaseCommands, IGetOneRoleQuery
     {
         public EfGetOneRoleCommand(BugTrackerContext context) : base(context)
         {

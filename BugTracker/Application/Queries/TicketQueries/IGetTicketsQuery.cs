@@ -1,14 +1,15 @@
 ﻿using Application.Dto;
 using Application.Interfaces;
+using Application.Searches;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Commands.ProjectApplicationUserCommands
+namespace Application.Queries.TicketQueries
 {
-    public interface IGetApplicationUsersForProjectCommand : IQuery<int, IEnumerable<ApplicationUserDto>>
+    public interface IGetTicketsQuery : IQuery<TicketSearch, IEnumerable<TicketDto>>
     {
     }
 }

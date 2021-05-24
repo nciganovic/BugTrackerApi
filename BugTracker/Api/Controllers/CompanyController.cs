@@ -1,6 +1,7 @@
 ﻿using Application.Commands;
 using Application.Commands.CompanyCommands;
 using Application.Dto;
+using Application.Queries.CompanyQueries;
 using Application.Searches;
 using AutoMapper;
 using Domain;
@@ -27,15 +28,15 @@ namespace Api.Controllers
 
         // GET: api/<CompanyController>
         [HttpGet]
-        public IActionResult Get([FromQuery] CompanySearch query, [FromServices] IGetCompaniesCommand getCompaniesCommand)
+        public IActionResult Get([FromQuery] CompanySearch search, [FromServices] IGetCompaniesQuery query)
         {
-            IEnumerable<CompanyDto> companies = getCompaniesCommand.Execute(query);
+            IEnumerable<CompanyDto> companies = query.Execute(search);
             return Ok(companies);
         }
 
         // GET api/<CompanyController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id, [FromServices] IGetOneCompanyCommand getOneCompanyCommand)
+        public IActionResult Get(int id, [FromServices] IGetOneCompanyQuery getOneCompanyCommand)
         {
             CompanyDto company = getOneCompanyCommand.Execute(id);
             return Ok(company);

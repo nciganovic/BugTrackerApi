@@ -1,5 +1,6 @@
 ﻿using Application.Commands.CommentCommands;
 using Application.Dto;
+using Application.Queries.CommentQueries;
 using Application.Searches;
 using AutoMapper;
 using Domain;
@@ -26,15 +27,15 @@ namespace Api.Controllers
 
         // GET: api/<CommentController>
         [HttpGet]
-        public IActionResult Get([FromQuery] CommentSearch query, [FromServices] IGetCommentsCommand getCommentsCommand)
+        public IActionResult Get([FromQuery] CommentSearch search, [FromServices] IGetCommentsQuery query)
         {
-            IEnumerable<CommentDto> comments = getCommentsCommand.Execute(query);
+            IEnumerable<CommentDto> comments = query.Execute(search);
             return Ok(comments);
         }
 
         // GET api/<CommentController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id, [FromServices] IGetOneCommentCommand getOneCommentCommand)
+        public IActionResult Get(int id, [FromServices] IGetOneCommentQuery getOneCommentCommand)
         {
             CommentDto comment = getOneCommentCommand.Execute(id);
             return Ok(comment);

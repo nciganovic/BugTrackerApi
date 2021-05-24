@@ -1,4 +1,4 @@
-﻿using Application.Commands.CommentCommands;
+﻿using Application.Queries.CommentQueries;
 using Application.Dto;
 using Application.Searches;
 using AutoMapper;
@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Implementation.EfCommands.EfCommentCommands
 {
-    public class EfGetCommentsCommand : BaseCommands, IGetCommentsCommand
+    public class EfGetCommentsCommand : BaseCommands, IGetCommentsQuery
     {
         private readonly IMapper _mapper;
 

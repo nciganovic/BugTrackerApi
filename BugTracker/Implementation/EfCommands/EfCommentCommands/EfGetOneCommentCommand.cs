@@ -1,6 +1,7 @@
 ﻿using Application.Commands.CommentCommands;
 using Application.Dto;
 using Application.Exceptions;
+using Application.Queries.CommentQueries;
 using AutoMapper;
 using DataAccess;
 using Domain;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfCommentCommands
 {
-    public class EfGetOneCommentCommand : BaseCommands, IGetOneCommentCommand
+    public class EfGetOneCommentCommand : BaseCommands, IGetOneCommentQuery
     {
         private readonly IMapper _mapper;
 

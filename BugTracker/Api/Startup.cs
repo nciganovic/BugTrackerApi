@@ -31,7 +31,14 @@ using Implementation.EfCommands.EfTicketCommands;
 using Implementation.EfCommands.EfCommentCommands;
 using Implementation.EfCommands.EfCompanyApplicationUserCommands;
 using Implementation.EfCommands.EfProjectApplicationUserCommands;
+using Application.Queries.CommentQueries;
 using Application.Queries.ApplicationUserQueries;
+using Application.Queries.CompanyApplicationUserQueries;
+using Application.Queries.CompanyQueries;
+using Application.Queries.ProjectApplicationUserQueries;
+using Application.Queries.ProjectQueries;
+using Application.Queries.RoleQueries;
+using Application.Queries.TicketQueries;
 
 namespace Api
 {
@@ -61,20 +68,20 @@ namespace Api
 
             services.AddDbContext<BugTrackerContext>();
 
-            services.AddTransient<IGetRolesCommand, EfGetRolesCommand>();
-            services.AddTransient<IGetOneRoleCommand, EfGetOneRoleCommand>();
+            services.AddTransient<IGetRolesQuery, EfGetRolesCommand>();
+            services.AddTransient<IGetOneRoleQuery, EfGetOneRoleCommand>();
             services.AddTransient<IAddRoleCommand, EfAddRoleCommand>();
             services.AddTransient<IChangeRoleCommand, EfChangeRoleCommand>();
             services.AddTransient<IRemoveRoleCommand, EfRemoveRoleCommand>();
 
-            services.AddTransient<IGetCompaniesCommand, EfGetCompaniesCommand>();
-            services.AddTransient<IGetOneCompanyCommand, EfGetOneCompanyCommand>();
+            services.AddTransient<IGetCompaniesQuery, EfGetCompaniesCommand>();
+            services.AddTransient<IGetOneCompanyQuery, EfGetOneCompanyCommand>();
             services.AddTransient<IAddCompanyCommand, EfAddCompanyCommand>();
             services.AddTransient<IChangeCompanyCommand, EfChangeCompanyCommand>();
             services.AddTransient<IRemoveCompanyCommand, EfRemoveCompanyCommand>();
 
-            services.AddTransient<IGetProjectsCommand, EfGetProjectsCommand>();
-            services.AddTransient<IGetOneProjectCommand, EfGetOneProjectCommand>();
+            services.AddTransient<IGetProjectsQuery, EfGetProjectsCommand>();
+            services.AddTransient<IGetOneProjectQuery, EfGetOneProjectCommand>();
             services.AddTransient<IAddProjectCommand, EfAddProjectCommand>();
             services.AddTransient<IChangeProjectCommand, EfChangeProjectCommand>();
             services.AddTransient<IRemoveProjectCommand, EfRemoveProjectCommand>();
@@ -86,24 +93,24 @@ namespace Api
             services.AddTransient<IChangeApplicationUserCommand, EfChangeApplicationUserCommand>();
             services.AddTransient<IRemoveApplicationUserCommand, EfRemoveApplicationUserCommand>();
 
-            services.AddTransient<IGetTicketsCommand, EfGetTicketsCommand>();
-            services.AddTransient<IGetOneTicketCommand, EfGetOneTicketCommand>();
+            services.AddTransient<IGetTicketsQuery, EfGetTicketsCommand>();
+            services.AddTransient<IGetOneTicketQuery, EfGetOneTicketCommand>();
             services.AddTransient<IAddTicketCommand, EfAddTicketCommand>();
             services.AddTransient<IChangeTicketCommand, EfChangeTicketCommand>();
             services.AddTransient<IRemoveTicketCommand, EfRemoveTicketCommand>();
 
-            services.AddTransient<IGetCommentsCommand, EfGetCommentsCommand>();
+            services.AddTransient<IGetCommentsQuery, EfGetCommentsCommand>();
             services.AddTransient<IAddCommentCommand, EfAddCommentCommand>();
-            services.AddTransient<IGetOneCommentCommand, EfGetOneCommentCommand>();
+            services.AddTransient<IGetOneCommentQuery, EfGetOneCommentCommand>();
             services.AddTransient<IChangeCommentCommand, EfChangeCommentCommand>();
             services.AddTransient<IRemoveCommentCommand, EfRemoveCommentCommand>();
 
             services.AddTransient<IAddCompanyApplicationUserCommand, EfAddCompanyApplicationUserCommand>();
-            services.AddTransient<IGetOneCompanyApplicationUserCommand, EfGetOneCompanyApplicationUserCommand>();
+            services.AddTransient<IGetOneCompanyApplicationUserQuery, EfGetOneCompanyApplicationUserCommand>();
             services.AddTransient<IChangeCompanyApplicationUserCommand, EfChangeCompanyApplicationUserCommand>();
 
             services.AddTransient<IAddProjectApplicationUserCommand, EfAddProjectApplicationUserCommand>();
-            services.AddTransient<IGetApplicationUsersForProjectCommand, EfGetApplicationUsersForProjectCommand>();
+            services.AddTransient<IGetApplicationUsersForProjectQuery, EfGetApplicationUsersForProjectCommand>();
 
             services.AddAutoMapper(typeof(DefaultProfile));
         }

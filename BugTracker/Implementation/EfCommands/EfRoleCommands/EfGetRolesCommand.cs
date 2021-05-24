@@ -1,5 +1,6 @@
 ﻿using Application.Commands.Roles;
 using Application.Dto;
+using Application.Queries.RoleQueries;
 using Application.Searches;
 using DataAccess;
 using Domain;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfRoleCommands
 {
-    public class EfGetRolesCommand : BaseCommands, IGetRolesCommand
+    public class EfGetRolesCommand : BaseCommands, IGetRolesQuery
     {
         public EfGetRolesCommand(BugTrackerContext context) : base(context)
         {

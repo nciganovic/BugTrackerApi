@@ -1,5 +1,6 @@
 ﻿using Application.Commands.ProjectApplicationUserCommands;
 using Application.Dto;
+using Application.Queries.ProjectApplicationUserQueries;
 using Application.Searches;
 using AutoMapper;
 using Domain;
@@ -26,9 +27,9 @@ namespace Api.Controllers
 
         // GET: api/<ProjectApplicationUserController>
         [HttpGet("[action]")]
-        public IActionResult GetApplicationUsers(int projectId, [FromServices] IGetApplicationUsersForProjectCommand getApplicationUsersForProjectCommand)
+        public IActionResult GetApplicationUsers(int projectId, [FromServices] IGetApplicationUsersForProjectQuery query)
         {
-            IEnumerable<ApplicationUserDto> applicationUserDtos = getApplicationUsersForProjectCommand.Execute(projectId);
+            IEnumerable<ApplicationUserDto> applicationUserDtos = query.Execute(projectId);
             return Ok(applicationUserDtos);
         }
 

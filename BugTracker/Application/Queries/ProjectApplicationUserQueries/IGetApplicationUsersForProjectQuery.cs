@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Commands.Roles
+namespace Application.Queries.ProjectApplicationUserQueries
 {
-    public interface IGetOneRoleCommand : IQuery<int, RoleDto>
+    public interface IGetApplicationUsersForProjectQuery : IQuery<int, IEnumerable<ApplicationUserDto>>
     {
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Application.Commands.ProjectCommands;
 using Application.Dto;
+using Application.Queries.ProjectQueries;
 using Application.Searches;
 using AutoMapper;
 using DataAccess;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfProjectCommands
 {
-    public class EfGetProjectsCommand : BaseCommands, IGetProjectsCommand
+    public class EfGetProjectsCommand : BaseCommands, IGetProjectsQuery
     {
         private readonly IMapper _mapper;
 

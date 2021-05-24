@@ -1,6 +1,7 @@
 ﻿using Application.Commands.ProjectCommands;
 using Application.Dto;
 using Application.Exceptions;
+using Application.Queries.ProjectQueries;
 using DataAccess;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfProjectCommands
 {
-    public class EfGetOneProjectCommand : BaseCommands, IGetOneProjectCommand
+    public class EfGetOneProjectCommand : BaseCommands, IGetOneProjectQuery
     {
         public EfGetOneProjectCommand(BugTrackerContext context) : base(context)
         {

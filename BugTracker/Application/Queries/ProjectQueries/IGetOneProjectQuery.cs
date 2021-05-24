@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Commands.CompanyCommands
+namespace Application.Queries.ProjectQueries
 {
-    public interface IGetOneCompanyCommand : IQuery<int, CompanyDto>
+    public interface IGetOneProjectQuery : IQuery<int, ProjectDto>
     {
     }
 }

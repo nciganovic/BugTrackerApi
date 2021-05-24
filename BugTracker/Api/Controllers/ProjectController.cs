@@ -1,6 +1,7 @@
 ﻿using Application.Commands;
 using Application.Commands.ProjectCommands;
 using Application.Dto;
+using Application.Queries.ProjectQueries;
 using Application.Searches;
 using AutoMapper;
 using Domain;
@@ -27,7 +28,7 @@ namespace Api.Controllers
 
         // GET: api/<ProjectController>
         [HttpGet]
-        public IActionResult Get([FromQuery] ProjectSearch query, [FromServices] IGetProjectsCommand getProjectsCommand)
+        public IActionResult Get([FromQuery] ProjectSearch query, [FromServices] IGetProjectsQuery getProjectsCommand)
         {
             IEnumerable<ProjectDto> projects = getProjectsCommand.Execute(query);
             return Ok(projects);
@@ -35,9 +36,9 @@ namespace Api.Controllers
 
         // GET api/<ProjectController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id, [FromServices] IGetOneProjectCommand getOneProjectCommand)
+        public IActionResult Get(int id, [FromServices] IGetOneProjectQuery query)
         {
-            ProjectDto project = getOneProjectCommand.Execute(id);
+            ProjectDto project = query.Execute(id);
             return Ok(project);
         }
 

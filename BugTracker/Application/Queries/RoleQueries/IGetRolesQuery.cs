@@ -1,14 +1,16 @@
 ﻿using Application.Dto;
 using Application.Interfaces;
+using Application.Searches;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Commands.TicketCommands
+namespace Application.Queries.RoleQueries
 {
-    public interface IGetOneTicketCommand : IQuery<int, TicketDto>
+    public interface IGetRolesQuery : IQuery<RoleSearch, IEnumerable<RoleDto>>
     {
+
     }
 }
