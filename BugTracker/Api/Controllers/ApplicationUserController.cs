@@ -67,12 +67,20 @@ namespace Api.Controllers
 
         // PUT api/<ApplicationUserController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] ApplicationUserDto applicationUserDto, [FromServices] IChangeApplicationUserCommand command)
+        public IActionResult Put(int id, [FromBody] ChangeApplicationUserDto dto
+            , [FromServices] IChangeApplicationUserCommand command
+            , [FromServices] ChangeApplicationUserValidator validator)
         {
-            applicationUserDto.Id = id;
-            ApplicationUser applicationUser = _mapper.Map<ApplicationUser>(applicationUserDto);
-            _useCaseExecutor.ExecuteCommand(command, applicationUser);
-            return Ok("Application user updated successfully");
+            dto.Id = id;
+            var result = validator.Validate(dto);
+
+            if (result.IsValid) { 
+                ApplicationUser applicationUser = _mapper.Map<ApplicationUser>(dto);
+                _useCaseExecutor.ExecuteCommand(command, dto);
+                return Ok("Application user updated successfully");
+            }
+
+            return UnprocessableEntity(UnprocessableEntityResponse.Message(result.Errors));
         }
 
         // DELETE api/<ApplicationUserController>/5

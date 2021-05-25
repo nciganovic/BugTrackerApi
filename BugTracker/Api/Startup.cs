@@ -130,6 +130,7 @@ namespace Api
             services.AddTransient<IGetApplicationUsersForProjectQuery, EfGetApplicationUsersForProjectQuery>();
 
             services.AddTransient<AddApplicationUserValidator>();
+            services.AddTransient<ChangeApplicationUserValidator>();
 
             services.AddAutoMapper(typeof(DefaultProfile));
         }

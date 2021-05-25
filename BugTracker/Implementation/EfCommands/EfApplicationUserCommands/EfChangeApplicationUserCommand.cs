@@ -1,4 +1,5 @@
 ﻿using Application.Commands.ApplicationUserCommands;
+using Application.Dto;
 using Application.Exceptions;
 using Application.Hash;
 using DataAccess;
@@ -22,40 +23,38 @@ namespace Implementation.EfCommands.EfApplicationUserCommands
 
         public string Name => "Change applicationUser";
 
-        public void Execute(ApplicationUser request)
+        public void Execute(ChangeApplicationUserDto request)
         {
             ApplicationUser item = context.ApplicaitonUsers.Find(request.Id);
 
-            if (item == null)
-                throw new EntityNotFoundException();
+            if (request.FirstName != null) {
+                item.FirstName = request.FirstName;
+            }
+
+            if (request.LastName != null)
+            {
+                item.LastName = request.LastName;
+            }
+
+            if (request.Email != null)
+            {
+                item.Email = request.Email;
+            }
 
             context.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
 
-            if (IsEmailAlreadyTaken(request.Email))
-                throw new EntityAlreadyExists();
+            if (request.Password != null) { 
+                HashSalt hashSalt = Password.GenerateSaltedHash(64, request.Password);
 
-            HashSalt hashSalt = Password.GenerateSaltedHash(64, request.Password);
-
-            request.Password = hashSalt.Hash;
-            request.Salt = hashSalt.Salt;
-
-            request.CreatedAt = item.CreatedAt;
-            request.UpdatedAt = DateTime.Now;
-            request.DeletedAt = item.DeletedAt;
-
-            var tp = context.ApplicaitonUsers.Attach(request);
-            tp.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            context.SaveChanges();
-        }
-
-        private bool IsEmailAlreadyTaken(string email)
-        {
-            if (context.ApplicaitonUsers.Any(x => x.Email == email))
-            {
-                return true;
+                item.Password = hashSalt.Hash;
+                item.Salt = hashSalt.Salt;
             }
 
-            return false;
+            item.UpdatedAt = DateTime.Now;
+
+            var tp = context.ApplicaitonUsers.Attach(item);
+            tp.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            context.SaveChanges();
         }
     }
 }

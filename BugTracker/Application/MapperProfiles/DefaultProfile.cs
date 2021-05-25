@@ -17,6 +17,7 @@ namespace Application.MapperProfiles
             
             CreateMap<ApplicationUser, ApplicationUserDto>().ReverseMap();
             CreateMap<AddApplicationUserDto, ApplicationUser>();
+            CreateMap<ChangeApplicationUserDto, ApplicationUser>();
 
             CreateMap<Company, CompanyDto>().ReverseMap();
             CreateMap<Project, ProjectDto>().ReverseMap();
