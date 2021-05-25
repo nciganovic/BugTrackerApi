@@ -13,6 +13,7 @@ using Application.Searches;
 using Application.Queries.ApplicationUserQueries;
 using Application;
 using Implementation.Validators;
+using Implementation.ResponseMessages;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -61,12 +62,7 @@ namespace Api.Controllers
                 return Ok("Application user created successfully");
             }
 
-            string errors = "";
-            foreach (var error in result.Errors) {
-                errors += error.ErrorMessage + " ";
-            }
-
-            return UnprocessableEntity(errors);
+            return UnprocessableEntity(UnprocessableEntityResponse.Message(result.Errors));
         }
 
         // PUT api/<ApplicationUserController>/5
