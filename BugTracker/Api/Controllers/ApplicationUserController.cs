@@ -50,9 +50,9 @@ namespace Api.Controllers
 
         // POST api/<ApplicationUserController>
         [HttpPost]
-        public IActionResult Post([FromBody] CreateApplicationUserDto dto
+        public IActionResult Post([FromBody] AddApplicationUserDto dto
             , [FromServices] IAddApplicationUserCommand command
-            , [FromServices] CreateApplicationUserValidator validator)
+            , [FromServices] AddApplicationUserValidator validator)
         {
             var result = validator.Validate(dto);
 

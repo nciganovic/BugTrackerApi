@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Implementation.Validators
 {
-    public class CreateApplicationUserValidator : AbstractValidator<CreateApplicationUserDto>
+    public class AddApplicationUserValidator : AbstractValidator<AddApplicationUserDto>
     {
         private BugTrackerContext _context;
 
-        public CreateApplicationUserValidator(BugTrackerContext context)
+        public AddApplicationUserValidator(BugTrackerContext context)
         {
             _context = context;
 
