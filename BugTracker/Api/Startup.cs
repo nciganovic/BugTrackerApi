@@ -131,6 +131,7 @@ namespace Api
 
             services.AddTransient<AddApplicationUserValidator>();
             services.AddTransient<ChangeApplicationUserValidator>();
+            services.AddTransient<LoginValidator>();
 
             services.AddAutoMapper(typeof(DefaultProfile));
         }

@@ -92,17 +92,26 @@ namespace Api.Controllers
         }
 
         [HttpPost("[action]")]
-        public IActionResult Login([FromBody] LoginDto loginDto, [FromServices] IGetApplicationUserByEmailQuery command) 
+        public IActionResult Login([FromBody] LoginDto loginDto
+            , [FromServices] IGetApplicationUserByEmailQuery command
+            , [FromServices] LoginValidator validator) 
         {
-            ApplicationUserDto applicationUserDto = _useCaseExecutor.ExecuteQuery(command, loginDto.Email);
+            var result = validator.Validate(loginDto);
 
-            if (Password.VerifyPassword(loginDto.Password, applicationUserDto.Password, applicationUserDto.Salt))
-            {
-                return Ok("Login successful");
+            if (result.IsValid) { 
+
+                ApplicationUserDto applicationUserDto = _useCaseExecutor.ExecuteQuery(command, loginDto.Email);
+
+                if (Password.VerifyPassword(loginDto.Password, applicationUserDto.Password, applicationUserDto.Salt))
+                {
+                    return Ok("Login successful");
+                }
+                else {
+                    return Unauthorized("Login failed");
+                }
             }
-            else {
-                return Unauthorized("Login failed");
-            }
+
+            return UnprocessableEntity(UnprocessableEntityResponse.Message(result.Errors));
         }
     }
 }
