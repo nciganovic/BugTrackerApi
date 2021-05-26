@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.Queries.CompanyApplicationUserQueries
 {
-    public interface IGetOneCompanyApplicationUserQuery : IQuery<CompanyApplicationUserSearch, CompanyApplicationUserDto>
+    public interface IGetOneCompanyApplicationUserRoleQuery : IQuery<CompanyApplicationUserSearch, CompanyApplicationUserDto>
     {
     }
 }

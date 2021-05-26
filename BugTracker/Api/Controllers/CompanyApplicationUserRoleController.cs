@@ -13,17 +13,17 @@ namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CompanyApplicationUserController : ControllerBase
+    public class CompanyApplicationUserRoleController : ControllerBase
     {
         private readonly IMapper _mapper;
         private readonly UseCaseExecutor _useCaseExecutor;
-        public CompanyApplicationUserController(IMapper mapper, UseCaseExecutor useCaseExecutor)
+        public CompanyApplicationUserRoleController(IMapper mapper, UseCaseExecutor useCaseExecutor)
         {
             _mapper = mapper;
             _useCaseExecutor = useCaseExecutor;
         }
 
-        // GET: api/<CompanyApplicationUserController>
+        // GET: api/<CompanyApplicationUserRoleController>
         [HttpGet]
         public IActionResult Get([FromBody] CompanyApplicationUserSearch search, [FromServices] IGetOneCompanyApplicationUserQuery query)
         {
@@ -31,14 +31,14 @@ namespace Api.Controllers
             return Ok(companyApplicationUserDto);
         }
 
-        // GET api/<CompanyApplicationUserController>/5
+        // GET api/<CompanyApplicationUserRoleController>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/<CompanyApplicationUserController>
+        // POST api/<CompanyApplicationUserRoleController>
         [HttpPost]
         public IActionResult Post([FromBody] CompanyApplicationUserDto companyApplicationUserDto, [FromServices] IAddCompanyApplicationUserRoleCommand command)
         {
@@ -47,7 +47,7 @@ namespace Api.Controllers
             return Ok("CompanyApplicationUser created successfully");
         }
 
-        // PUT api/<CompanyApplicationUserController>/5
+        // PUT api/<CompanyApplicationUserRoleController>/5
         [HttpPut]
         public IActionResult Put([FromBody] CompanyApplicationUserDto companyApplicationUserDto, [FromServices] IChangeCompanyApplicationUserRoleCommand command)
         {
@@ -56,7 +56,7 @@ namespace Api.Controllers
             return Ok("CompanyApplicationUser update successfully");
         }
 
-        // DELETE api/<CompanyApplicationUserController>/5
+        // DELETE api/<CompanyApplicationUserRoleController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

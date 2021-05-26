@@ -14,11 +14,11 @@ using System.Threading.Tasks;
 
 namespace Implementation.Queries.CompanyApplicationUserQueries
 {
-    public class EfGetOneCompanyApplicationUserQuery : BaseCommands, IGetOneCompanyApplicationUserQuery
+    public class EfGetOneCompanyApplicationUserRoleQuery : BaseCommands, IGetOneCompanyApplicationUserRoleQuery
     {
         private readonly IMapper _mapper;
 
-        public EfGetOneCompanyApplicationUserQuery(BugTrackerContext context, IMapper mapper) : base(context)
+        public EfGetOneCompanyApplicationUserRoleQuery(BugTrackerContext context, IMapper mapper) : base(context)
         {
             _mapper = mapper;
         }
