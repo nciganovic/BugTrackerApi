@@ -22,7 +22,10 @@ namespace Application.MapperProfiles
             CreateMap<Company, CompanyDto>().ReverseMap();
             CreateMap<Project, ProjectDto>().ReverseMap();
             CreateMap<Ticket, TicketDto>().ReverseMap();
+
             CreateMap<Comment, CommentDto>().ReverseMap();
+            CreateMap<AddCommentDto, Comment>();
+            
             CreateMap<CompanyApplicationUser, CompanyApplicationUserDto>().ReverseMap();
             CreateMap<ProjectApplicationUser, ProjectApplicationUserDto>().ReverseMap();
         }

@@ -5,6 +5,8 @@ using Application.Queries.CommentQueries;
 using Application.Searches;
 using AutoMapper;
 using Domain;
+using Implementation.ResponseMessages;
+using Implementation.Validators;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -46,11 +48,20 @@ namespace Api.Controllers
 
         // POST api/<CommentController>
         [HttpPost]
-        public IActionResult Post([FromBody] CommentDto commentDto, [FromServices] IAddCommentCommand command)
+        public IActionResult Post([FromBody] AddCommentDto dto
+            , [FromServices] IAddCommentCommand command
+            , [FromServices] AddCommentValidator validator)
         {
-            Comment comment = _mapper.Map<Comment>(commentDto);
-            _useCaseExecutor.ExecuteCommand(command, comment);
-            return Ok("Comment created successfully");
+            var result = validator.Validate(dto);
+
+            if (result.IsValid) 
+            { 
+                Comment comment = _mapper.Map<Comment>(dto);
+                _useCaseExecutor.ExecuteCommand(command, comment);
+                return Ok("Comment created successfully");
+            }
+
+            return UnprocessableEntity(UnprocessableEntityResponse.Message(result.Errors));
         }
 
         // PUT api/<CommentController>/5
