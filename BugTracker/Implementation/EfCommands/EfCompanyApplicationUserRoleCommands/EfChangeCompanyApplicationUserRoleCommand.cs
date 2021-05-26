@@ -2,6 +2,7 @@
 using Application.Commands.CompanyApplicationUserRoleCommands;
 using Application.Commands.CompanyCommands;
 using Application.Commands.Roles;
+using Application.Dto;
 using Application.Exceptions;
 using Application.Queries.ApplicationUserQueries;
 using Application.Queries.CompanyQueries;
@@ -36,7 +37,7 @@ namespace Implementation.EfCommands.EfCompanyApplicationUserRoleCommands
 
         public string Name => "Change company applicationUser";
 
-        public void Execute(CompanyApplicationUserRole request)
+        public void Execute(ChangeCompanyApplicationUserRoleDto request)
         {
             CompanyApplicationUserRole item = context.CompanyApplicationUserRoles
                 .Where(x => x.ApplicationUserId == request.ApplicationUserId
@@ -45,43 +46,13 @@ namespace Implementation.EfCommands.EfCompanyApplicationUserRoleCommands
 
             context.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
 
-            if (item == null)
-            {
-                throw new EntityNotFoundException();
-            }
+            item.CompanyId = request.CompanyId;
+            item.ApplicationUserId = request.ApplicationUserId;
+            item.RoleId = request.RoleId;
 
-            if (request.CompanyId != 0)
-            {
-                _getOneCompanyCommand.Execute(request.CompanyId);
-            }
-            else
-            {
-                throw new Exception("CompanyId is required field and cannot be 0");
-            }
-
-            if (request.ApplicationUserId != 0)
-            {
-                _getOneApplicationUserCommand.Execute(request.ApplicationUserId);
-            }
-            else
-            {
-                throw new Exception("ApplicationUserId is required field and cannot be 0");
-            }
-
-            if (request.RoleId != 0)
-            {
-                _getOneRoleQuery.Execute(request.RoleId);
-            }
-            else
-            {
-                throw new Exception("RolerId is required field and cannot be 0");
-            }
-
-            request.CreatedAt = item.CreatedAt;
-            request.UpdatedAt = DateTime.Now;
-            request.DeletedAt = item.DeletedAt;
-
-            var tp = context.CompanyApplicationUserRoles.Attach(request);
+            item.UpdatedAt = DateTime.Now;
+          
+            var tp = context.CompanyApplicationUserRoles.Attach(item);
             tp.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             context.SaveChanges();
         }

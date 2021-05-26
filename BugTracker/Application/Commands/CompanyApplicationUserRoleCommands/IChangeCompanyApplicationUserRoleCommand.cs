@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using Application.Dto;
+using Application.Interfaces;
 using Domain;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.Commands.CompanyApplicationUserRoleCommands
 {
-    public interface IChangeCompanyApplicationUserRoleCommand : ICommand<CompanyApplicationUserRole>
+    public interface IChangeCompanyApplicationUserRoleCommand : ICommand<ChangeCompanyApplicationUserRoleDto>
     {
     }
 }

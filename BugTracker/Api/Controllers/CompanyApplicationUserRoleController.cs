@@ -5,6 +5,7 @@ using Application.Queries.CompanyApplicationUserQueries;
 using Application.Searches;
 using AutoMapper;
 using Domain;
+using FluentValidation;
 using Implementation.ResponseMessages;
 using Implementation.Validators;
 using Microsoft.AspNetCore.Mvc;
@@ -61,12 +62,19 @@ namespace Api.Controllers
 
         // PUT api/<CompanyApplicationUserRoleController>/5
         [HttpPut]
-        public IActionResult Put([FromBody] CompanyApplicationUserDto companyApplicationUserDto
-            , [FromServices] IChangeCompanyApplicationUserRoleCommand command)
+        public IActionResult Put([FromBody] ChangeCompanyApplicationUserRoleDto dto
+            , [FromServices] IChangeCompanyApplicationUserRoleCommand command
+            , [FromServices] ChangeCompanyApplicationUserRoleValidator validator)
         {
-            CompanyApplicationUserRole companyApplicationUser = _mapper.Map<CompanyApplicationUserDto, CompanyApplicationUserRole>(companyApplicationUserDto);
-            _useCaseExecutor.ExecuteCommand(command, companyApplicationUser);
-            return Ok("CompanyApplicationUserRole update successfully");
+            var result = validator.Validate(dto);
+
+            if (result.IsValid) 
+            {
+                _useCaseExecutor.ExecuteCommand(command, dto);
+                return Ok("CompanyApplicationUserRole update successfully");
+            }
+
+            return UnprocessableEntity(UnprocessableEntityResponse.Message(result.Errors));
         }
 
         // DELETE api/<CompanyApplicationUserRoleController>/5
