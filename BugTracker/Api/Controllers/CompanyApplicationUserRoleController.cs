@@ -25,7 +25,8 @@ namespace Api.Controllers
 
         // GET: api/<CompanyApplicationUserRoleController>
         [HttpGet]
-        public IActionResult Get([FromBody] CompanyApplicationUserSearch search, [FromServices] IGetOneCompanyApplicationUserQuery query)
+        public IActionResult Get([FromBody] CompanyApplicationUserSearch search
+            , [FromServices] IGetOneCompanyApplicationUserRoleQuery query)
         {
             CompanyApplicationUserDto companyApplicationUserDto = _useCaseExecutor.ExecuteQuery(query, search);
             return Ok(companyApplicationUserDto);
@@ -40,20 +41,22 @@ namespace Api.Controllers
 
         // POST api/<CompanyApplicationUserRoleController>
         [HttpPost]
-        public IActionResult Post([FromBody] CompanyApplicationUserDto companyApplicationUserDto, [FromServices] IAddCompanyApplicationUserRoleCommand command)
+        public IActionResult Post([FromBody] CompanyApplicationUserDto companyApplicationUserDto
+            , [FromServices] IAddCompanyApplicationUserRoleCommand command)
         {
             CompanyApplicationUserRole companyApplicationUser = _mapper.Map<CompanyApplicationUserDto, CompanyApplicationUserRole>(companyApplicationUserDto);
             _useCaseExecutor.ExecuteCommand(command, companyApplicationUser);
-            return Ok("CompanyApplicationUser created successfully");
+            return Ok("CompanyApplicationUserRole created successfully");
         }
 
         // PUT api/<CompanyApplicationUserRoleController>/5
         [HttpPut]
-        public IActionResult Put([FromBody] CompanyApplicationUserDto companyApplicationUserDto, [FromServices] IChangeCompanyApplicationUserRoleCommand command)
+        public IActionResult Put([FromBody] CompanyApplicationUserDto companyApplicationUserDto
+            , [FromServices] IChangeCompanyApplicationUserRoleCommand command)
         {
             CompanyApplicationUserRole companyApplicationUser = _mapper.Map<CompanyApplicationUserDto, CompanyApplicationUserRole>(companyApplicationUserDto);
             _useCaseExecutor.ExecuteCommand(command, companyApplicationUser);
-            return Ok("CompanyApplicationUser update successfully");
+            return Ok("CompanyApplicationUserRole update successfully");
         }
 
         // DELETE api/<CompanyApplicationUserRoleController>/5
