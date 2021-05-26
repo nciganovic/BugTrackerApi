@@ -123,7 +123,7 @@ namespace Api
             services.AddTransient<IRemoveCommentCommand, EfRemoveCommentCommand>();
 
             services.AddTransient<IAddCompanyApplicationUserRoleCommand, EfAddCompanyApplicationUserRoleCommand>();
-            services.AddTransient<IGetOneCompanyApplicationUserQuery, EfGetOneCompanyApplicationUserQuery>();
+            services.AddTransient<IGetOneCompanyApplicationUserRoleQuery, EfGetOneCompanyApplicationUserRoleQuery>();
             services.AddTransient<IChangeCompanyApplicationUserRoleCommand, EfChangeCompanyApplicationUserRoleCommand>();
 
             services.AddTransient<IAddProjectApplicationUserCommand, EfAddProjectApplicationUserCommand>();
