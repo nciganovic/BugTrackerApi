@@ -5,6 +5,8 @@ using Application.Queries.CompanyApplicationUserQueries;
 using Application.Searches;
 using AutoMapper;
 using Domain;
+using Implementation.ResponseMessages;
+using Implementation.Validators;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -41,12 +43,20 @@ namespace Api.Controllers
 
         // POST api/<CompanyApplicationUserRoleController>
         [HttpPost]
-        public IActionResult Post([FromBody] CompanyApplicationUserDto companyApplicationUserDto
-            , [FromServices] IAddCompanyApplicationUserRoleCommand command)
+        public IActionResult Post([FromBody] AddCompanyApplicationUserRoleDto dto
+            , [FromServices] IAddCompanyApplicationUserRoleCommand command
+            , [FromServices] AddCompanyApplicationUserRoleValidator validator)
         {
-            CompanyApplicationUserRole companyApplicationUser = _mapper.Map<CompanyApplicationUserDto, CompanyApplicationUserRole>(companyApplicationUserDto);
-            _useCaseExecutor.ExecuteCommand(command, companyApplicationUser);
-            return Ok("CompanyApplicationUserRole created successfully");
+            var result = validator.Validate(dto);
+
+            if (result.IsValid) 
+            { 
+                CompanyApplicationUserRole companyApplicationUser = _mapper.Map<AddCompanyApplicationUserRoleDto, CompanyApplicationUserRole>(dto);
+                _useCaseExecutor.ExecuteCommand(command, companyApplicationUser);
+                return Ok("CompanyApplicationUserRole created successfully");
+            }
+
+            return UnprocessableEntity(UnprocessableEntityResponse.Message(result.Errors));
         }
 
         // PUT api/<CompanyApplicationUserRoleController>/5
