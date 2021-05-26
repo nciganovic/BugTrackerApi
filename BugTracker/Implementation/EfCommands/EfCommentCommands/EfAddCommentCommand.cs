@@ -32,6 +32,7 @@ namespace Implementation.EfCommands.EfCommentCommands
 
         public void Execute(Comment request)
         {
+            request.CreatedAt = DateTime.Now;
             context.Comments.Add(request);
             context.SaveChanges();
         }

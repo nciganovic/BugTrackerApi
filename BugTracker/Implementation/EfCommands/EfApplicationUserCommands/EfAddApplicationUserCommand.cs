@@ -24,6 +24,8 @@ namespace Implementation.EfCommands.EfApplicationUserCommands
 
         public void Execute(ApplicationUser request)
         {
+            request.CreatedAt = DateTime.Now;
+
             HashSalt hashSalt = Password.GenerateSaltedHash(64, request.Password);
 
             request.Password = hashSalt.Hash;
