@@ -34,7 +34,7 @@ namespace Implementation.EfCommands.EfCompanyApplicationUserRoleCommands
 
         public int Id => 13;
 
-        public string Name => "Chaneg company applicationUser";
+        public string Name => "Change company applicationUser";
 
         public void Execute(CompanyApplicationUserRole request)
         {
