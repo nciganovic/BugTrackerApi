@@ -32,22 +32,6 @@ namespace Implementation.EfCommands.EfCommentCommands
 
         public void Execute(Comment request)
         {
-            if (request.ApplicationUserId != 0)
-            {
-                _getOneApplicationUserCommand.Execute(request.ApplicationUserId);
-            }
-            else {
-                throw new Exception("ApplicationUserId is required field and cannot be 0");
-            }
-
-            if (request.TicketId != 0)
-            {
-                _getOneTicketCommand.Execute(request.TicketId);
-            }
-            else {
-                throw new Exception("TicketId is required field and cannot be 0");
-            }
-
             context.Comments.Add(request);
             context.SaveChanges();
         }
