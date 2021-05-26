@@ -15,15 +15,9 @@ namespace Implementation.EfCommands.EfCommentCommands
 {
     public class EfAddCommentCommand : BaseCommands, IAddCommentCommand
     {
-        private readonly IGetOneApplicationUserQuery _getOneApplicationUserCommand;
-        private readonly IGetOneTicketQuery _getOneTicketCommand;
-
-        public EfAddCommentCommand(BugTrackerContext context,
-            IGetOneApplicationUserQuery getOneApplicationUserCommand,
-            IGetOneTicketQuery getOneTicketCommand) : base(context)
+        public EfAddCommentCommand(BugTrackerContext context) : base(context)
         {
-            _getOneApplicationUserCommand = getOneApplicationUserCommand;
-            _getOneTicketCommand = getOneTicketCommand;
+
         }
 
         public int Id => 1;
