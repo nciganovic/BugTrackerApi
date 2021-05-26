@@ -66,12 +66,19 @@ namespace Api.Controllers
 
         // PUT api/<CommentController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] CommentDto commentDto, [FromServices] IChangeCommentCommand command)
+        public IActionResult Put(int id, [FromBody] ChangeCommentDto dto
+            , [FromServices] IChangeCommentCommand command
+            , [FromServices] ChangeCommentValidator validator)
         {
-            commentDto.Id = id;
-            Comment comment = _mapper.Map<CommentDto, Comment>(commentDto);
-            _useCaseExecutor.ExecuteCommand(command, comment);
-            return Ok("Comment updated successfully");
+            var result = validator.Validate(dto);
+
+            if (result.IsValid) { 
+                dto.Id = id;
+                _useCaseExecutor.ExecuteCommand(command, dto);
+                return Ok("Comment updated successfully");
+            }
+
+            return UnprocessableEntity(UnprocessableEntityResponse.Message(result.Errors));
         }
 
         // DELETE api/<CommentController>/5

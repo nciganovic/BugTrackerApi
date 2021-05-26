@@ -1,9 +1,11 @@
 ﻿using Application.Commands.ApplicationUserCommands;
 using Application.Commands.CommentCommands;
 using Application.Commands.TicketCommands;
+using Application.Dto;
 using Application.Exceptions;
 using Application.Queries.ApplicationUserQueries;
 using Application.Queries.TicketQueries;
+using AutoMapper;
 using DataAccess;
 using Domain;
 using System;
@@ -16,53 +18,41 @@ namespace Implementation.EfCommands.EfCommentCommands
 {
     public class EfChangeCommentCommand : BaseCommands, IChangeCommentCommand
     {
-        private readonly IGetOneApplicationUserQuery _getOneApplicationUserCommand;
-        private readonly IGetOneTicketQuery _getOneTicketCommand;
+        private readonly IMapper _mapper;
 
-        public EfChangeCommentCommand(BugTrackerContext context,
-            IGetOneApplicationUserQuery getOneApplicationUserCommand,
-            IGetOneTicketQuery getOneTicketCommand) : base(context)
+        public EfChangeCommentCommand(BugTrackerContext context
+            , IMapper mapper
+            ) : base(context)
         {
-            _getOneApplicationUserCommand = getOneApplicationUserCommand;
-            _getOneTicketCommand = getOneTicketCommand;
+            _mapper = mapper;
         }
 
         public int Id => 2;
 
         public string Name => "Change comment";
 
-        public void Execute(Comment request)
+        public void Execute(ChangeCommentDto request)
         {
             Comment item = context.Comments.Find(request.Id);
 
-            if (item == null)
-                throw new EntityNotFoundException();
+            if (request.Text != null) {
+                item.Text = request.Text;
+            }
+
+            if (request.ApplicationUserId != null) {
+                item.ApplicationUserId = (int)request.ApplicationUserId;
+            }
+
+            if (request.TicketId != null)
+            {
+                item.TicketId = (int)request.TicketId;
+            }
+
+            item.UpdatedAt = DateTime.Now;
 
             context.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
 
-            if (request.ApplicationUserId != 0)
-            {
-                _getOneApplicationUserCommand.Execute(request.ApplicationUserId);
-            }
-            else
-            {
-                throw new Exception("ApplicationUserId is required field and cannot be 0");
-            }
-
-            if (request.TicketId != 0)
-            {
-                _getOneTicketCommand.Execute(request.TicketId);
-            }
-            else
-            {
-                throw new Exception("TicketId is required field and cannot be 0");
-            }
-
-            request.CreatedAt = item.CreatedAt;
-            request.UpdatedAt = DateTime.Now;
-            request.DeletedAt = item.DeletedAt;
-
-            var tp = context.Comments.Attach(request);
+            var tp = context.Comments.Attach(item);
             tp.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             context.SaveChanges();
         }
