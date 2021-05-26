@@ -1,5 +1,5 @@
 ﻿using Application.Commands.ApplicationUserCommands;
-using Application.Commands.CompanyApplicationUserCommands;
+using Application.Commands.CompanyApplicationUserRoleCommands;
 using Application.Commands.CompanyCommands;
 using Application.Commands.Roles;
 using Application.Exceptions;
@@ -14,15 +14,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Implementation.EfCommands.EfCompanyApplicationUserCommands
+namespace Implementation.EfCommands.EfCompanyApplicationUserRoleCommands
 {
-    public class EfAddCompanyApplicationUserCommand : BaseCommands, IAddCompanyApplicationUserCommand
+    public class EfChangeCompanyApplicationUserRoleCommand : BaseCommands, IChangeCompanyApplicationUserRoleCommand
     {
         private readonly IGetOneCompanyQuery _getOneCompanyCommand;
         private readonly IGetOneApplicationUserQuery _getOneApplicationUserCommand;
         private readonly IGetOneRoleQuery _getOneRoleQuery;
 
-        public EfAddCompanyApplicationUserCommand(BugTrackerContext context,
+        public EfChangeCompanyApplicationUserRoleCommand(BugTrackerContext context, 
             IGetOneCompanyQuery getOneCompanyCommand,
             IGetOneApplicationUserQuery getOneApplicationUserCommand,
             IGetOneRoleQuery getOneRoleQuery) : base(context)
@@ -32,27 +32,35 @@ namespace Implementation.EfCommands.EfCompanyApplicationUserCommands
             _getOneRoleQuery = getOneRoleQuery;
         }
 
-        public int Id => 12;
+        public int Id => 13;
 
-        public string Name => "Add company applicationUser";
+        public string Name => "Chaneg company applicationUser";
 
-        public void Execute(CompanyApplicationUser request)
+        public void Execute(CompanyApplicationUserRole request)
         {
-            var query = context.CompanyApplicationUsers.AsQueryable();
+            CompanyApplicationUserRole item = context.CompanyApplicationUserRoles
+                .Where(x => x.ApplicationUserId == request.ApplicationUserId
+                && x.CompanyId == request.CompanyId)
+                    .FirstOrDefault();
 
-            if (query.Where(x => x.CompanyId == request.CompanyId && x.ApplicationUserId == x.ApplicationUserId).FirstOrDefault() != null) {
-                throw new EntityAlreadyExists();
+            context.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
+
+            if (item == null)
+            {
+                throw new EntityNotFoundException();
             }
 
             if (request.CompanyId != 0)
             {
                 _getOneCompanyCommand.Execute(request.CompanyId);
             }
-            else {
+            else
+            {
                 throw new Exception("CompanyId is required field and cannot be 0");
             }
 
-            if (request.ApplicationUserId != 0) {
+            if (request.ApplicationUserId != 0)
+            {
                 _getOneApplicationUserCommand.Execute(request.ApplicationUserId);
             }
             else
@@ -69,8 +77,12 @@ namespace Implementation.EfCommands.EfCompanyApplicationUserCommands
                 throw new Exception("RolerId is required field and cannot be 0");
             }
 
-            request.CreatedAt = DateTime.Now;
-            context.CompanyApplicationUsers.Add(request);
+            request.CreatedAt = item.CreatedAt;
+            request.UpdatedAt = DateTime.Now;
+            request.DeletedAt = item.DeletedAt;
+
+            var tp = context.CompanyApplicationUserRoles.Attach(request);
+            tp.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             context.SaveChanges();
         }
     }

@@ -21,7 +21,7 @@ using Application.Commands.ProjectCommands;
 using Application.Commands.ApplicationUserCommands;
 using Application.Commands.TicketCommands;
 using Application.Commands.CommentCommands;
-using Application.Commands.CompanyApplicationUserCommands;
+using Application.Commands.CompanyApplicationUserRoleCommands;
 using Application.Commands.ProjectApplicationUserCommands;
 using Implementation.EfCommands.EfApplicationUserCommands;
 using Implementation.EfCommands.EfRoleCommands;
@@ -29,7 +29,7 @@ using Implementation.EfCommands.EfCompanyCommands;
 using Implementation.EfCommands.EfProjectCommands;
 using Implementation.EfCommands.EfTicketCommands;
 using Implementation.EfCommands.EfCommentCommands;
-using Implementation.EfCommands.EfCompanyApplicationUserCommands;
+using Implementation.EfCommands.EfCompanyApplicationUserRoleCommands;
 using Implementation.EfCommands.EfProjectApplicationUserCommands;
 using Application.Queries.CommentQueries;
 using Application.Queries.ApplicationUserQueries;
@@ -122,9 +122,9 @@ namespace Api
             services.AddTransient<IChangeCommentCommand, EfChangeCommentCommand>();
             services.AddTransient<IRemoveCommentCommand, EfRemoveCommentCommand>();
 
-            services.AddTransient<IAddCompanyApplicationUserCommand, EfAddCompanyApplicationUserCommand>();
+            services.AddTransient<IAddCompanyApplicationUserRoleCommand, EfAddCompanyApplicationUserRoleCommand>();
             services.AddTransient<IGetOneCompanyApplicationUserQuery, EfGetOneCompanyApplicationUserQuery>();
-            services.AddTransient<IChangeCompanyApplicationUserCommand, EfChangeCompanyApplicationUserCommand>();
+            services.AddTransient<IChangeCompanyApplicationUserRoleCommand, EfChangeCompanyApplicationUserRoleCommand>();
 
             services.AddTransient<IAddProjectApplicationUserCommand, EfAddProjectApplicationUserCommand>();
             services.AddTransient<IGetApplicationUsersForProjectQuery, EfGetApplicationUsersForProjectQuery>();

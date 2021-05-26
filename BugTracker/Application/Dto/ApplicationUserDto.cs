@@ -28,7 +28,7 @@ namespace Application.Dto
 
         public string Salt { get; set; }
 
-        public List<CompanyApplicationUser> CompanyApplicaitonUsers { get; set; }
+        public List<CompanyApplicationUserRole> CompanyApplicaitonUsers { get; set; }
         public List<ProjectApplicationUser> ProjectApplicaitonUsers { get; set; }
         public List<Ticket> IssuerTickets { get; set; }
         public List<Ticket> DeveloperTickets { get; set; }

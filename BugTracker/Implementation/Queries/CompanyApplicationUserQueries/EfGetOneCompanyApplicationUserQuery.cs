@@ -1,6 +1,4 @@
-﻿using Application.Commands.ApplicationUserCommands;
-using Application.Commands.CompanyApplicationUserCommands;
-using Application.Dto;
+﻿using Application.Dto;
 using Application.Exceptions;
 using Application.Queries.CompanyApplicationUserQueries;
 using Application.Searches;
@@ -31,7 +29,7 @@ namespace Implementation.Queries.CompanyApplicationUserQueries
 
         public CompanyApplicationUserDto Execute(CompanyApplicationUserSearch request)
         {
-            CompanyApplicationUser item = context.CompanyApplicationUsers
+            CompanyApplicationUserRole item = context.CompanyApplicationUserRoles
                 .Where(x => x.ApplicationUserId == request.ApplicationUserId 
                 && x.CompanyId == request.CompanyId)
                     .FirstOrDefault();
@@ -40,7 +38,7 @@ namespace Implementation.Queries.CompanyApplicationUserQueries
                 throw new EntityNotFoundException();
             }
 
-            return _mapper.Map<CompanyApplicationUser, CompanyApplicationUserDto>(item);
+            return _mapper.Map<CompanyApplicationUserRole, CompanyApplicationUserDto>(item);
         }
     }
 }

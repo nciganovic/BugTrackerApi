@@ -10,7 +10,7 @@ namespace Domain
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<CompanyApplicationUser> CompanyApplicaitonUsers { get; set; }
+        public List<CompanyApplicationUserRole> CompanyApplicaitonUsers { get; set; }
         public List<Project> Projects { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Application;
-using Application.Commands.CompanyApplicationUserCommands;
+using Application.Commands.CompanyApplicationUserRoleCommands;
 using Application.Dto;
 using Application.Queries.CompanyApplicationUserQueries;
 using Application.Searches;
@@ -40,18 +40,18 @@ namespace Api.Controllers
 
         // POST api/<CompanyApplicationUserController>
         [HttpPost]
-        public IActionResult Post([FromBody] CompanyApplicationUserDto companyApplicationUserDto, [FromServices] IAddCompanyApplicationUserCommand command)
+        public IActionResult Post([FromBody] CompanyApplicationUserDto companyApplicationUserDto, [FromServices] IAddCompanyApplicationUserRoleCommand command)
         {
-            CompanyApplicationUser companyApplicationUser = _mapper.Map<CompanyApplicationUserDto, CompanyApplicationUser>(companyApplicationUserDto);
+            CompanyApplicationUserRole companyApplicationUser = _mapper.Map<CompanyApplicationUserDto, CompanyApplicationUserRole>(companyApplicationUserDto);
             _useCaseExecutor.ExecuteCommand(command, companyApplicationUser);
             return Ok("CompanyApplicationUser created successfully");
         }
 
         // PUT api/<CompanyApplicationUserController>/5
         [HttpPut]
-        public IActionResult Put([FromBody] CompanyApplicationUserDto companyApplicationUserDto, [FromServices] IChangeCompanyApplicationUserCommand command)
+        public IActionResult Put([FromBody] CompanyApplicationUserDto companyApplicationUserDto, [FromServices] IChangeCompanyApplicationUserRoleCommand command)
         {
-            CompanyApplicationUser companyApplicationUser = _mapper.Map<CompanyApplicationUserDto, CompanyApplicationUser>(companyApplicationUserDto);
+            CompanyApplicationUserRole companyApplicationUser = _mapper.Map<CompanyApplicationUserDto, CompanyApplicationUserRole>(companyApplicationUserDto);
             _useCaseExecutor.ExecuteCommand(command, companyApplicationUser);
             return Ok("CompanyApplicationUser update successfully");
         }

@@ -10,6 +10,6 @@ namespace Domain
     {
         public int Id { get; set; }
         public string Name { get; set; } //Admin, ProjectManager, Developer, Submitter
-        public List<CompanyApplicationUser> CompanyApplicationUsers { get; set; }
+        public List<CompanyApplicationUserRole> CompanyApplicationUsers { get; set; }
     }
 }

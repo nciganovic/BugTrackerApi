@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Commands.CompanyApplicationUserCommands
+namespace Application.Commands.CompanyApplicationUserRoleCommands
 {
-    public interface IChangeCompanyApplicationUserCommand : ICommand<CompanyApplicationUser>
+    public interface IAddCompanyApplicationUserRoleCommand : ICommand<CompanyApplicationUserRole>
     {
     }
 }
