@@ -24,13 +24,7 @@ namespace Implementation.EfCommands.EfCompanyCommands
         {
             Domain.Company item = context.Companies.Find(request.Id);
 
-            if (item == null)
-                throw new EntityNotFoundException();
-
             context.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
-
-            if (IsNameAlreadyTaken(request.Name))
-                throw new EntityAlreadyExists();
 
             request.CreatedAt = item.CreatedAt;
             request.UpdatedAt = DateTime.Now;
