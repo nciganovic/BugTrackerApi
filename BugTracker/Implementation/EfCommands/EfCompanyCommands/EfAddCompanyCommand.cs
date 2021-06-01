@@ -22,23 +22,8 @@ namespace Implementation.EfCommands.EfCompanyCommands
 
         public void Execute(Domain.Company request)
         {
-            if (IsNameAlreadyTaken(request.Name))
-            {
-                throw new EntityAlreadyExists();
-            }
-
             context.Add(request);
             context.SaveChanges();
-        }
-
-        private bool IsNameAlreadyTaken(string name)
-        {
-            if (context.Companies.Any(x => x.Name == name))
-            {
-                return true;
-            }
-
-            return false;
         }
     }
 }
