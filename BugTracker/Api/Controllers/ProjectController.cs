@@ -6,6 +6,8 @@ using Application.Queries.ProjectQueries;
 using Application.Searches;
 using AutoMapper;
 using Domain;
+using Implementation.ResponseMessages;
+using Implementation.Validators;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -47,11 +49,20 @@ namespace Api.Controllers
 
         // POST api/<ProjectController>
         [HttpPost]
-        public IActionResult Post([FromBody] ProjectDto projectDto, [FromServices] IAddProjectCommand command)
+        public IActionResult Post([FromBody] AddProjectDto dto
+            , [FromServices] IAddProjectCommand command
+            , [FromServices] AddProjectValidator validator)
         {
-            Project project = _mapper.Map<Project>(projectDto);
-            _useCaseExecutor.ExecuteCommand(command, project);
-            return Ok("Project created successfully");
+            var result = validator.Validate(dto);
+
+            if (result.IsValid) 
+            {
+                Project project = _mapper.Map<Project>(dto);
+                _useCaseExecutor.ExecuteCommand(command, project);
+                return Ok("Project created successfully");
+            }
+
+            return UnprocessableEntity(UnprocessableEntityResponse.Message(result.Errors));
         }
 
         // PUT api/<ProjectController>/5
