@@ -6,6 +6,8 @@ using Application.Queries.CompanyQueries;
 using Application.Searches;
 using AutoMapper;
 using Domain;
+using Implementation.ResponseMessages;
+using Implementation.Validators;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -29,7 +31,7 @@ namespace Api.Controllers
             _useCaseExecutor = useCaseExecutor;
         }
 
-        // GET: api/<CompanyController>
+        // GET: api/<CompanyController>d
         [HttpGet]
         public IActionResult Get([FromQuery] CompanySearch search, [FromServices] IGetCompaniesQuery query)
         {
@@ -47,11 +49,20 @@ namespace Api.Controllers
 
         // POST api/<CompanyController>
         [HttpPost]
-        public IActionResult Post([FromBody] CompanyDto companyDto, [FromServices] IAddCompanyCommand command)
+        public IActionResult Post([FromBody] AddCompanyDto dto
+            , [FromServices] IAddCompanyCommand command
+            , [FromServices] AddCompanyValidator addCompanyValidator)
         {
-            Company company = _mapper.Map<Company>(companyDto);
-            _useCaseExecutor.ExecuteCommand(command, company);
-            return Ok("Company created successfully");
+            var result = addCompanyValidator.Validate(dto);
+
+            if (result.IsValid) 
+            {
+                Company company = _mapper.Map<Company>(dto);
+                _useCaseExecutor.ExecuteCommand(command, company);
+                return Ok("Company created successfully");
+            }
+
+            return UnprocessableEntity(UnprocessableEntityResponse.Message(result.Errors));
         }
 
         // PUT api/<CompanyController>/5
