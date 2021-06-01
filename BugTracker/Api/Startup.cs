@@ -137,6 +137,7 @@ namespace Api
             services.AddTransient<AddCompanyApplicationUserRoleValidator>();
             services.AddTransient<ChangeCompanyApplicationUserRoleValidator>();
             services.AddTransient<AddCompanyValidator>();
+            services.AddTransient<ChangeCompanyValidator>();
 
             services.AddAutoMapper(typeof(DefaultProfile));
         }

@@ -67,12 +67,21 @@ namespace Api.Controllers
 
         // PUT api/<CompanyController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] CompanyDto companyDto, [FromServices] IChangeCompanyCommand command)
+        public IActionResult Put(int id, [FromBody] ChangeCompanyDto dto
+            , [FromServices] IChangeCompanyCommand command
+            , [FromServices] ChangeCompanyValidator validator)
         {
-            companyDto.Id = id;
-            Company company = _mapper.Map<Company>(companyDto);
-            _useCaseExecutor.ExecuteCommand(command, company);
-            return Ok("Company updated successfully");
+            dto.Id = id;
+            var result = validator.Validate(dto);
+
+            if (result.IsValid) 
+            { 
+                Company company = _mapper.Map<Company>(dto);
+                _useCaseExecutor.ExecuteCommand(command, company);
+                return Ok("Company updated successfully");
+            }
+
+            return UnprocessableEntity(UnprocessableEntityResponse.Message(result.Errors));
         }
 
         // DELETE api/<CompanyController>/5
