@@ -5,6 +5,8 @@ using Application.Queries.ProjectApplicationUserQueries;
 using Application.Searches;
 using AutoMapper;
 using Domain;
+using Implementation.ResponseMessages;
+using Implementation.Validators;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -45,11 +47,20 @@ namespace Api.Controllers
 
         // POST api/<ProjectApplicationUserController>
         [HttpPost]
-        public IActionResult Post([FromBody] ProjectApplicationUserDto dto, [FromServices] IAddProjectApplicationUserCommand command)
+        public IActionResult Post([FromBody] AddProjectApplicationUserDto dto
+            , [FromServices] IAddProjectApplicationUserCommand command
+            , [FromServices] AddProjectApplicationUserValidator validator)
         {
-            ProjectApplicationUser projectApplicationUser = _mapper.Map<ProjectApplicationUserDto, ProjectApplicationUser>(dto);
-            _useCaseExecutor.ExecuteCommand(command, projectApplicationUser);
-            return Ok("ProjectApplicationUser created successfully");
+            var result = validator.Validate(dto);
+
+            if (result.IsValid) 
+            {
+                ProjectApplicationUser projectApplicationUser = _mapper.Map<ProjectApplicationUser>(dto);
+                _useCaseExecutor.ExecuteCommand(command, projectApplicationUser);
+                return Ok("ProjectApplicationUser created successfully");
+            }
+
+            return UnprocessableEntity(UnprocessableEntityResponse.Message(result.Errors));
         }
 
         // PUT api/<ProjectApplicationUserController>/5

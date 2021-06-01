@@ -15,15 +15,9 @@ namespace Implementation.EfCommands.EfProjectApplicationUserCommands
 {
     public class EfAddProjectApplicationUserCommand : BaseCommands, IAddProjectApplicationUserCommand
     {
-        private readonly IGetOneProjectQuery _getOneProjectQuery;
-        private readonly IGetOneApplicationUserQuery _getOneApplicationUserCommand;
 
-        public EfAddProjectApplicationUserCommand(BugTrackerContext context ,
-            IGetOneProjectQuery getOneProjectQuery ,
-            IGetOneApplicationUserQuery getOneApplicationUserCommand) : base(context)
+        public EfAddProjectApplicationUserCommand(BugTrackerContext context) : base(context)
         {
-            _getOneProjectQuery = getOneProjectQuery;
-            _getOneApplicationUserCommand = getOneApplicationUserCommand;
         }
 
         public int Id => 20;
@@ -32,24 +26,6 @@ namespace Implementation.EfCommands.EfProjectApplicationUserCommands
 
         public void Execute(ProjectApplicationUser request)
         {
-            if (request.ProjectId != 0)
-            {
-                _getOneProjectQuery.Execute(request.ProjectId);
-            }
-            else
-            {
-                throw new Exception("ProjectId is required field and cannot be 0");
-            }
-
-            if (request.ApplicationUserId != 0)
-            {
-                _getOneApplicationUserCommand.Execute(request.ApplicationUserId);
-            }
-            else
-            {
-                throw new Exception("ApplicationUserId is required field and cannot be 0");
-            }
-
             request.CreatedAt = DateTime.Now;
             context.ProjectApplicationUsers.Add(request);
             context.SaveChanges();
