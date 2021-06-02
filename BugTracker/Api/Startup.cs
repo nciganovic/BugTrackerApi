@@ -143,6 +143,8 @@ namespace Api
             services.AddTransient<ChangeProjectValidator>();
             services.AddTransient<AddRoleValidator>();
             services.AddTransient<ChangeRoleValidator>();
+            services.AddTransient<AddTicketValidator>();
+            services.AddTransient<ChangeTicketValidator>();
 
             services.AddAutoMapper(typeof(DefaultProfile));
         }

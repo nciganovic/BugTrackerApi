@@ -5,6 +5,8 @@ using Application.Queries.TicketQueries;
 using Application.Searches;
 using AutoMapper;
 using Domain;
+using Implementation.ResponseMessages;
+using Implementation.Validators;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -46,21 +48,39 @@ namespace Api.Controllers
 
         // POST api/<TicketController>
         [HttpPost]
-        public IActionResult Post([FromBody] TicketDto ticketDto, [FromServices] IAddTicketCommand command)
+        public IActionResult Post([FromBody] AddTicketDto dto
+            , [FromServices] IAddTicketCommand command
+            , [FromServices] AddTicketValidator validator)
         {
-            Ticket ticket = _mapper.Map<Ticket>(ticketDto);
-            _useCaseExecutor.ExecuteCommand(command, ticket);
-            return Ok("Ticket created successfully");
+            var result = validator.Validate(dto);
+
+            if (result.IsValid)
+            {
+                Ticket ticket = _mapper.Map<Ticket>(dto);
+                _useCaseExecutor.ExecuteCommand(command, ticket);
+                return Ok("Ticket created successfully");
+            }
+
+            return UnprocessableEntity(UnprocessableEntityResponse.Message(result.Errors));
         }
 
         // PUT api/<TicketController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] TicketDto ticketDto, [FromServices] IChangeTicketCommand command)
+        public IActionResult Put(int id, [FromBody] ChangeTicketDto dto
+            , [FromServices] IChangeTicketCommand command
+            , [FromServices] ChangeTicketValidator validator)
         {
-            ticketDto.Id = id;
-            Ticket ticket = _mapper.Map<Ticket>(ticketDto);
-            _useCaseExecutor.ExecuteCommand(command, ticket);
-            return Ok("Ticket changed successfully");
+            dto.Id = id;
+            var result = validator.Validate(dto);
+            
+            if (result.IsValid)
+            {    
+                Ticket ticket = _mapper.Map<Ticket>(dto);
+                _useCaseExecutor.ExecuteCommand(command, ticket);
+                return Ok("Ticket changed successfully");
+            }
+
+            return UnprocessableEntity(UnprocessableEntityResponse.Message(result.Errors));
         }
 
         // DELETE api/<TicketController>/5

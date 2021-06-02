@@ -30,6 +30,8 @@ namespace Application.MapperProfiles
             CreateMap<ChangeProjectDto, Project>();
 
             CreateMap<Ticket, TicketDto>().ReverseMap();
+            CreateMap<AddTicketDto, Ticket>();
+            CreateMap<ChangeTicketDto, Ticket>();
 
             CreateMap<Comment, CommentDto>().ReverseMap();
             CreateMap<AddCommentDto, Comment>();
