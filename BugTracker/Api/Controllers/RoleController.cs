@@ -6,6 +6,8 @@ using Application.Queries.RoleQueries;
 using Application.Searches;
 using AutoMapper;
 using Domain;
+using Implementation.ResponseMessages;
+using Implementation.Validators;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -47,21 +49,39 @@ namespace Api.Controllers
 
         // POST api/<RoleController>
         [HttpPost]
-        public IActionResult Post([FromBody] RoleDto roleDto, [FromServices] IAddRoleCommand command)
+        public IActionResult Post([FromBody] AddRoleDto dto
+            , [FromServices] IAddRoleCommand command
+            , [FromServices] AddRoleValidator addRoleValidator)
         {
-            Role role = _mapper.Map<Role>(roleDto);
-            _useCaseExecutor.ExecuteCommand(command, role);
-            return Ok("Role created successfully");
+            var result = addRoleValidator.Validate(dto);
+            
+            if (result.IsValid)
+            {
+                Role role = _mapper.Map<Role>(dto);
+                _useCaseExecutor.ExecuteCommand(command, role);
+                return Ok("Role created successfully");
+            }
+
+            return UnprocessableEntity(UnprocessableEntityResponse.Message(result.Errors));
         }
 
         // PUT api/<RoleController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] RoleDto roleDto, [FromServices] IChangeRoleCommand command)
+        public IActionResult Put(int id, [FromBody] ChangeRoleDto dto
+            , [FromServices] IChangeRoleCommand command
+            , [FromServices] ChangeRoleValidator validator)
         {
-            roleDto.Id = id;
-            Role role = _mapper.Map<Role>(roleDto);
-            _useCaseExecutor.ExecuteCommand(command, role);
-            return Ok("Role updated successfully");
+            dto.Id = id;
+            var result = validator.Validate(dto);
+
+            if (result.IsValid)
+            {
+                Role role = _mapper.Map<Role>(dto);
+                _useCaseExecutor.ExecuteCommand(command, role);
+                return Ok("Role updated successfully");
+            }
+
+            return UnprocessableEntity(UnprocessableEntityResponse.Message(result.Errors));
         }
 
         // DELETE api/<RoleController>/5

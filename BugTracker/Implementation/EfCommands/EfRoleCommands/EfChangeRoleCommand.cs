@@ -25,13 +25,7 @@ namespace Implementation.EfCommands.EfRoleCommands
         {
             Role item = context.Roles.Find(request.Id);
 
-            if (item == null)
-                throw new EntityNotFoundException();
-
             context.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
-
-            if (IsNameAlreadyTaken(request.Name))
-                throw new EntityAlreadyExists();
 
             request.CreatedAt = item.CreatedAt;
             request.UpdatedAt = DateTime.Now;
@@ -40,16 +34,6 @@ namespace Implementation.EfCommands.EfRoleCommands
             var tp = context.Roles.Attach(request);
             tp.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             context.SaveChanges();
-        }
-
-        private bool IsNameAlreadyTaken(string name)
-        {
-            if (context.Roles.Any(x => x.Name == name))
-            {
-                return true;
-            }
-
-            return false;
         }
     }
 }
