@@ -14,6 +14,8 @@ namespace Application.MapperProfiles
         public DefaultProfile()
         {
             CreateMap<Role, RoleDto>().ReverseMap();
+            CreateMap<AddRoleDto, Role>();
+            CreateMap<ChangeRoleDto, Role>();
             
             CreateMap<ApplicationUser, ApplicationUserDto>().ReverseMap();
             CreateMap<AddApplicationUserDto, ApplicationUser>();
