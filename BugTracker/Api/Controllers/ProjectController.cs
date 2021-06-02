@@ -67,12 +67,21 @@ namespace Api.Controllers
 
         // PUT api/<ProjectController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] ProjectDto projectDto, [FromServices] IChangeProjectCommand command)
+        public IActionResult Put(int id, [FromBody] ChangeProjectDto dto
+            , [FromServices] IChangeProjectCommand command
+            , [FromServices] ChangeProjectValidator validator)
         {
-            projectDto.Id = id;
-            Project project = _mapper.Map<Project>(projectDto);
-            _useCaseExecutor.ExecuteCommand(command, project);
-            return Ok("Project updated successfully");
+            dto.Id = id;
+            var result = validator.Validate(dto);
+
+            if (result.IsValid)
+            {
+                Project project = _mapper.Map<Project>(dto);
+                _useCaseExecutor.ExecuteCommand(command, project);
+                return Ok("Project updated successfully");
+            }
+
+            return UnprocessableEntity(UnprocessableEntityResponse.Message(result.Errors));
         }
 
         // DELETE api/<ProjectController>/5

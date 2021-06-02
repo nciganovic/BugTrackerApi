@@ -25,17 +25,7 @@ namespace Implementation.EfCommands.EfProjectCommands
         {
             Project item = context.Projects.Find(request.Id);
 
-            if (item == null)
-                throw new EntityNotFoundException();
-
             context.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
-
-            if (!CompanyExists(request.CompanyId))
-                throw new EntityNotFoundException();
-
-            if (IsNameAlreadyTaken(request.CompanyId, request.Name))
-                throw new Exception($"Company with id {request.CompanyId} already has project with name {request.Name}");
-
 
             request.CreatedAt = item.CreatedAt;
             request.UpdatedAt = DateTime.Now;
@@ -44,26 +34,6 @@ namespace Implementation.EfCommands.EfProjectCommands
             var tp = context.Projects.Attach(request);
             tp.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             context.SaveChanges();
-        }
-
-        private bool IsNameAlreadyTaken(int companyId, string name)
-        {
-            if (context.Projects.Any(x => x.Name == name && x.CompanyId == companyId))
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        private bool CompanyExists(int companyId)
-        {
-            if (context.Companies.Any(x => x.Id == companyId))
-            {
-                return true;
-            }
-
-            return false;
         }
     }
 }
