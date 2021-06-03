@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Extensions;
 
 namespace Implementation.Queries.ApplicationUserQueries
 {
@@ -46,6 +47,8 @@ namespace Implementation.Queries.ApplicationUserQueries
                     query = query.Where(x => x.DeletedAt == null);
                 }
             }
+
+            query = query.SkipItems(request.Page, request.ItemsPerPage);
 
             return query.Select(x => _mapper.Map<ApplicationUser, ApplicationUserDto>(x)).ToList();
         }
