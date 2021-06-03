@@ -1,5 +1,6 @@
 ﻿using Application.Commands.CompanyCommands;
 using Application.Dto;
+using Application.Extensions;
 using Application.Queries.CompanyQueries;
 using Application.Searches;
 using AutoMapper;
