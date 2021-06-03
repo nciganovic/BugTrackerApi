@@ -13,7 +13,7 @@ using static Domain.Ticket;
 
 namespace Implementation.EfCommands.EfTicketCommands
 {
-    public class EfAddTicketCommand : BaseCommands, IAddTicketCommand
+    public class EfAddTicketCommand : BaseUseCase, IAddTicketCommand
     {
 
         public EfAddTicketCommand(BugTrackerContext context) : base(context)

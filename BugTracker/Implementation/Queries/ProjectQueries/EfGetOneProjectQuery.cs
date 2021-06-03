@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.Queries.ProjectCommandsQueries
 {
-    public class EfGetOneProjectQuery : BaseCommands, IGetOneProjectQuery
+    public class EfGetOneProjectQuery : BaseUseCase, IGetOneProjectQuery
     {
         public EfGetOneProjectQuery(BugTrackerContext context) : base(context)
         {

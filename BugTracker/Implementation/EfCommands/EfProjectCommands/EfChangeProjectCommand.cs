@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfProjectCommands
 {
-    public class EfChangeProjectCommand : BaseCommands, IChangeProjectCommand
+    public class EfChangeProjectCommand : BaseUseCase, IChangeProjectCommand
     {
         public int Id => 24;
 

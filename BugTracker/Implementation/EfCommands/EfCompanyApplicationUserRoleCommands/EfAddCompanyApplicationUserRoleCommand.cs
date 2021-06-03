@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfCompanyApplicationUserRoleCommands
 {
-    public class EfAddCompanyApplicationUserRoleCommand : BaseCommands, IAddCompanyApplicationUserRoleCommand
+    public class EfAddCompanyApplicationUserRoleCommand : BaseUseCase, IAddCompanyApplicationUserRoleCommand
     {
         public EfAddCompanyApplicationUserRoleCommand(BugTrackerContext context) : base(context)
         {

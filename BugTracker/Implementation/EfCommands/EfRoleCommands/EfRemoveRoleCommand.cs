@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfRoleCommands
 {
-    public class EfRemoveRoleCommand : BaseCommands, IRemoveRoleCommand
+    public class EfRemoveRoleCommand : BaseUseCase, IRemoveRoleCommand
     {
         public EfRemoveRoleCommand(BugTrackerContext context) : base(context)
         {

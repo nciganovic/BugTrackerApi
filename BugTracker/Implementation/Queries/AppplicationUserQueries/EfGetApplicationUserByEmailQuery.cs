@@ -13,7 +13,7 @@ using Implementation.EfCommands;
 
 namespace Implementation.Queries.ApplicationUserQueries
 {
-    public class EfGetApplicationUserByEmailQuery : BaseCommands, IGetApplicationUserByEmailQuery
+    public class EfGetApplicationUserByEmailQuery : BaseUseCase, IGetApplicationUserByEmailQuery
     {
         private readonly IMapper _mapper;
 

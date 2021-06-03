@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfCommentCommands
 {
-    public class EfRemoveCommentCommand : BaseCommands, IRemoveCommentCommand
+    public class EfRemoveCommentCommand : BaseUseCase, IRemoveCommentCommand
     {
         public EfRemoveCommentCommand(BugTrackerContext context) : base(context)
         {

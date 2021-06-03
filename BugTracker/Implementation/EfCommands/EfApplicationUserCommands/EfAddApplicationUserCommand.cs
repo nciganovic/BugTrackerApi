@@ -11,7 +11,7 @@ using Application.Hash;
 
 namespace Implementation.EfCommands.EfApplicationUserCommands
 {
-    public class EfAddApplicationUserCommand : BaseCommands, IAddApplicationUserCommand
+    public class EfAddApplicationUserCommand : BaseUseCase, IAddApplicationUserCommand
     {
         public EfAddApplicationUserCommand(BugTrackerContext context) : base(context)
         {

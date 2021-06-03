@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfProjectApplicationUserCommands
 {
-    public class EfAddProjectApplicationUserCommand : BaseCommands, IAddProjectApplicationUserCommand
+    public class EfAddProjectApplicationUserCommand : BaseUseCase, IAddProjectApplicationUserCommand
     {
 
         public EfAddProjectApplicationUserCommand(BugTrackerContext context) : base(context)

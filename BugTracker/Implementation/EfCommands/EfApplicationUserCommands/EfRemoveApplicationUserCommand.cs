@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfApplicationUserCommands
 {
-    public class EfRemoveApplicationUserCommand : BaseCommands, IRemoveApplicationUserCommand
+    public class EfRemoveApplicationUserCommand : BaseUseCase, IRemoveApplicationUserCommand
     {
         public EfRemoveApplicationUserCommand(BugTrackerContext bugTrackerContext) : base(bugTrackerContext)
         {

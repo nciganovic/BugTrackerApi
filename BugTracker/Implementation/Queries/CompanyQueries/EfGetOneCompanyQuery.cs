@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.Queries.CompanyQueries
 {
-    public class EfGetOneCompanyQuery : BaseCommands, IGetOneCompanyQuery
+    public class EfGetOneCompanyQuery : BaseUseCase, IGetOneCompanyQuery
     {
         public EfGetOneCompanyQuery(BugTrackerContext context) : base(context)
         {

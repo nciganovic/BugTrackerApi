@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.Queries.ProjectCommandsQueries
 {
-    public class EfGetProjectsQuery : BaseCommands, IGetProjectsQuery
+    public class EfGetProjectsQuery : BaseUseCase, IGetProjectsQuery
     {
         private readonly IMapper _mapper;
 

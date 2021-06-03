@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.Queries.CompanyApplicationUserQueries
 {
-    public class EfGetOneCompanyApplicationUserRoleQuery : BaseCommands, IGetOneCompanyApplicationUserRoleQuery
+    public class EfGetOneCompanyApplicationUserRoleQuery : BaseUseCase, IGetOneCompanyApplicationUserRoleQuery
     {
         private readonly IMapper _mapper;
 

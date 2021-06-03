@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.Queries.RoleQueries
 {
-    public class EfGetRolesQuery : BaseCommands, IGetRolesQuery
+    public class EfGetRolesQuery : BaseUseCase, IGetRolesQuery
     {
         public EfGetRolesQuery(BugTrackerContext context) : base(context)
         {

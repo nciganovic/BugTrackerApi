@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfProjectCommands
 {
-    public class EfRemoveProjectCommand : BaseCommands, IRemoveProjectCommand
+    public class EfRemoveProjectCommand : BaseUseCase, IRemoveProjectCommand
     {
         public EfRemoveProjectCommand(BugTrackerContext context) : base(context)
         {

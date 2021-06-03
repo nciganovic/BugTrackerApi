@@ -5,11 +5,11 @@ using System.Linq;
 
 namespace Implementation.EfCommands
 {
-    public abstract class BaseCommands
+    public abstract class BaseUseCase
     {
         protected BugTrackerContext context { get; }
 
-        protected BaseCommands(BugTrackerContext context)
+        protected BaseUseCase(BugTrackerContext context)
         {
             this.context = context;
         }

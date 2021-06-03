@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfRoleCommands
 {
-    public class EfAddRoleCommand : BaseCommands, IAddRoleCommand
+    public class EfAddRoleCommand : BaseUseCase, IAddRoleCommand
     {
         public EfAddRoleCommand(BugTrackerContext context) : base(context)
         {

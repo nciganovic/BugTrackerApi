@@ -14,7 +14,7 @@ using Implementation.EfCommands;
 
 namespace Implementation.Queries.TicketCommandsQueries
 {
-    public class EfGetOneTicketQuery : BaseCommands, IGetOneTicketQuery
+    public class EfGetOneTicketQuery : BaseUseCase, IGetOneTicketQuery
     {
         private readonly IMapper _mapper;
 

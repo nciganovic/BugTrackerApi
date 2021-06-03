@@ -13,7 +13,7 @@ using Implementation.EfCommands;
 
 namespace Implementation.Queries.RoleQueries
 {
-    public class EfGetOneRoleQuery : BaseCommands, IGetOneRoleQuery
+    public class EfGetOneRoleQuery : BaseUseCase, IGetOneRoleQuery
     {
         public EfGetOneRoleQuery(BugTrackerContext context) : base(context)
         {

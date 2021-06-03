@@ -14,7 +14,7 @@ using Implementation.EfCommands;
 
 namespace Implementation.Queries.ApplicationUserQueries
 {
-    public class EfGetOneApplicationUserQuery : BaseCommands, IGetOneApplicationUserQuery
+    public class EfGetOneApplicationUserQuery : BaseUseCase, IGetOneApplicationUserQuery
     {
         private IMapper _mapper;
 

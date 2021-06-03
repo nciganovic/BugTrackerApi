@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.Queries.ApplicationUserQueries
 {
-    public class EfGetApplicationUsersQuery : BaseCommands, IGetApplicationUsersQuery
+    public class EfGetApplicationUsersQuery : BaseUseCase, IGetApplicationUsersQuery
     {
         private IMapper _mapper;
 

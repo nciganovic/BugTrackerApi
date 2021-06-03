@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.Queries.CommentQueries
 {
-    public class EfGetOneCommentQuery : BaseCommands, IGetOneCommentQuery
+    public class EfGetOneCommentQuery : BaseUseCase, IGetOneCommentQuery
     {
         private readonly IMapper _mapper;
 

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfTicketCommands
 {
-    public class EfRemoveTicketCommand : BaseCommands, IRemoveTicketCommand
+    public class EfRemoveTicketCommand : BaseUseCase, IRemoveTicketCommand
     {
         public EfRemoveTicketCommand(BugTrackerContext context) : base(context)
         {

@@ -14,7 +14,7 @@ using Implementation.EfCommands;
 
 namespace Implementation.Queries.CommentQueries
 {
-    public class EfGetCommentsQuery : BaseCommands, IGetCommentsQuery
+    public class EfGetCommentsQuery : BaseUseCase, IGetCommentsQuery
     {
         private readonly IMapper _mapper;
 

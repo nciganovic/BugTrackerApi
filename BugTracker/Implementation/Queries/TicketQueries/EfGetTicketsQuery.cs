@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.Queries.TicketCommandsQueries
 {
-    public class EfGetTicketsQuery : BaseCommands, IGetTicketsQuery
+    public class EfGetTicketsQuery : BaseUseCase, IGetTicketsQuery
     {
         private readonly IMapper _mapper;
 

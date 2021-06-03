@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfCompanyCommands
 {
-    public class EfChangeCompanyCommand : BaseCommands, IChangeCompanyCommand
+    public class EfChangeCompanyCommand : BaseUseCase, IChangeCompanyCommand
     {
         public EfChangeCompanyCommand(BugTrackerContext context) : base(context)
         {

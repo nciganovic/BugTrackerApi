@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfTicketCommands
 {
-    public class EfChangeTicketCommand : BaseCommands, IChangeTicketCommand
+    public class EfChangeTicketCommand : BaseUseCase, IChangeTicketCommand
     {
 
         public EfChangeTicketCommand(BugTrackerContext context) : base(context)

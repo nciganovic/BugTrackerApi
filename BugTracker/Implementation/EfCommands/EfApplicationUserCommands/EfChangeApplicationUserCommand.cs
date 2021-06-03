@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfApplicationUserCommands
 {
-    public class EfChangeApplicationUserCommand : BaseCommands, IChangeApplicationUserCommand
+    public class EfChangeApplicationUserCommand : BaseUseCase, IChangeApplicationUserCommand
     {
         public EfChangeApplicationUserCommand(BugTrackerContext bugTrackerContext) : base(bugTrackerContext)
         {

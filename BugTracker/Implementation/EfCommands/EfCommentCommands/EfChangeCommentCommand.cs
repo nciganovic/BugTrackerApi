@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfCommentCommands
 {
-    public class EfChangeCommentCommand : BaseCommands, IChangeCommentCommand
+    public class EfChangeCommentCommand : BaseUseCase, IChangeCommentCommand
     {
         private readonly IMapper _mapper;
 

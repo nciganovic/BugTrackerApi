@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.Queries.ProjectApplicationUserQueries
 {
-    public class EfGetApplicationUsersForProjectQuery : BaseCommands, IGetApplicationUsersForProjectQuery
+    public class EfGetApplicationUsersForProjectQuery : BaseUseCase, IGetApplicationUsersForProjectQuery
     {
         private readonly IMapper _mapper;
         private readonly IGetOneProjectQuery _getOneProjectQuery;

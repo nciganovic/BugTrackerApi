@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfCommentCommands
 {
-    public class EfAddCommentCommand : BaseCommands, IAddCommentCommand
+    public class EfAddCommentCommand : BaseUseCase, IAddCommentCommand
     {
         public EfAddCommentCommand(BugTrackerContext context) : base(context)
         {
