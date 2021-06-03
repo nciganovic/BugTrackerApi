@@ -34,14 +34,5 @@ namespace Implementation.EfCommands.EfApplicationUserCommands
             context.Add(request);
             context.SaveChanges();
         }
-
-        private bool IsEmailAlreadyTaken(string email) {
-            if (context.ApplicaitonUsers.Any(x => x.Email == email))
-            {
-                return true;
-            }
-
-            return false;
-        }
     }
 }
