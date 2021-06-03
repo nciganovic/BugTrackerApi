@@ -2,7 +2,9 @@
 using Application.Dto;
 using Application.Queries.CompanyQueries;
 using Application.Searches;
+using AutoMapper;
 using DataAccess;
+using Domain;
 using Implementation.EfCommands;
 using System;
 using System.Collections.Generic;
@@ -14,9 +16,11 @@ namespace Implementation.Queries.CompanyQueries
 {
     public class EfGetCompaniesQuery : BaseUseCase,  IGetCompaniesQuery
     {
-        public EfGetCompaniesQuery(BugTrackerContext context) : base(context)
-        {
+        private IMapper _mapper;
 
+        public EfGetCompaniesQuery(BugTrackerContext context, IMapper mapper) : base(context)
+        {
+            _mapper = mapper;
         }
 
         public int Id => 17;
@@ -42,11 +46,7 @@ namespace Implementation.Queries.CompanyQueries
                 }
             }
 
-            return query.Select(x => new CompanyDto
-            {
-                Id = x.Id,
-                Name = x.Name
-            }).ToList();
+            return query.Select(_mapper.Map<Company, CompanyDto>).ToList();
         }
     }
 }

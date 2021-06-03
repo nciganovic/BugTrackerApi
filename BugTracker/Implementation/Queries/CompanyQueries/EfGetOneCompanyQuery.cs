@@ -2,7 +2,9 @@
 using Application.Dto;
 using Application.Exceptions;
 using Application.Queries.CompanyQueries;
+using AutoMapper;
 using DataAccess;
+using Domain;
 using Implementation.EfCommands;
 using System;
 using System.Collections.Generic;
@@ -14,9 +16,11 @@ namespace Implementation.Queries.CompanyQueries
 {
     public class EfGetOneCompanyQuery : BaseUseCase, IGetOneCompanyQuery
     {
-        public EfGetOneCompanyQuery(BugTrackerContext context) : base(context)
-        {
+        private IMapper _mapper;
 
+        public EfGetOneCompanyQuery(BugTrackerContext context, IMapper mapper) : base(context)
+        {
+            _mapper = mapper;
         }
 
         public int Id => 18;
@@ -30,11 +34,7 @@ namespace Implementation.Queries.CompanyQueries
             if (company == null)
                 throw new EntityNotFoundException();
 
-            return new CompanyDto
-            {
-                Id = company.Id,
-                Name = company.Name,
-            };
+            return _mapper.Map<Company, CompanyDto>(company);
         }
     }
 }
