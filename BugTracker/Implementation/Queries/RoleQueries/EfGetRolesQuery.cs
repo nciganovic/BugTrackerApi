@@ -2,6 +2,7 @@
 using Application.Dto;
 using Application.Queries.RoleQueries;
 using Application.Searches;
+using AutoMapper;
 using DataAccess;
 using Domain;
 using Implementation.EfCommands;
@@ -15,9 +16,11 @@ namespace Implementation.Queries.RoleQueries
 {
     public class EfGetRolesQuery : BaseUseCase, IGetRolesQuery
     {
-        public EfGetRolesQuery(BugTrackerContext context) : base(context)
-        {
+        private IMapper _mapper;
 
+        public EfGetRolesQuery(BugTrackerContext context, IMapper mapper) : base(context)
+        {
+            _mapper = mapper;
         }
 
         public int Id => 31;
@@ -40,11 +43,7 @@ namespace Implementation.Queries.RoleQueries
                 }
             }
 
-            return query.Select(x => new RoleDto
-            {
-                Id = x.Id,
-                Name = x.Name
-            }).ToList();
+            return query.Select(x => _mapper.Map<Role, RoleDto>(x)).ToList();
         }
     }
 }

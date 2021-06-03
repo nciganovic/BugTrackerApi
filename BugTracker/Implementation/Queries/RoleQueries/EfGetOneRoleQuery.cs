@@ -10,14 +10,18 @@ using System.Threading.Tasks;
 using Application.Commands.Roles;
 using Application.Queries.RoleQueries;
 using Implementation.EfCommands;
+using AutoMapper;
+using Domain;
 
 namespace Implementation.Queries.RoleQueries
 {
     public class EfGetOneRoleQuery : BaseUseCase, IGetOneRoleQuery
     {
-        public EfGetOneRoleQuery(BugTrackerContext context) : base(context)
+        private IMapper _mapper;
+
+        public EfGetOneRoleQuery(BugTrackerContext context, IMapper mapper) : base(context)
         {
-            
+            _mapper = mapper;
         }
 
         public int Id => 30;
@@ -31,11 +35,7 @@ namespace Implementation.Queries.RoleQueries
             if (role == null)
                 throw new EntityNotFoundException();
 
-            return new RoleDto
-            {
-                Id = role.Id,
-                Name = role.Name
-            };
+            return _mapper.Map<Role, RoleDto>(role);
         }
     }
 }
