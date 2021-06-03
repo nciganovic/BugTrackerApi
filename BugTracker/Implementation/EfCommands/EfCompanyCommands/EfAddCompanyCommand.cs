@@ -22,6 +22,7 @@ namespace Implementation.EfCommands.EfCompanyCommands
 
         public void Execute(Domain.Company request)
         {
+            request.CreatedAt = DateTime.Now;
             context.Add(request);
             context.SaveChanges();
         }

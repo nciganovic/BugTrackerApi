@@ -23,23 +23,9 @@ namespace Implementation.EfCommands.EfRoleCommands
 
         public void Execute(Role request)
         {
-            if (IsNameAlreadyTaken(request.Name))
-            {
-                throw new EntityAlreadyExists();
-            }
-
+            request.CreatedAt = DateTime.Now;
             context.Add(request);
             context.SaveChanges();
-        }
-
-        private bool IsNameAlreadyTaken(string name)
-        {
-            if (context.Roles.Any(x => x.Name == name))
-            {
-                return true;
-            }
-
-            return false;
         }
     }
 }

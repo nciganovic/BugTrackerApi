@@ -27,6 +27,7 @@ namespace Implementation.EfCommands.EfTicketCommands
 
         public void Execute(Ticket request)
         {
+            request.CreatedAt = DateTime.Now;
             context.Tickets.Add(request);
             context.SaveChanges();
         }

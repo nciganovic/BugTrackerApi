@@ -23,34 +23,9 @@ namespace Implementation.EfCommands.EfProjectCommands
 
         public void Execute(Project request)
         {
-            if (!CompanyExists(request.CompanyId))
-                throw new EntityNotFoundException();
-
-            if (IsNameAlreadyTaken(request.CompanyId, request.Name))
-                throw new Exception($"Company with id {request.CompanyId} already has project with name {request.Name}");
-
+            request.CreatedAt = DateTime.Now;
             context.Add(request);
             context.SaveChanges();
-        }
-
-        private bool IsNameAlreadyTaken(int companyId, string name)
-        {
-            if (context.Projects.Any(x => x.Name == name && x.CompanyId == companyId))
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        private bool CompanyExists(int companyId)
-        {
-            if (context.Companies.Any(x => x.Id == companyId))
-            {
-                return true;
-            }
-
-            return false;
         }
     }
 }
