@@ -10,5 +10,7 @@ namespace Application.Searches
     {
         public string Name { get; set; }
         public bool? OnlyActive { get; set; }
+        public int? Page { get; set; }
+        public int? ItemsPerPage { get; set; }
     }
 }

@@ -10,5 +10,7 @@ namespace Application.Searches
     {
         public int ApplicationUserId { get; set; }
         public int CompanyId { get; set; }
+        public int? Page { get; set; }
+        public int? ItemsPerPage { get; set; }
     }
 }

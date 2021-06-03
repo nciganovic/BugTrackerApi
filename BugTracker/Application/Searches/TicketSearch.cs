@@ -15,5 +15,7 @@ namespace Application.Searches
         public int? Issuer { get; set; }
         public int? Developer { get; set; }
         public bool? OnlyActive { get; set; }
+        public int? Page { get; set; }
+        public int? ItemsPerPage { get; set; }
     }
 }
