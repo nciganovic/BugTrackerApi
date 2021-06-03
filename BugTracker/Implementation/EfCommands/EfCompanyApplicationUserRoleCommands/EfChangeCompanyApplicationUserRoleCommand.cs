@@ -19,18 +19,8 @@ namespace Implementation.EfCommands.EfCompanyApplicationUserRoleCommands
 {
     public class EfChangeCompanyApplicationUserRoleCommand : BaseCommands, IChangeCompanyApplicationUserRoleCommand
     {
-        private readonly IGetOneCompanyQuery _getOneCompanyCommand;
-        private readonly IGetOneApplicationUserQuery _getOneApplicationUserCommand;
-        private readonly IGetOneRoleQuery _getOneRoleQuery;
-
-        public EfChangeCompanyApplicationUserRoleCommand(BugTrackerContext context, 
-            IGetOneCompanyQuery getOneCompanyCommand,
-            IGetOneApplicationUserQuery getOneApplicationUserCommand,
-            IGetOneRoleQuery getOneRoleQuery) : base(context)
+        public EfChangeCompanyApplicationUserRoleCommand(BugTrackerContext context) : base(context)
         {
-            _getOneApplicationUserCommand = getOneApplicationUserCommand;
-            _getOneCompanyCommand = getOneCompanyCommand;
-            _getOneRoleQuery = getOneRoleQuery;
         }
 
         public int Id => 13;
