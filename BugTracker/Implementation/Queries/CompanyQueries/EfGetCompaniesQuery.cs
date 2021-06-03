@@ -46,6 +46,8 @@ namespace Implementation.Queries.CompanyQueries
                 }
             }
 
+            query = query.SkipItems(request.Page, request.ItemsPerPage);
+
             return query.Select(_mapper.Map<Company, CompanyDto>).ToList();
         }
     }

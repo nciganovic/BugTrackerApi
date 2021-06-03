@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Implementation.EfCommands;
+using Application.Extensions;
 
 namespace Implementation.Queries.CommentQueries
 {
@@ -39,6 +40,8 @@ namespace Implementation.Queries.CommentQueries
                 if (request.OnlyActive == true)
                     query = query.Where(x => x.DeletedAt == null);
             }
+
+            query = query.SkipItems(request.Page, request.ItemsPerPage);
 
             return query.Select(x => _mapper.Map<Comment, CommentDto>(x)).ToList();
         }

@@ -1,5 +1,6 @@
 ﻿using Application.Commands.Roles;
 using Application.Dto;
+using Application.Extensions;
 using Application.Queries.RoleQueries;
 using Application.Searches;
 using AutoMapper;
@@ -42,6 +43,8 @@ namespace Implementation.Queries.RoleQueries
                     query = query.Where(x => x.DeletedAt == null);
                 }
             }
+
+            query = query.SkipItems(request.Page, request.ItemsPerPage);
 
             return query.Select(x => _mapper.Map<Role, RoleDto>(x)).ToList();
         }

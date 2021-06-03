@@ -1,6 +1,7 @@
 ﻿using Application.Commands.ApplicationUserCommands;
 using Application.Commands.TicketCommands;
 using Application.Dto;
+using Application.Extensions;
 using Application.Queries.TicketQueries;
 using Application.Searches;
 using AutoMapper;
@@ -66,6 +67,8 @@ namespace Implementation.Queries.TicketCommandsQueries
                     query = query.Where(x => x.DeletedAt == null);
                 }
             }
+
+            query = query.SkipItems(request.Page, request.ItemsPerPage);
 
             return query.Select(x => _mapper.Map<Ticket, TicketDto>(x)).ToList();
         }

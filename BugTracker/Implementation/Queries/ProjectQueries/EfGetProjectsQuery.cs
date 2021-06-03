@@ -1,5 +1,6 @@
 ﻿using Application.Commands.ProjectCommands;
 using Application.Dto;
+using Application.Extensions;
 using Application.Queries.ProjectQueries;
 using Application.Searches;
 using AutoMapper;
@@ -45,6 +46,8 @@ namespace Implementation.Queries.ProjectCommandsQueries
                     query = query.Where(x => x.DeletedAt == null);
                 }
             }
+
+            query = query.SkipItems(request.Page, request.ItemsPerPage);
 
             return query.Select(x => _mapper.Map<Project, ProjectDto>(x)).ToList();
         }
