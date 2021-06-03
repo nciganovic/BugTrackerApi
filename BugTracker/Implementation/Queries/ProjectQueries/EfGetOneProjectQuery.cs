@@ -2,7 +2,9 @@
 using Application.Dto;
 using Application.Exceptions;
 using Application.Queries.ProjectQueries;
+using AutoMapper;
 using DataAccess;
+using Domain;
 using Implementation.EfCommands;
 using System;
 using System.Collections.Generic;
@@ -14,9 +16,11 @@ namespace Implementation.Queries.ProjectCommandsQueries
 {
     public class EfGetOneProjectQuery : BaseUseCase, IGetOneProjectQuery
     {
-        public EfGetOneProjectQuery(BugTrackerContext context) : base(context)
-        {
+        private IMapper _mapper;
 
+        public EfGetOneProjectQuery(BugTrackerContext context, IMapper mapper) : base(context)
+        {
+            _mapper = mapper;
         }
 
         public int Id => 25;
@@ -30,15 +34,7 @@ namespace Implementation.Queries.ProjectCommandsQueries
             if (project == null)
                 throw new EntityNotFoundException();
 
-            return new ProjectDto
-            {
-                Id = project.Id,
-                Name = project.Name,
-                Description = project.Description,
-                Company = project.Company,
-                CompanyId = project.CompanyId,
-                ProjectApplicationUsers = project.ProjectApplicationUsers
-            };
+            return _mapper.Map<Project, ProjectDto>(project);
         }
     }
 }
