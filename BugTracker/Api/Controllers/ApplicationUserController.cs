@@ -14,11 +14,13 @@ using Application.Queries.ApplicationUserQueries;
 using Application;
 using Implementation.Validators;
 using Implementation.ResponseMessages;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ApplicationUserController : ControllerBase
@@ -89,29 +91,6 @@ namespace Api.Controllers
         {
             _useCaseExecutor.ExecuteCommand(command, id);
             return Ok($"Application user with id = {id} deleted successfully");
-        }
-
-        [HttpPost("[action]")]
-        public IActionResult Login([FromBody] LoginDto loginDto
-            , [FromServices] IGetApplicationUserByEmailQuery command
-            , [FromServices] LoginValidator validator) 
-        {
-            var result = validator.Validate(loginDto);
-
-            if (result.IsValid) { 
-
-                ApplicationUserDto applicationUserDto = _useCaseExecutor.ExecuteQuery(command, loginDto.Email);
-
-                if (Password.VerifyPassword(loginDto.Password, applicationUserDto.Password, applicationUserDto.Salt))
-                {
-                    return Ok("Login successful");
-                }
-                else {
-                    return Unauthorized("Login failed");
-                }
-            }
-
-            return UnprocessableEntity(UnprocessableEntityResponse.Message(result.Errors));
         }
     }
 }
