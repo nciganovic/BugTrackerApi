@@ -52,6 +52,11 @@ using Application.Interfaces;
 using Implementation.Logging;
 using Api.Core;
 using Implementation.Validators;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Api
 {
@@ -67,23 +72,17 @@ namespace Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Api", Version = "v1" });
             });
 
-            services.AddControllersWithViews()
-                .AddNewtonsoftJson(options =>
-                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-            );
+            //services.AddControllersWithViews()
+            //    .AddNewtonsoftJson(options =>
+            //    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            //);
 
             services.AddDbContext<BugTrackerContext>();
-
-            services.AddTransient<UseCaseExecutor>();
-            services.AddTransient<IUseCaseLogger, ConsoleUseCaseLogger>();
-            services.AddTransient<IApplicationActor, AdminFakeApiActor>();
 
             services.AddTransient<IGetRolesQuery, EfGetRolesQuery>();
             services.AddTransient<IGetOneRoleQuery, EfGetOneRoleQuery>();
@@ -129,6 +128,28 @@ namespace Api
             services.AddTransient<IAddProjectApplicationUserCommand, EfAddProjectApplicationUserCommand>();
             services.AddTransient<IGetApplicationUsersForProjectQuery, EfGetApplicationUsersForProjectQuery>();
 
+            services.AddTransient<IApplicationActor, AdminFakeApiActor>();
+            services.AddHttpContextAccessor();
+            services.AddTransient<IApplicationActor>(x =>
+            {
+                var accessor = x.GetService<IHttpContextAccessor>();
+                var user = accessor.HttpContext.User;
+
+                if (user.FindFirst("ActorData") == null)
+                {
+                    throw new InvalidOperationException("Actor data doesnt exist in token.");
+                }
+
+                var actorString = user.FindFirst("ActorData").Value;
+
+                var actor = JsonConvert.DeserializeObject<JwtActor>(actorString);
+
+                return actor;
+            });
+
+            services.AddTransient<UseCaseExecutor>();
+            services.AddTransient<IUseCaseLogger, ConsoleUseCaseLogger>();
+
             services.AddTransient<AddApplicationUserValidator>();
             services.AddTransient<ChangeApplicationUserValidator>();
             services.AddTransient<LoginValidator>();
@@ -146,7 +167,33 @@ namespace Api
             services.AddTransient<AddTicketValidator>();
             services.AddTransient<ChangeTicketValidator>();
 
+            services.AddTransient<JwtManager>();
+
             services.AddAutoMapper(typeof(DefaultProfile));
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(cfg =>
+            {
+                cfg.RequireHttpsMetadata = false;
+                cfg.SaveToken = true;
+                cfg.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidIssuer = "asp_api",
+                    ValidateIssuer = true,
+                    ValidAudience = "Any",
+                    ValidateAudience = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ThisIsMyVerySecretKey")),
+                    ValidateIssuerSigningKey = true,
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.Zero
+                };
+            });
+
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -159,8 +206,16 @@ namespace Api
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Api v1"));
             }
 
+            app.UseCors(x =>
+            {
+                x.AllowAnyOrigin();
+                x.AllowAnyMethod();
+                x.AllowAnyHeader();
+            });
+
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
