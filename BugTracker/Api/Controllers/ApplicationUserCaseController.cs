@@ -1,5 +1,11 @@
 ﻿using Application;
+using Application.Commands.ApplicationUserCaseCommands;
+using Application.Dto;
 using Application.Queries.ApplicationUserCaseQueries;
+using AutoMapper;
+using Domain;
+using Implementation.ResponseMessages;
+using Implementation.Validators;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -15,10 +21,12 @@ namespace Api.Controllers
     public class ApplicationUserCaseController : ControllerBase
     {
         private readonly UseCaseExecutor _useCaseExecutor;
+        private readonly IMapper _mapper;
 
-        public ApplicationUserCaseController(UseCaseExecutor useCaseExecutor)
+        public ApplicationUserCaseController(UseCaseExecutor useCaseExecutor, IMapper mapper)
         {
             _useCaseExecutor = useCaseExecutor;
+            _mapper = mapper;
         }
 
         // GET: api/<ApplicationUserCaseController>
@@ -38,8 +46,20 @@ namespace Api.Controllers
 
         // POST api/<ApplicationUserCaseController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] AddApplicationUserCaseDto dto
+            , [FromServices] IAddApplicationUserCaseCommand command
+            , [FromServices] AddApplicationUserCaseValidator validator)
         {
+            var result = validator.Validate(dto);
+            
+            if (result.IsValid) 
+            {
+                ApplicationUserCase applicationUserCase = _mapper.Map<ApplicationUserCase>(dto);
+                _useCaseExecutor.ExecuteCommand(command, applicationUserCase);
+                return Ok();
+            }
+
+            return UnprocessableEntity(UnprocessableEntityResponse.Message(result.Errors));
         }
 
         // PUT api/<ApplicationUserCaseController>/5
