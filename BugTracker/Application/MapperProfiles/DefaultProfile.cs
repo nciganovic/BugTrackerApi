@@ -43,6 +43,8 @@ namespace Application.MapperProfiles
 
             CreateMap<ProjectApplicationUser, ProjectApplicationUserDto>().ReverseMap();
             CreateMap<AddProjectApplicationUserDto, ProjectApplicationUser>();
+
+            CreateMap<AddApplicationUserCaseDto, ApplicationUserCase>();
         }
     }
 }
