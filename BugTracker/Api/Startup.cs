@@ -60,6 +60,8 @@ using System.Text;
 using Api.Settings;
 using Application.Queries.ApplicationUserCaseQueries;
 using Implementation.Queries.ApplicationUserCaseQueries;
+using Application.Commands.ApplicationUserCaseCommands;
+using Implementation.EfCommands.EfApplicationUserCaseCommands;
 
 namespace Api
 {
@@ -132,6 +134,7 @@ namespace Api
             services.AddTransient<IGetApplicationUsersForProjectQuery, EfGetApplicationUsersForProjectQuery>();
 
             services.AddTransient<IGetCasesByApplicationUserIdQuery, EfGetCasesByApplicationUserIdQuery>();
+            services.AddTransient<IAddApplicationUserCaseCommand, EfAddApplicationUserCaseCommand>();
 
             services.AddTransient<IApplicationActor, AdminFakeApiActor>();
             services.AddHttpContextAccessor();
@@ -171,6 +174,7 @@ namespace Api
             services.AddTransient<ChangeRoleValidator>();
             services.AddTransient<AddTicketValidator>();
             services.AddTransient<ChangeTicketValidator>();
+            services.AddTransient<AddApplicationUserCaseValidator>();
 
             services.AddTransient<JwtManager>();
 
