@@ -58,6 +58,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Api.Settings;
+using Application.Queries.ApplicationUserCaseQueries;
+using Implementation.Queries.ApplicationUserCaseQueries;
 
 namespace Api
 {
@@ -128,6 +130,8 @@ namespace Api
 
             services.AddTransient<IAddProjectApplicationUserCommand, EfAddProjectApplicationUserCommand>();
             services.AddTransient<IGetApplicationUsersForProjectQuery, EfGetApplicationUsersForProjectQuery>();
+
+            services.AddTransient<IGetCasesByApplicationUserIdQuery, EfGetCasesByApplicationUserIdQuery>();
 
             services.AddTransient<IApplicationActor, AdminFakeApiActor>();
             services.AddHttpContextAccessor();
