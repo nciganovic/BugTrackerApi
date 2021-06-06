@@ -69,9 +69,22 @@ namespace Api.Controllers
         }
 
         // DELETE api/<ApplicationUserCaseController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public IActionResult Delete([FromBody] RemoveApplicationUserCaseDto dto
+            , [FromServices] RemoveApplicationUserCaseValidator validator
+            , [FromServices] IGetOneApplicationUserCaseQuery query
+            , [FromServices] IRemoveApplicationUserCaseCommand command)
         {
+            var result = validator.Validate(dto);
+
+            if (result.IsValid) 
+            {
+                ApplicationUserCase applicationUserCase = _useCaseExecutor.ExecuteQuery(query, dto);
+                _useCaseExecutor.ExecuteCommand(command, applicationUserCase);
+                return Ok();
+            }
+
+            return UnprocessableEntity(UnprocessableEntityResponse.Message(result.Errors));
         }
     }
 }
