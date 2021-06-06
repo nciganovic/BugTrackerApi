@@ -57,11 +57,13 @@ using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Api.Settings;
 using Application.Queries.ApplicationUserCaseQueries;
 using Implementation.Queries.ApplicationUserCaseQueries;
 using Application.Commands.ApplicationUserCaseCommands;
 using Implementation.EfCommands.EfApplicationUserCaseCommands;
+using Application.Settings;
+using Application.Email;
+using Implementation.Email;
 
 namespace Api
 {
@@ -138,6 +140,8 @@ namespace Api
             services.AddTransient<IGetOneApplicationUserCaseQuery, EfGetOneApplicationUserCaseQuery>();
             services.AddTransient<IRemoveApplicationUserCaseCommand, EfRemoveApplicationUserCaseCommand>();
 
+            services.AddTransient<IEmailSender, SmtpEmailSender>();
+
             services.AddTransient<IApplicationActor, AdminFakeApiActor>();
             services.AddHttpContextAccessor();
             services.AddTransient<IApplicationActor>(x =>
@@ -147,7 +151,7 @@ namespace Api
 
                 if (user.FindFirst("ActorData") == null)
                 {
-                    throw new InvalidOperationException("Actor data doesnt exist in token.");
+                    return new AnonymousActor();
                 }
 
                 var actorString = user.FindFirst("ActorData").Value;
@@ -206,6 +210,7 @@ namespace Api
             });
 
             services.Configure<JwtSettings>(Configuration.GetSection("JwtSettings"));
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
 
             services.AddControllers();
         }
