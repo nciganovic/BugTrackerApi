@@ -51,6 +51,7 @@ namespace Api.Controllers
         }
 
         // POST api/<ApplicationUserController>
+        [AllowAnonymous]
         [HttpPost]
         public IActionResult Post([FromBody] AddApplicationUserDto dto
             , [FromServices] IAddApplicationUserCommand command
