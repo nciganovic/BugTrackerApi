@@ -135,6 +135,8 @@ namespace Api
 
             services.AddTransient<IGetCasesByApplicationUserIdQuery, EfGetCasesByApplicationUserIdQuery>();
             services.AddTransient<IAddApplicationUserCaseCommand, EfAddApplicationUserCaseCommand>();
+            services.AddTransient<IGetOneApplicationUserCaseQuery, EfGetOneApplicationUserCaseQuery>();
+            services.AddTransient<IRemoveApplicationUserCaseCommand, EfRemoveApplicationUserCaseCommand>();
 
             services.AddTransient<IApplicationActor, AdminFakeApiActor>();
             services.AddHttpContextAccessor();
@@ -175,6 +177,7 @@ namespace Api
             services.AddTransient<AddTicketValidator>();
             services.AddTransient<ChangeTicketValidator>();
             services.AddTransient<AddApplicationUserCaseValidator>();
+            services.AddTransient<RemoveApplicationUserCaseValidator>();
 
             services.AddTransient<JwtManager>();
 
