@@ -8,14 +8,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Hash;
+using Application.Email;
+using Application.Dto;
 
 namespace Implementation.EfCommands.EfApplicationUserCommands
 {
     public class EfAddApplicationUserCommand : BaseUseCase, IAddApplicationUserCommand
     {
-        public EfAddApplicationUserCommand(BugTrackerContext context) : base(context)
-        {
+        private readonly IEmailSender _emailSender;
 
+        public EfAddApplicationUserCommand(BugTrackerContext context
+            , IEmailSender emailSender) : base(context)
+        {
+            _emailSender = emailSender;
         }
 
         public int Id => 6;
@@ -33,6 +38,16 @@ namespace Implementation.EfCommands.EfApplicationUserCommands
 
             context.Add(request);
             context.SaveChanges();
+
+            //Send email
+            SendEmailDto sendEmailDto = new SendEmailDto
+            {
+                SendTo = request.Email,
+                Subject = "Successfull registration to Bug Tracker",
+                Content = "Welcome to Bug Tracker"
+            };
+
+            _emailSender.SendEmail(sendEmailDto);
         }
     }
 }
