@@ -20,6 +20,7 @@ namespace DataAccess
         public DbSet<Project> Projects { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<ApplicationUserCase> ApplicationUserCases { get; set; }
+        public DbSet<UseCaseLog> UseCaseLogs { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
