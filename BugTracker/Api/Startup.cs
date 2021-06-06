@@ -163,6 +163,7 @@ namespace Api
 
             services.AddTransient<UseCaseExecutor>();
             services.AddTransient<IUseCaseLogger, ConsoleUseCaseLogger>();
+            services.AddTransient<IUseCaseLogger, DatabaseUseCaseLogger>();
 
             services.AddTransient<AddApplicationUserValidator>();
             services.AddTransient<ChangeApplicationUserValidator>();
