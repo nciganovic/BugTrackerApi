@@ -1,4 +1,4 @@
-﻿using Api.Settings;
+﻿using Application.Settings;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
