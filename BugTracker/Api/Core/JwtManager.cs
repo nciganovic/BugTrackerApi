@@ -56,7 +56,7 @@ namespace Api.Core
                 audience: _jwtSettings.Audience,
                 claims: claims,
                 notBefore: now,
-                expires: now.AddMinutes(20),
+                expires: now.AddHours(20),
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
