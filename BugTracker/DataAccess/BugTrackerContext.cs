@@ -21,6 +21,7 @@ namespace DataAccess
         public DbSet<Comment> Comments { get; set; }
         public DbSet<ApplicationUserCase> ApplicationUserCases { get; set; }
         public DbSet<UseCaseLog> UseCaseLogs { get; set; }
+        public DbSet<Attachment> Attachments { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -37,6 +38,7 @@ namespace DataAccess
             modelBuilder.ApplyConfiguration(new ProjectApplicationUserConfiguration());
             modelBuilder.ApplyConfiguration(new TicketConfiguration());
             modelBuilder.ApplyConfiguration(new CommentConfiguration());
+            modelBuilder.ApplyConfiguration(new AttachmentConfiguration());
         }
     }
 }

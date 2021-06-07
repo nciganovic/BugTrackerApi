@@ -32,6 +32,8 @@ namespace Domain
 
         public List<Ticket> TicketHistories { get; set; }
 
+        public List<Attachment> Attachments { get; set; }
+
         public enum TicketPriority
         {
             None,
