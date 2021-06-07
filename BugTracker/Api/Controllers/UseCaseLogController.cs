@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Application;
+using Application.Queries.UseCaseQueries;
+using Application.Searches;
+using Domain;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +16,20 @@ namespace Api.Controllers
     [ApiController]
     public class UseCaseLogController : ControllerBase
     {
+        private readonly UseCaseExecutor _useCaseExecutor;
+
+        public UseCaseLogController(UseCaseExecutor useCaseExecutor)
+        {
+            _useCaseExecutor = useCaseExecutor;
+        }
+
         // GET: api/<UseCaseLogController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get([FromQuery] UseCaseLogSearch search
+            , [FromServices] IGetUseCaseLogsQuery query)
         {
-            return new string[] { "value1", "value2" };
+            IEnumerable<UseCaseLog> useCaseLogs = _useCaseExecutor.ExecuteQuery(query, search);
+            return Ok(useCaseLogs);
         }
 
         // GET api/<UseCaseLogController>/5
