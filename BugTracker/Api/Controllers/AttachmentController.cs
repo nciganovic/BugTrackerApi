@@ -115,8 +115,10 @@ namespace Api.Controllers
 
         // DELETE api/<AttachmentController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id, [FromServices] IRemoveAttachmentCommand command)
         {
+            _useCaseExecutor.ExecuteCommand(command, id);
+            return Ok();
         }
 
         private string CreateNewFileName(IFormFile file) 

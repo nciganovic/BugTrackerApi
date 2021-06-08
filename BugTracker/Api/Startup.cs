@@ -148,6 +148,7 @@ namespace Api
 
             services.AddTransient<IAddAttachmentCommand, EfAddAttachmentCommand>();
             services.AddTransient<IChangeAttachmentCommand, EfChangeAttachmentCommand>();
+            services.AddTransient<IRemoveAttachmentCommand, EfRemoveAttachmentCommand>();
 
             services.AddTransient<IEmailSender, SmtpEmailSender>();
 
