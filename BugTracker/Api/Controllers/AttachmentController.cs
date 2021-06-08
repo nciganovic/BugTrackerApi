@@ -13,6 +13,7 @@ using Application;
 using AutoMapper;
 using Domain;
 using Microsoft.AspNetCore.Authorization;
+using Application.Queries.AttachmentQueries;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -33,17 +34,19 @@ namespace Api.Controllers
         }
 
         // GET: api/<AttachmentController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [HttpGet("[action]/{id}")]
+        public IActionResult GetByTicketId(int id, [FromServices] IGetAttachmentsByTicketIdQuery query)
         {
-            return new string[] { "value1", "value2" };
+            IEnumerable<GetAttachmentDto> items = _useCaseExecutor.ExecuteQuery(query, id);
+            return Ok(items);
         }
 
         // GET api/<AttachmentController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("[action]/{id}")]
+        public IActionResult Get(int id, [FromServices] IGetOneAttachmentQuery query)
         {
-            return "value";
+            GetAttachmentDto item = _useCaseExecutor.ExecuteQuery(query, id);
+            return Ok(item);
         }
 
         // POST api/<AttachmentController>

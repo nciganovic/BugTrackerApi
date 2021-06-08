@@ -48,6 +48,7 @@ namespace Application.MapperProfiles
 
             CreateMap<AddAttachmentDto, Attachment>();
             CreateMap<ChangeAttachmentDto, Attachment>();
+            CreateMap<Attachment, GetAttachmentDto>();
         }
     }
 }

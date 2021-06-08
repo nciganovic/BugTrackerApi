@@ -68,6 +68,8 @@ using Application.Queries.UseCaseQueries;
 using Implementation.Queries.UseCaseLogQueries;
 using Application.Commands.AttachmentCommands;
 using Implementation.EfCommands.EfAttachmentCommands;
+using Application.Queries.AttachmentQueries;
+using Implementation.Queries.AttachmentQueries;
 
 namespace Api
 {
@@ -149,6 +151,8 @@ namespace Api
             services.AddTransient<IAddAttachmentCommand, EfAddAttachmentCommand>();
             services.AddTransient<IChangeAttachmentCommand, EfChangeAttachmentCommand>();
             services.AddTransient<IRemoveAttachmentCommand, EfRemoveAttachmentCommand>();
+            services.AddTransient<IGetAttachmentsByTicketIdQuery, EfGetAttachmentsByTicketIdQuery>();
+            services.AddTransient<IGetOneAttachmentQuery, EfGetOneAttachmentQuery>();
 
             services.AddTransient<IEmailSender, SmtpEmailSender>();
 
