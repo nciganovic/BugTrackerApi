@@ -187,6 +187,7 @@ namespace Api
             services.AddTransient<ChangeTicketValidator>();
             services.AddTransient<AddApplicationUserCaseValidator>();
             services.AddTransient<RemoveApplicationUserCaseValidator>();
+            services.AddTransient<AddAttachmentValidator>();
 
             services.AddTransient<JwtManager>();
 
@@ -241,6 +242,8 @@ namespace Api
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {
