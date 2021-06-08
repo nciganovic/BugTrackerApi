@@ -66,7 +66,6 @@ namespace Api.Controllers
                 }
 
                 //Save path, name, ticketId
-
                Attachment attachment = _mapper.Map<Attachment>(dto);
                 attachment.Path = path;
                _useCaseExecutor.ExecuteCommand(command, attachment);
@@ -79,8 +78,39 @@ namespace Api.Controllers
 
         // PUT api/<AttachmentController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromForm] ChangeAttachmentDto dto
+            , [FromServices] ChangeAttachmentValidator validator
+            , [FromServices] IChangeAttachmentCommand command)
         {
+            dto.Id = id;
+
+            var result = validator.Validate(dto);
+
+            if (result.IsValid) 
+            {
+                Attachment attachment = _mapper.Map<Attachment>(dto);
+
+                if (dto.File != null) 
+                {
+                    string fileName = CreateNewFileName(dto.File);
+
+                    string path = Path.Combine("wwwroot", "images", fileName);
+
+                    using (var fileStream = new FileStream(path, FileMode.Create))
+                    {
+                        dto.File.CopyTo(fileStream);
+                    }
+
+                    attachment.Path = path;
+
+                    //TODO delete old file
+                }
+                
+                _useCaseExecutor.ExecuteCommand(command, attachment);
+                return Ok();
+            }
+
+            return UnprocessableEntity(UnprocessableEntityResponse.Message(result.Errors));
         }
 
         // DELETE api/<AttachmentController>/5

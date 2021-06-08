@@ -23,6 +23,9 @@ namespace Implementation.Validators
 
             RuleFor(x => x.Name)
                 .NotEmpty();
+
+            RuleFor(x => x.File)
+                .NotNull();
         }
 
         private bool TicketExists(int id) 

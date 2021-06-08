@@ -47,6 +47,7 @@ namespace Application.MapperProfiles
             CreateMap<AddApplicationUserCaseDto, ApplicationUserCase>();
 
             CreateMap<AddAttachmentDto, Attachment>();
+            CreateMap<ChangeAttachmentDto, Attachment>();
         }
     }
 }

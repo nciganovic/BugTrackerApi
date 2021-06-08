@@ -147,6 +147,7 @@ namespace Api
             services.AddTransient<IGetUseCaseLogsQuery, EfGetUseCaseLogsQuery>();
 
             services.AddTransient<IAddAttachmentCommand, EfAddAttachmentCommand>();
+            services.AddTransient<IChangeAttachmentCommand, EfChangeAttachmentCommand>();
 
             services.AddTransient<IEmailSender, SmtpEmailSender>();
 
@@ -192,6 +193,7 @@ namespace Api
             services.AddTransient<AddApplicationUserCaseValidator>();
             services.AddTransient<RemoveApplicationUserCaseValidator>();
             services.AddTransient<AddAttachmentValidator>();
+            services.AddTransient<ChangeAttachmentValidator>();
 
             services.AddTransient<JwtManager>();
 
