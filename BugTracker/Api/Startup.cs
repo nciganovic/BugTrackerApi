@@ -66,6 +66,8 @@ using Application.Email;
 using Implementation.Email;
 using Application.Queries.UseCaseQueries;
 using Implementation.Queries.UseCaseLogQueries;
+using Application.Commands.AttachmentCommands;
+using Implementation.EfCommands.EfAttachmentCommands;
 
 namespace Api
 {
@@ -143,6 +145,8 @@ namespace Api
             services.AddTransient<IRemoveApplicationUserCaseCommand, EfRemoveApplicationUserCaseCommand>();
 
             services.AddTransient<IGetUseCaseLogsQuery, EfGetUseCaseLogsQuery>();
+
+            services.AddTransient<IAddAttachmentCommand, EfAddAttachmentCommand>();
 
             services.AddTransient<IEmailSender, SmtpEmailSender>();
 

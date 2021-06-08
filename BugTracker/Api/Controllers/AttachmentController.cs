@@ -8,15 +8,30 @@ using System.Threading.Tasks;
 using Implementation.ResponseMessages;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Application.Commands.AttachmentCommands;
+using Application;
+using AutoMapper;
+using Domain;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AttachmentController : ControllerBase
     {
+        private readonly UseCaseExecutor _useCaseExecutor;
+        private readonly IMapper _mapper;
+
+        public AttachmentController(UseCaseExecutor useCaseExecutor, IMapper mapper)
+        {
+            _useCaseExecutor = useCaseExecutor;
+            _mapper = mapper;
+        }
+
         // GET: api/<AttachmentController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -34,7 +49,8 @@ namespace Api.Controllers
         // POST api/<AttachmentController>
         [HttpPost]
         public IActionResult Post([FromForm] AddAttachmentDto dto
-            , [FromServices] AddAttachmentValidator validator)
+            , [FromServices] AddAttachmentValidator validator
+            , [FromServices] IAddAttachmentCommand command)
         {
             var result = validator.Validate(dto);
 
@@ -50,6 +66,10 @@ namespace Api.Controllers
                 }
 
                 //Save path, name, ticketId
+
+               Attachment attachment = _mapper.Map<Attachment>(dto);
+                attachment.Path = path;
+               _useCaseExecutor.ExecuteCommand(command, attachment);
 
                 return Ok();
             }
