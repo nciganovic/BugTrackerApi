@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Queries.CommentQueries
 {
-    public interface IGetOneCommentQuery : IQuery<int, CommentDto>
+    public interface IGetOneCommentQuery : IQuery<int, GetCommentDto>
     {
     }
 }

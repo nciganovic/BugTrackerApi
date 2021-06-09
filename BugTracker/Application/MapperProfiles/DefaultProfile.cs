@@ -33,7 +33,7 @@ namespace Application.MapperProfiles
             CreateMap<AddTicketDto, Ticket>();
             CreateMap<ChangeTicketDto, Ticket>();
 
-            CreateMap<Comment, CommentDto>().ReverseMap();
+            CreateMap<Comment, GetCommentDto>();
             CreateMap<AddCommentDto, Comment>();
             CreateMap<ChangeCommentDto, Comment>();
             

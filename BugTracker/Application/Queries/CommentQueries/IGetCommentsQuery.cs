@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.Queries.CommentQueries
 {
-    public interface IGetCommentsQuery : IQuery<CommentSearch, IEnumerable<CommentDto>>
+    public interface IGetCommentsQuery : IQuery<CommentSearch, IEnumerable<GetCommentDto>>
     {
 
     }

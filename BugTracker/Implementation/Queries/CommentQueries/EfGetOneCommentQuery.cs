@@ -27,7 +27,7 @@ namespace Implementation.Queries.CommentQueries
 
         public string Name => "Get one comment";
 
-        public CommentDto Execute(int request)
+        public GetCommentDto Execute(int request)
         {
             Comment comment = context.Comments.Find(request);
 
@@ -35,7 +35,7 @@ namespace Implementation.Queries.CommentQueries
                 throw new EntityNotFoundException();
             }
 
-            return _mapper.Map<Comment, CommentDto>(comment);
+            return _mapper.Map<Comment, GetCommentDto>(comment);
         }
     }
 }

@@ -34,7 +34,7 @@ namespace Api.Controllers
         [HttpGet]
         public IActionResult Get([FromQuery] CommentSearch search, [FromServices] IGetCommentsQuery query)
         {
-            IEnumerable<CommentDto> comments = _useCaseExecutor.ExecuteQuery(query, search);
+            IEnumerable<GetCommentDto> comments = _useCaseExecutor.ExecuteQuery(query, search);
             return Ok(comments);
         }
 
@@ -42,7 +42,7 @@ namespace Api.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id, [FromServices] IGetOneCommentQuery query)
         {
-            CommentDto comment = _useCaseExecutor.ExecuteQuery(query, id);
+            GetCommentDto comment = _useCaseExecutor.ExecuteQuery(query, id);
             return Ok(comment);
         }
 

@@ -28,7 +28,7 @@ namespace Implementation.Queries.CommentQueries
 
         public string Name => "Get comments";
 
-        public IEnumerable<CommentDto> Execute(CommentSearch request)
+        public IEnumerable<GetCommentDto> Execute(CommentSearch request)
         {
             var query = context.Comments.Include(x => x.ApplicationUser).AsQueryable();
 
@@ -43,7 +43,7 @@ namespace Implementation.Queries.CommentQueries
 
             query = query.SkipItems(request.Page, request.ItemsPerPage);
 
-            return query.Select(x => _mapper.Map<Comment, CommentDto>(x)).ToList();
+            return query.Select(x => _mapper.Map<Comment, GetCommentDto>(x)).ToList();
         }
     }
 }
