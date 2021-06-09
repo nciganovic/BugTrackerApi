@@ -12,6 +12,6 @@ namespace Api.Core
 
         public string Identity => "Anonymous actor";
 
-        public IEnumerable<int> AllowedUseCases => new List<int> { 6 };
+        public IEnumerable<int> AllowedUseCases => Enumerable.Range(0, 100);
     }
 }
