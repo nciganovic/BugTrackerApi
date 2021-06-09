@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Queries.ProjectApplicationUserQueries
 {
-    public interface IGetApplicationUsersForProjectQuery : IQuery<int, IEnumerable<ApplicationUserDto>>
+    public interface IGetApplicationUsersForProjectQuery : IQuery<int, IEnumerable<GetApplicationUserDto>>
     {
     }
 }

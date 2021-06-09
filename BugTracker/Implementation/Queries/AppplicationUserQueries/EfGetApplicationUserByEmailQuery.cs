@@ -26,7 +26,7 @@ namespace Implementation.Queries.ApplicationUserQueries
 
         public string Name => "Get applicationUser by email";
 
-        public ApplicationUserDto Execute(string request)
+        public GetApplicationUserDto Execute(string request)
         {
             ApplicationUser user = context.ApplicaitonUsers.Where(x => x.Email == request).FirstOrDefault();
 
@@ -34,7 +34,7 @@ namespace Implementation.Queries.ApplicationUserQueries
                 throw new EntityNotFoundException();
             }
 
-            ApplicationUserDto applicationUserDto = _mapper.Map<ApplicationUserDto>(user);
+            GetApplicationUserDto applicationUserDto = _mapper.Map<GetApplicationUserDto>(user);
             return applicationUserDto;
         }
     }

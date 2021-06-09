@@ -27,7 +27,7 @@ namespace Implementation.Queries.ApplicationUserQueries
 
         public string Name => "Get applicationUsers";
 
-        public IEnumerable<ApplicationUserDto> Execute(ApplicationUserSearch request)
+        public IEnumerable<GetApplicationUserDto> Execute(ApplicationUserSearch request)
         {
             var query = context.ApplicaitonUsers.AsQueryable();
 
@@ -50,7 +50,7 @@ namespace Implementation.Queries.ApplicationUserQueries
 
             query = query.SkipItems(request.Page, request.ItemsPerPage);
 
-            return query.Select(x => _mapper.Map<ApplicationUser, ApplicationUserDto>(x)).ToList();
+            return query.Select(x => _mapper.Map<ApplicationUser, GetApplicationUserDto>(x)).ToList();
         }
     }
 }

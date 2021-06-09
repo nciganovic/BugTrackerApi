@@ -27,7 +27,7 @@ namespace Implementation.Queries.ApplicationUserQueries
 
         public string Name => "Get one applicationUser";
 
-        public ApplicationUserDto Execute(int request)
+        public GetApplicationUserDto Execute(int request)
         {
             ApplicationUser user = context.ApplicaitonUsers.Find(request);
 
@@ -35,7 +35,7 @@ namespace Implementation.Queries.ApplicationUserQueries
                 throw new EntityNotFoundException();
             }
 
-            return _mapper.Map<ApplicationUser, ApplicationUserDto>(user);
+            return _mapper.Map<ApplicationUser, GetApplicationUserDto>(user);
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.Queries.ApplicationUserQueries
 {
-    public interface IGetApplicationUsersQuery : IQuery<ApplicationUserSearch, IEnumerable<ApplicationUserDto>>
+    public interface IGetApplicationUsersQuery : IQuery<ApplicationUserSearch, IEnumerable<GetApplicationUserDto>>
     {
     }
 }

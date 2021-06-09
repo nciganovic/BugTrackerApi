@@ -35,7 +35,7 @@ namespace Implementation.Queries.ProjectApplicationUserQueries
 
         public string Name => "Get applicationUsers for project";
 
-        public IEnumerable<ApplicationUserDto> Execute(int request)
+        public IEnumerable<GetApplicationUserDto> Execute(int request)
         {
             if (request != 0)
             {
@@ -53,12 +53,12 @@ namespace Implementation.Queries.ProjectApplicationUserQueries
             List<ApplicationUser> applicationUsers = new List<ApplicationUser>();
 
             foreach (var x in projectApplicationUserDtos) { 
-                ApplicationUserDto applicationUserDto = _getOneApplicationUserCommand.Execute(x.ApplicationUserId);
-                ApplicationUser applicationUser = _mapper.Map<ApplicationUserDto, ApplicationUser>(applicationUserDto);
+                GetApplicationUserDto applicationUserDto = _getOneApplicationUserCommand.Execute(x.ApplicationUserId);
+                ApplicationUser applicationUser = _mapper.Map<GetApplicationUserDto, ApplicationUser>(applicationUserDto);
                 applicationUsers.Add(applicationUser);
             }
             
-            return applicationUsers.Select(x => _mapper.Map<ApplicationUser, ApplicationUserDto>(x)).ToList();
+            return applicationUsers.Select(x => _mapper.Map<ApplicationUser, GetApplicationUserDto>(x)).ToList();
         }
     }
 }

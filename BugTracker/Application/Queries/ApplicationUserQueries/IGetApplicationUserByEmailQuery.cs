@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Queries.ApplicationUserQueries
 {
-    public interface IGetApplicationUserByEmailQuery : IQuery<string, ApplicationUserDto>
+    public interface IGetApplicationUserByEmailQuery : IQuery<string, GetApplicationUserDto>
     {
     }
 }

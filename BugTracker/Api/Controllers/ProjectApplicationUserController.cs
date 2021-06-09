@@ -34,7 +34,7 @@ namespace Api.Controllers
         [HttpGet("[action]")]
         public IActionResult GetApplicationUsers(int projectId, [FromServices] IGetApplicationUsersForProjectQuery query)
         {
-            IEnumerable<ApplicationUserDto> applicationUserDtos = _useCaseExecutor.ExecuteQuery(query, projectId);
+            IEnumerable<GetApplicationUserDto> applicationUserDtos = _useCaseExecutor.ExecuteQuery(query, projectId);
             return Ok(applicationUserDtos);
         }
 

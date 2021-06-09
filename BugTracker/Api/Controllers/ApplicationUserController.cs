@@ -38,7 +38,7 @@ namespace Api.Controllers
         [HttpGet]
         public IActionResult Get([FromQuery] ApplicationUserSearch search, [FromServices] IGetApplicationUsersQuery query)
         {
-            IEnumerable<ApplicationUserDto> applicationUsers = _useCaseExecutor.ExecuteQuery(query, search);
+            IEnumerable<GetApplicationUserDto> applicationUsers = _useCaseExecutor.ExecuteQuery(query, search);
             return Ok(applicationUsers);
         }
 
@@ -46,7 +46,7 @@ namespace Api.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id, [FromServices] IGetOneApplicationUserQuery query)
         {
-            ApplicationUserDto applicationUser = _useCaseExecutor.ExecuteQuery(query, id);
+            GetApplicationUserDto applicationUser = _useCaseExecutor.ExecuteQuery(query, id);
             return Ok(applicationUser);
         }
 
