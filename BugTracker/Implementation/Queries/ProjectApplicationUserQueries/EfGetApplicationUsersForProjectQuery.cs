@@ -49,7 +49,7 @@ namespace Implementation.Queries.ProjectApplicationUserQueries
             var query = context.ProjectApplicationUsers.AsQueryable();
             query = query.Where(x => x.ProjectId == request);
             
-            IEnumerable<ProjectApplicationUserDto> projectApplicationUserDtos = query.Select(x => _mapper.Map<ProjectApplicationUser, ProjectApplicationUserDto>(x));
+            IEnumerable<GetProjectApplicationUserDto> projectApplicationUserDtos = query.Select(x => _mapper.Map<ProjectApplicationUser, GetProjectApplicationUserDto>(x));
             List<ApplicationUser> applicationUsers = new List<ApplicationUser>();
 
             foreach (var x in projectApplicationUserDtos) { 
