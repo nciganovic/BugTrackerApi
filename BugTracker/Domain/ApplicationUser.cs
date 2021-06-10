@@ -15,11 +15,11 @@ namespace Domain
         public string Email { get; set; }
         public string Password { get; set; }
         public string Salt { get; set; }
-        public List<CompanyApplicationUserRole> CompanyApplicaitonUsers { get; set; }
-        public List<ProjectApplicationUser> ProjectApplicaitonUsers { get; set; }
-        public List<Ticket> IssuerTickets { get; set; }
-        public List<Ticket> DeveloperTickets { get; set; }
-        public List<Comment> Comments { get; set; }
-        public ICollection<ApplicationUserCase> ApplicationUserCases { get; set; }
+        public ICollection<CompanyApplicationUserRole> CompanyApplicaitonUsers { get; set; } = new HashSet<CompanyApplicationUserRole>();
+        public ICollection<ProjectApplicationUser> ProjectApplicaitonUsers { get; set; } = new HashSet<ProjectApplicationUser>();
+        public ICollection<Ticket> IssuerTickets { get; set; } = new HashSet<Ticket>();
+        public ICollection<Ticket> DeveloperTickets { get; set; } = new HashSet<Ticket>();
+        public ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
+        public ICollection<ApplicationUserCase> ApplicationUserCases { get; set; } = new HashSet<ApplicationUserCase>();
     }
 }

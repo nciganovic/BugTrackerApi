@@ -11,7 +11,7 @@ namespace Domain
         public int Id { get; set; }
 
         public int? OriginalTicketId { get; set; }
-        public Ticket OriginalTicket { get; set; }
+        public virtual Ticket OriginalTicket { get; set; }
 
         public TicketPriority Priority { get; set; }
         public TicketStatus Status { get; set; }
@@ -19,20 +19,20 @@ namespace Domain
 
 
         public int IssuerId { get; set; }
-        public ApplicationUser Issuer { get; set; }
+        public virtual ApplicationUser Issuer { get; set; }
 
         public int DeveloperId { get; set; }
-        public ApplicationUser Developer { get; set; }
+        public virtual ApplicationUser Developer { get; set; }
 
         public string Title { get; set; }
 
         public string Description { get; set; }
 
-        public List<Comment> Comments { get; set; }
+        public ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
 
-        public List<Ticket> TicketHistories { get; set; }
+        public ICollection<Ticket> TicketHistories { get; set; } = new HashSet<Ticket>();
 
-        public List<Attachment> Attachments { get; set; }
+        public ICollection<Attachment> Attachments { get; set; } = new HashSet<Attachment>();
 
         public enum TicketPriority
         {
