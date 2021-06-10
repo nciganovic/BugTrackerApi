@@ -70,6 +70,7 @@ using Application.Commands.AttachmentCommands;
 using Implementation.EfCommands.EfAttachmentCommands;
 using Application.Queries.AttachmentQueries;
 using Implementation.Queries.AttachmentQueries;
+using Api.Middleware;
 
 namespace Api
 {
@@ -253,6 +254,7 @@ namespace Api
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseMiddleware<ErrorHandlerMiddleware>();
 
             app.UseStaticFiles();
 
