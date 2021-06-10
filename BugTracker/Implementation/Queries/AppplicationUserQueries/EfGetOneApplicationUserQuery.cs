@@ -31,10 +31,6 @@ namespace Implementation.Queries.ApplicationUserQueries
         {
             ApplicationUser user = context.ApplicaitonUsers.Find(request);
 
-            if (user == null) {
-                throw new EntityNotFoundException();
-            }
-
             return _mapper.Map<ApplicationUser, GetApplicationUserDto>(user);
         }
     }

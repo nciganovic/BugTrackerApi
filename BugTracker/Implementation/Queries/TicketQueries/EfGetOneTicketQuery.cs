@@ -31,10 +31,6 @@ namespace Implementation.Queries.TicketCommandsQueries
         {
             Ticket item = context.Tickets.Find(request);
 
-            if(item == null)
-            {
-                throw new EntityNotFoundException();
-            }
 
             return _mapper.Map<Ticket, GetTicketDto>(item);
         }

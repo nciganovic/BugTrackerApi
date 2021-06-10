@@ -31,9 +31,6 @@ namespace Implementation.Queries.CommentQueries
         {
             Comment comment = context.Comments.Find(request);
 
-            if (comment == null) {
-                throw new EntityNotFoundException();
-            }
 
             return _mapper.Map<Comment, GetCommentDto>(comment);
         }

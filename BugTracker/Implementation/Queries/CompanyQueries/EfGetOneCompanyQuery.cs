@@ -31,8 +31,6 @@ namespace Implementation.Queries.CompanyQueries
         {
             var company = context.Companies.Find(request);
 
-            if (company == null)
-                throw new EntityNotFoundException();
 
             return _mapper.Map<Company, GetCompanyDto>(company);
         }

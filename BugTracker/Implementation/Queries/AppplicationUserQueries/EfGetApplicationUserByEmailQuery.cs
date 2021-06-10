@@ -30,10 +30,6 @@ namespace Implementation.Queries.ApplicationUserQueries
         {
             ApplicationUser user = context.ApplicaitonUsers.Where(x => x.Email == request).FirstOrDefault();
 
-            if (user == null) {
-                throw new EntityNotFoundException();
-            }
-
             GetApplicationUserDto applicationUserDto = _mapper.Map<GetApplicationUserDto>(user);
             return applicationUserDto;
         }

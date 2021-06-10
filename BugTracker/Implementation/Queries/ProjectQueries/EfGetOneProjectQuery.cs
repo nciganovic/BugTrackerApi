@@ -31,8 +31,6 @@ namespace Implementation.Queries.ProjectCommandsQueries
         {
             var project = context.Projects.Find(request);
 
-            if (project == null)
-                throw new EntityNotFoundException();
 
             return _mapper.Map<Project, GetProjectDto>(project);
         }

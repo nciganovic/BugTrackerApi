@@ -25,7 +25,7 @@ namespace Implementation.Queries.CompanyApplicationUserQueries
 
         public int Id => 14;
 
-        public string Name => "Get one company applicationUser";
+        public string Name => "Get one company applicationUser role query";
 
         public GetCompanyApplicationUserRoleDto Execute(CompanyApplicationUserSearch request)
         {
@@ -33,10 +33,6 @@ namespace Implementation.Queries.CompanyApplicationUserQueries
                 .Where(x => x.ApplicationUserId == request.ApplicationUserId 
                 && x.CompanyId == request.CompanyId)
                     .FirstOrDefault();
-
-            if (item == null) {
-                throw new EntityNotFoundException();
-            }
 
             return _mapper.Map<CompanyApplicationUserRole, GetCompanyApplicationUserRoleDto>(item);
         }

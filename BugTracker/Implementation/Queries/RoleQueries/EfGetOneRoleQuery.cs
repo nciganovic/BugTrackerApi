@@ -32,9 +32,6 @@ namespace Implementation.Queries.RoleQueries
         {
             var role = context.Roles.Find(request);
 
-            if (role == null)
-                throw new EntityNotFoundException();
-
             return _mapper.Map<Role, GetRoleDto>(role);
         }
     }
