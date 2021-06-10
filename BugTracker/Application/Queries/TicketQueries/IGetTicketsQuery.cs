@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.Queries.TicketQueries
 {
-    public interface IGetTicketsQuery : IQuery<TicketSearch, IEnumerable<TicketDto>>
+    public interface IGetTicketsQuery : IQuery<TicketSearch, IEnumerable<GetTicketDto>>
     {
     }
 }

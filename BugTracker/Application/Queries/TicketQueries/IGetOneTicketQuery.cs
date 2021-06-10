@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Queries.TicketQueries
 {
-    public interface IGetOneTicketQuery : IQuery<int, TicketDto>
+    public interface IGetOneTicketQuery : IQuery<int, GetTicketDto>
     {
     }
 }

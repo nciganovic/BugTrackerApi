@@ -27,7 +27,7 @@ namespace Implementation.Queries.TicketCommandsQueries
 
         public string Name => "Get one ticket";
 
-        public TicketDto Execute(int request)
+        public GetTicketDto Execute(int request)
         {
             Ticket item = context.Tickets.Find(request);
 
@@ -36,7 +36,7 @@ namespace Implementation.Queries.TicketCommandsQueries
                 throw new EntityNotFoundException();
             }
 
-            return _mapper.Map<Ticket, TicketDto>(item);
+            return _mapper.Map<Ticket, GetTicketDto>(item);
         }
     }
 }

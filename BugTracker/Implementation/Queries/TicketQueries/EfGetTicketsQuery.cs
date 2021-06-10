@@ -29,7 +29,7 @@ namespace Implementation.Queries.TicketCommandsQueries
 
         public string Name => "Get tickets";
 
-        public IEnumerable<TicketDto> Execute(TicketSearch request)
+        public IEnumerable<GetTicketDto> Execute(TicketSearch request)
         {
             var query = context.Tickets.AsQueryable();
 
@@ -70,7 +70,7 @@ namespace Implementation.Queries.TicketCommandsQueries
 
             query = query.SkipItems(request.Page, request.ItemsPerPage);
 
-            return query.Select(x => _mapper.Map<Ticket, TicketDto>(x)).ToList();
+            return query.Select(x => _mapper.Map<Ticket, GetTicketDto>(x)).ToList();
         }
     }
 }

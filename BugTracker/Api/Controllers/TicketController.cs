@@ -34,7 +34,7 @@ namespace Api.Controllers
         [HttpGet]
         public IActionResult Get([FromQuery] TicketSearch search, [FromServices] IGetTicketsQuery query)
         {
-            IEnumerable<TicketDto> tickets = _useCaseExecutor.ExecuteQuery(query, search);
+            IEnumerable<GetTicketDto> tickets = _useCaseExecutor.ExecuteQuery(query, search);
             return Ok(tickets);
         }
 
@@ -42,7 +42,7 @@ namespace Api.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id, [FromServices] IGetOneTicketQuery query)
         {
-            TicketDto ticket = _useCaseExecutor.ExecuteQuery(query, id);
+            GetTicketDto ticket = _useCaseExecutor.ExecuteQuery(query, id);
             return Ok(ticket);
         }
 
