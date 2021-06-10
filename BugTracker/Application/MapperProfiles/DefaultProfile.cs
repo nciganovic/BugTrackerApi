@@ -17,7 +17,7 @@ namespace Application.MapperProfiles
             CreateMap<AddRoleDto, Role>();
             CreateMap<ChangeRoleDto, Role>();
 
-            CreateMap<ApplicationUser, GetApplicationUserDto>();
+            CreateMap<ApplicationUser, GetApplicationUserDto>().ReverseMap();
             CreateMap<AddApplicationUserDto, ApplicationUser>();
             CreateMap<ChangeApplicationUserDto, ApplicationUser>();
 
@@ -41,7 +41,7 @@ namespace Application.MapperProfiles
             CreateMap<AddCompanyApplicationUserRoleDto, CompanyApplicationUserRole>();
             CreateMap<ChangeCompanyApplicationUserRoleDto, CompanyApplicationUserRole>();
 
-            CreateMap<ProjectApplicationUser, ProjectApplicationUserDto>().ReverseMap();
+            CreateMap<ProjectApplicationUser, GetProjectApplicationUserDto>();
             CreateMap<AddProjectApplicationUserDto, ProjectApplicationUser>();
 
             CreateMap<AddApplicationUserCaseDto, ApplicationUserCase>();
