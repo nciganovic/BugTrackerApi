@@ -64,9 +64,9 @@ namespace Api.Controllers
             return UnprocessableEntity(UnprocessableEntityResponse.Message(result.Errors));
         }
 
-        // PUT api/<TicketController>/5
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] ChangeTicketDto dto
+        // Real PUT api/<TicketController>/5, really changes instance with given id
+        [HttpPut("[action]/{id}")]
+        public IActionResult RealPut(int id, [FromBody] ChangeTicketDto dto
             , [FromServices] IChangeTicketCommand command
             , [FromServices] ChangeTicketValidator validator)
         {
@@ -77,6 +77,28 @@ namespace Api.Controllers
             {    
                 Ticket ticket = _mapper.Map<Ticket>(dto);
                 _useCaseExecutor.ExecuteCommand(command, ticket);
+                return Ok("Ticket changed successfully");
+            }
+
+            return UnprocessableEntity(UnprocessableEntityResponse.Message(result.Errors));
+        }
+
+        // Fake PUT api/<TicketController>/5, creates copy of old instance with provided changes
+        // and saves it as new item in database with reference on old item
+        [HttpPut("[action]/{id}")]
+        public IActionResult FakePut(int id, [FromBody] ChangeTicketDto dto
+            , [FromServices] IAddTicketCommand command
+            , [FromServices] ChangeTicketValidator validator)
+        {
+            dto.Id = id; //Add id to dto to validate if item exists
+            var result = validator.Validate(dto);
+
+            if (result.IsValid)
+            {
+                Ticket ticket = _mapper.Map<Ticket>(dto);
+                ticket.OriginalTicketId = id;
+                ticket.Id = default; //set default value for int (0), because new instance will be created
+                _useCaseExecutor.ExecuteCommand(command, ticket); 
                 return Ok("Ticket changed successfully");
             }
 
