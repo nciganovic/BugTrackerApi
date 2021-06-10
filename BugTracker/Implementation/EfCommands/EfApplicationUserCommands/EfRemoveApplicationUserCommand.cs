@@ -26,7 +26,7 @@ namespace Implementation.EfCommands.EfApplicationUserCommands
             ApplicationUser user = context.ApplicaitonUsers.Find(request);
 
             if (user == null)
-                throw new EntityNotFoundException();
+                throw new EntityNotFoundException(request, "ApplicationUser");
 
             user.DeletedAt = DateTime.Now;
 

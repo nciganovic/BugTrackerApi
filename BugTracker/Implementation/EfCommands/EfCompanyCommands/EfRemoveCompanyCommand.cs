@@ -25,7 +25,7 @@ namespace Implementation.EfCommands.EfCompanyCommands
             Domain.Company item = context.Companies.Find(request);
 
             if (item == null)
-                throw new EntityNotFoundException();
+                throw new EntityNotFoundException(request, "Company");
 
             item.DeletedAt = DateTime.Now;
 

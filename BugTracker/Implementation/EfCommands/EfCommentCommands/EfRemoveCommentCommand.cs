@@ -25,7 +25,7 @@ namespace Implementation.EfCommands.EfCommentCommands
             var item = context.Comments.Find(request);
 
             if (item == null) {
-                throw new EntityNotFoundException();
+                throw new EntityNotFoundException(request, "Comment");
             }
 
             item.DeletedAt = DateTime.Now;

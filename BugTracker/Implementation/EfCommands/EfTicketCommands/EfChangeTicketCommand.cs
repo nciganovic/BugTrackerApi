@@ -29,7 +29,7 @@ namespace Implementation.EfCommands.EfTicketCommands
             Ticket item = context.Tickets.Find(request.Id);
 
             if (item == null)
-                throw new EntityNotFoundException();
+                throw new EntityNotFoundException(request.Id, "Ticket");
 
             context.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
 

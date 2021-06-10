@@ -26,7 +26,7 @@ namespace Implementation.EfCommands.EfRoleCommands
             Role item = context.Roles.Find(request);
 
             if (item == null)
-                throw new EntityNotFoundException();
+                throw new EntityNotFoundException(request, "Role");
 
             item.DeletedAt = DateTime.Now;
 

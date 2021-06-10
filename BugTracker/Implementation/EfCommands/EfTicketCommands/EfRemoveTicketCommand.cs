@@ -26,7 +26,7 @@ namespace Implementation.EfCommands.EfTicketCommands
             Ticket ticket = context.Tickets.Find(request);
 
             if (ticket == null)
-                throw new EntityNotFoundException();
+                throw new EntityNotFoundException(request, "Ticket");
 
             ticket.DeletedAt = DateTime.Now;
 

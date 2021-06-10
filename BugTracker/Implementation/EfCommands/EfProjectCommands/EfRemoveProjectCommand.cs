@@ -26,7 +26,7 @@ namespace Implementation.EfCommands.EfProjectCommands
             Project item = context.Projects.Find(request);
 
             if (item == null)
-                throw new EntityNotFoundException();
+                throw new EntityNotFoundException(request, "Project");
 
             item.DeletedAt = DateTime.Now;
 

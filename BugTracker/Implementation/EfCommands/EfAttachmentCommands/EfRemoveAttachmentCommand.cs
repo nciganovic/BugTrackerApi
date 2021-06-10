@@ -28,7 +28,7 @@ namespace Implementation.EfCommands.EfAttachmentCommands
 
             if (item == null)
             {
-                throw new EntityNotFoundException();
+                throw new EntityNotFoundException(request, "Attachment");
             }
 
             item.DeletedAt = DateTime.Now;
