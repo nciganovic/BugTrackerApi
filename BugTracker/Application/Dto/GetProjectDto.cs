@@ -8,23 +8,11 @@ using System.Threading.Tasks;
 
 namespace Application.Dto
 {
-    public class ProjectDto
+    public class GetProjectDto
     {
         public int Id { get; set; }
-
-        [Required]
         public int CompanyId { get; set; }
-        
-        public Company Company { get; set; }
-
-        [Required]
-        [MaxLength(30)]
         public string Name { get; set; }
-
-        [Required]
-        [MaxLength(150)]
         public string Description { get; set; }
-        
-        public List<ProjectApplicationUser> ProjectApplicationUsers { get; set; }
     }
 }

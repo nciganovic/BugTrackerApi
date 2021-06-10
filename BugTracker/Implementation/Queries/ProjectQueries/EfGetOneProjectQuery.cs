@@ -27,14 +27,14 @@ namespace Implementation.Queries.ProjectCommandsQueries
 
         public string Name => "Get one project";
 
-        public ProjectDto Execute(int request)
+        public GetProjectDto Execute(int request)
         {
             var project = context.Projects.Find(request);
 
             if (project == null)
                 throw new EntityNotFoundException();
 
-            return _mapper.Map<Project, ProjectDto>(project);
+            return _mapper.Map<Project, GetProjectDto>(project);
         }
     }
 }

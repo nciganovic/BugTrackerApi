@@ -25,7 +25,7 @@ namespace Application.MapperProfiles
             CreateMap<AddCompanyDto, Company>();
             CreateMap<ChangeCompanyDto, Company>();
 
-            CreateMap<Project, ProjectDto>().ReverseMap();
+            CreateMap<Project, GetProjectDto>();
             CreateMap<AddProjectDto, Project>();
             CreateMap<ChangeProjectDto, Project>();
 

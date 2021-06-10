@@ -35,7 +35,7 @@ namespace Api.Controllers
         [HttpGet]
         public IActionResult Get([FromQuery] ProjectSearch search, [FromServices] IGetProjectsQuery command)
         {
-            IEnumerable<ProjectDto> projects = _useCaseExecutor.ExecuteQuery(command, search);
+            IEnumerable<GetProjectDto> projects = _useCaseExecutor.ExecuteQuery(command, search);
             return Ok(projects);
         }
 
@@ -43,7 +43,7 @@ namespace Api.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id, [FromServices] IGetOneProjectQuery query)
         {
-            ProjectDto project = _useCaseExecutor.ExecuteQuery(query, id);
+            GetProjectDto project = _useCaseExecutor.ExecuteQuery(query, id);
             return Ok(project);
         }
 

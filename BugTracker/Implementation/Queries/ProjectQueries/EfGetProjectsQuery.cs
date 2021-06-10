@@ -28,7 +28,7 @@ namespace Implementation.Queries.ProjectCommandsQueries
 
         public string Name => "Get projects";
 
-        public IEnumerable<ProjectDto> Execute(ProjectSearch request)
+        public IEnumerable<GetProjectDto> Execute(ProjectSearch request)
         {
             var query = context.Projects.AsQueryable();
 
@@ -49,7 +49,7 @@ namespace Implementation.Queries.ProjectCommandsQueries
 
             query = query.SkipItems(request.Page, request.ItemsPerPage);
 
-            return query.Select(x => _mapper.Map<Project, ProjectDto>(x)).ToList();
+            return query.Select(x => _mapper.Map<Project, GetProjectDto>(x)).ToList();
         }
     }
 }

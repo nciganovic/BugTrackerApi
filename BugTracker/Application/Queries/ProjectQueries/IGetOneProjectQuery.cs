@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Queries.ProjectQueries
 {
-    public interface IGetOneProjectQuery : IQuery<int, ProjectDto>
+    public interface IGetOneProjectQuery : IQuery<int, GetProjectDto>
     {
     }
 }

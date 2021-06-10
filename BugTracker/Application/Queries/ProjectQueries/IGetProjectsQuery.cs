@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.Queries.ProjectQueries
 {
-    public interface IGetProjectsQuery : IQuery<ProjectSearch, IEnumerable<ProjectDto>>
+    public interface IGetProjectsQuery : IQuery<ProjectSearch, IEnumerable<GetProjectDto>>
     {
     }
 }
