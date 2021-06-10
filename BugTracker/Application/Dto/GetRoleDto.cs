@@ -7,12 +7,9 @@ using System.Threading.Tasks;
 
 namespace Application.Dto
 {
-    public class RoleDto
+    public class GetRoleDto
     {
         public int Id { get; set; }
-
-        [Required]
-        [MaxLength(30)]
         public string Name { get; set; }
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.Queries.RoleQueries
 {
-    public interface IGetRolesQuery : IQuery<RoleSearch, IEnumerable<RoleDto>>
+    public interface IGetRolesQuery : IQuery<RoleSearch, IEnumerable<GetRoleDto>>
     {
 
     }

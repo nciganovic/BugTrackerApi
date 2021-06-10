@@ -13,7 +13,7 @@ namespace Application.MapperProfiles
     {
         public DefaultProfile()
         {
-            CreateMap<Role, RoleDto>().ReverseMap();
+            CreateMap<Role, GetRoleDto>().ReverseMap();
             CreateMap<AddRoleDto, Role>();
             CreateMap<ChangeRoleDto, Role>();
 

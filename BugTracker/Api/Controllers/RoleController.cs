@@ -35,7 +35,7 @@ namespace Api.Controllers
         [HttpGet]
         public IActionResult Get([FromQuery] RoleSearch search, [FromServices] IGetRolesQuery query)
         {
-            IEnumerable<RoleDto> role = _useCaseExecutor.ExecuteQuery(query, search);
+            IEnumerable<GetRoleDto> role = _useCaseExecutor.ExecuteQuery(query, search);
             return Ok(role);
         }
 
@@ -43,7 +43,7 @@ namespace Api.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id, [FromServices] IGetOneRoleQuery query)
         {
-            RoleDto role = _useCaseExecutor.ExecuteQuery(query, id);
+            GetRoleDto role = _useCaseExecutor.ExecuteQuery(query, id);
             return Ok(role);
         }
 

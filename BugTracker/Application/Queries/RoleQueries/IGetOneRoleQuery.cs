@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Queries.RoleQueries
 {
-    public interface IGetOneRoleQuery : IQuery<int, RoleDto>
+    public interface IGetOneRoleQuery : IQuery<int, GetRoleDto>
     {
     }
 }

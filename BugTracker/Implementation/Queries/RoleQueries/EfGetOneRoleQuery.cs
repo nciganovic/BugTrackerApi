@@ -28,14 +28,14 @@ namespace Implementation.Queries.RoleQueries
 
         public string Name => "Get one role";
 
-        public RoleDto Execute(int request)
+        public GetRoleDto Execute(int request)
         {
             var role = context.Roles.Find(request);
 
             if (role == null)
                 throw new EntityNotFoundException();
 
-            return _mapper.Map<Role, RoleDto>(role);
+            return _mapper.Map<Role, GetRoleDto>(role);
         }
     }
 }

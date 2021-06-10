@@ -28,7 +28,7 @@ namespace Implementation.Queries.RoleQueries
 
         public string Name => "Get roles";
 
-        public IEnumerable<RoleDto> Execute(RoleSearch request)
+        public IEnumerable<GetRoleDto> Execute(RoleSearch request)
         {
             var query = context.Roles.AsQueryable();
 
@@ -46,7 +46,7 @@ namespace Implementation.Queries.RoleQueries
 
             query = query.SkipItems(request.Page, request.ItemsPerPage);
 
-            return query.Select(x => _mapper.Map<Role, RoleDto>(x)).ToList();
+            return query.Select(x => _mapper.Map<Role, GetRoleDto>(x)).ToList();
         }
     }
 }
