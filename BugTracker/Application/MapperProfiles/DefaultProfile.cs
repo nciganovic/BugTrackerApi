@@ -29,7 +29,7 @@ namespace Application.MapperProfiles
             CreateMap<AddProjectDto, Project>();
             CreateMap<ChangeProjectDto, Project>();
 
-            CreateMap<Ticket, GetTicketDto>().ReverseMap();
+            CreateMap<Ticket, GetTicketDto>();
             CreateMap<AddTicketDto, Ticket>();
             CreateMap<ChangeTicketDto, Ticket>();
 
