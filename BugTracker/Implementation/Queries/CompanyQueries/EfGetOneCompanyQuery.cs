@@ -27,14 +27,14 @@ namespace Implementation.Queries.CompanyQueries
 
         public string Name => "Get one company";
 
-        public CompanyDto Execute(int request)
+        public GetCompanyDto Execute(int request)
         {
             var company = context.Companies.Find(request);
 
             if (company == null)
                 throw new EntityNotFoundException();
 
-            return _mapper.Map<Company, CompanyDto>(company);
+            return _mapper.Map<Company, GetCompanyDto>(company);
         }
     }
 }

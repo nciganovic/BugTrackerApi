@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.Queries.CompanyQueries
 {
-    public interface IGetCompaniesQuery : IQuery<CompanySearch, IEnumerable<CompanyDto>>
+    public interface IGetCompaniesQuery : IQuery<CompanySearch, IEnumerable<GetCompanyDto>>
     {
     }
 }

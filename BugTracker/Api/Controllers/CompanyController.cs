@@ -35,7 +35,7 @@ namespace Api.Controllers
         [HttpGet]
         public IActionResult Get([FromQuery] CompanySearch search, [FromServices] IGetCompaniesQuery query)
         {
-            IEnumerable<CompanyDto> companies = _useCaseExecutor.ExecuteQuery(query, search);
+            IEnumerable<GetCompanyDto> companies = _useCaseExecutor.ExecuteQuery(query, search);
             return Ok(companies);
         }
 
@@ -43,7 +43,7 @@ namespace Api.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id, [FromServices] IGetOneCompanyQuery query)
         {
-            CompanyDto company = _useCaseExecutor.ExecuteQuery(query, id);
+            GetCompanyDto company = _useCaseExecutor.ExecuteQuery(query, id);
             return Ok(company);
         }
 

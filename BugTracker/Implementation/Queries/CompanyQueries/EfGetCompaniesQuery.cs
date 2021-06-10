@@ -28,7 +28,7 @@ namespace Implementation.Queries.CompanyQueries
 
         public string Name => "Get companies";
 
-        public IEnumerable<CompanyDto> Execute(CompanySearch request)
+        public IEnumerable<GetCompanyDto> Execute(CompanySearch request)
         {
             var query = context.Companies.AsQueryable();
 
@@ -49,7 +49,7 @@ namespace Implementation.Queries.CompanyQueries
 
             query = query.SkipItems(request.Page, request.ItemsPerPage);
 
-            return query.Select(_mapper.Map<Company, CompanyDto>).ToList();
+            return query.Select(_mapper.Map<Company, GetCompanyDto>).ToList();
         }
     }
 }
