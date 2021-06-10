@@ -31,7 +31,7 @@ namespace Api.Controllers
         public IActionResult Get([FromBody] CompanyApplicationUserSearch search
             , [FromServices] IGetOneCompanyApplicationUserRoleQuery query)
         {
-            CompanyApplicationUserDto companyApplicationUserDto = _useCaseExecutor.ExecuteQuery(query, search);
+            GetCompanyApplicationUserRoleDto companyApplicationUserDto = _useCaseExecutor.ExecuteQuery(query, search);
             return Ok(companyApplicationUserDto);
         }
 

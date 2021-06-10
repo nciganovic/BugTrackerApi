@@ -37,7 +37,7 @@ namespace Application.MapperProfiles
             CreateMap<AddCommentDto, Comment>();
             CreateMap<ChangeCommentDto, Comment>();
             
-            CreateMap<CompanyApplicationUserRole, CompanyApplicationUserDto>().ReverseMap();
+            CreateMap<CompanyApplicationUserRole, GetCompanyApplicationUserRoleDto>();
             CreateMap<AddCompanyApplicationUserRoleDto, CompanyApplicationUserRole>();
             CreateMap<ChangeCompanyApplicationUserRoleDto, CompanyApplicationUserRole>();
 
