@@ -28,6 +28,9 @@ namespace Domain
 
         public string Description { get; set; }
 
+        public int ProjectId { get; set; }
+        public virtual Project Project { get; set; }
+
         public ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
 
         public ICollection<Ticket> TicketHistories { get; set; } = new HashSet<Ticket>();

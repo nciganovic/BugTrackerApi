@@ -14,5 +14,6 @@ namespace Domain
         public string Name { get; set; }
         public string Description { get; set; }
         public ICollection<ProjectApplicationUser> ProjectApplicationUsers { get; set; } = new HashSet<ProjectApplicationUser>();
+        public ICollection<Ticket> Tickets { get; set; } = new HashSet<Ticket>();
     }
 }

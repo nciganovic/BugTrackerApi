@@ -39,6 +39,10 @@ namespace DataAccess.Configurations
                 .IsRequired(false)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            builder.HasOne(t => t.Project)
+                .WithMany(p => p.Tickets)
+                .OnDelete(DeleteBehavior.Cascade);
+
           /*  builder.HasOne(t => t.TicketType)
                 .WithMany(tt => tt.Tickets)
                 .HasForeignKey(t => t.TicketTypeId);
