@@ -19,11 +19,23 @@ namespace Implementation.Validators
 
             RuleFor(x => x.Name)
                 .NotEmpty()
-                .MaximumLength(30);
+                .MaximumLength(30)
+                .Must(x => !IsNameAlreadyTaken(x))
+                .WithMessage("Project with name = '{PropertyValue}' already exists");
 
             RuleFor(x => x.Description)
                 .NotEmpty()
                 .MaximumLength(150);
+        }
+
+        private bool IsNameAlreadyTaken(string name)
+        {
+            if (_context.Projects.FirstOrDefault(x => x.Name == name) != null)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
