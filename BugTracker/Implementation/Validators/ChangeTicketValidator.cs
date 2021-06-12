@@ -49,6 +49,10 @@ namespace Implementation.Validators
             RuleFor(x => x.Description)
                 .NotEmpty()
                 .MaximumLength(150);
+
+            RuleFor(x => x.ProjectId)
+                .Must(x => ProjectExists(x))
+                .WithMessage("Project with id = '{PropertyValue}' doesn't exists");
         }
 
         private bool TicketExists(int? ticketId)
@@ -69,6 +73,16 @@ namespace Implementation.Validators
         private bool ApplicationUserExists(int ticketId)
         {
             if (_context.ApplicaitonUsers.Find(ticketId) != null)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool ProjectExists(int projectId)
+        {
+            if (_context.Projects.Find(projectId) != null)
             {
                 return true;
             }
