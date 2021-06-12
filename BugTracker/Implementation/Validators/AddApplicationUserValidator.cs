@@ -36,12 +36,26 @@ namespace Implementation.Validators
             RuleFor(x => x.Email)
                 .Must(x => !IsEmailAlreadyTaken(x))
                 .WithMessage("Email {PropertyValue} is already taken");
-        
+
+            RuleFor(x => x.RoleId)
+                .Must(x => RoleExists(x))
+                .WithMessage("Role with id = '{PropertyValue}' doesn't exist");
+
         }
 
         private bool IsEmailAlreadyTaken(string email)
         {
             if (_context.ApplicaitonUsers.Any(x => x.Email == email))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool RoleExists(int roleId)
+        {
+            if (_context.Roles.FirstOrDefault(x => x.Id == roleId) != null)
             {
                 return true;
             }
