@@ -1,7 +1,7 @@
 ﻿using Application;
-using Application.Commands.ApplicationUserCaseCommands;
+using Application.Commands.RoleCaseCommands;
 using Application.Dto;
-using Application.Queries.ApplicationUserCaseQueries;
+using Application.Queries.RoleCaseQueries;
 using AutoMapper;
 using Domain;
 using Implementation.ResponseMessages;
@@ -18,43 +18,43 @@ namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ApplicationUserCaseController : ControllerBase
+    public class RoleCaseController : ControllerBase
     {
         private readonly UseCaseExecutor _useCaseExecutor;
         private readonly IMapper _mapper;
 
-        public ApplicationUserCaseController(UseCaseExecutor useCaseExecutor, IMapper mapper)
+        public RoleCaseController(UseCaseExecutor useCaseExecutor, IMapper mapper)
         {
             _useCaseExecutor = useCaseExecutor;
             _mapper = mapper;
         }
 
-        // GET: api/<ApplicationUserCaseController>
+        // GET: api/<RoleCaseController>
         [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/<ApplicationUserCaseController>/5
+        // GET api/<RoleCaseController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id, [FromServices] IGetCasesByApplicationUserIdQuery query)
+        public IActionResult Get(int id, [FromServices] IGetCasesByRoleIdQuery query)
         {
             IEnumerable<int> useCaseIds = _useCaseExecutor.ExecuteQuery(query, id);
             return Ok(useCaseIds);
         }
 
-        // POST api/<ApplicationUserCaseController>
+        // POST api/<RoleCaseController>
         [HttpPost]
-        public IActionResult Post([FromBody] AddApplicationUserCaseDto dto
-            , [FromServices] IAddApplicationUserCaseCommand command
-            , [FromServices] AddApplicationUserCaseValidator validator)
+        public IActionResult Post([FromBody] AddRoleCaseDto dto
+            , [FromServices] IAddRoleCaseCommand command
+            , [FromServices] AddRoleCaseValidator validator)
         {
             var result = validator.Validate(dto);
             
             if (result.IsValid) 
             {
-                ApplicationUserCase applicationUserCase = _mapper.Map<ApplicationUserCase>(dto);
+                RoleUserCase applicationUserCase = _mapper.Map<RoleUserCase>(dto);
                 _useCaseExecutor.ExecuteCommand(command, applicationUserCase);
                 return Ok();
             }
@@ -62,25 +62,25 @@ namespace Api.Controllers
             return UnprocessableEntity(UnprocessableEntityResponse.Message(result.Errors));
         }
 
-        // PUT api/<ApplicationUserCaseController>/5
+        // PUT api/<RoleCaseController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<ApplicationUserCaseController>/5
+        // DELETE api/<RoleCaseController>/5
         [HttpDelete]
-        public IActionResult Delete([FromBody] RemoveApplicationUserCaseDto dto
-            , [FromServices] RemoveApplicationUserCaseValidator validator
-            , [FromServices] IGetOneApplicationUserCaseQuery query
-            , [FromServices] IRemoveApplicationUserCaseCommand command)
+        public IActionResult Delete([FromBody] RemoveRoleCaseDto dto
+            , [FromServices] RemoveRoleCaseValidator validator
+            , [FromServices] IGetOneRoleCaseQuery query
+            , [FromServices] IRemoveRoleCaseCommand command)
         {
             var result = validator.Validate(dto);
 
             if (result.IsValid) 
             {
-                ApplicationUserCase applicationUserCase = _useCaseExecutor.ExecuteQuery(query, dto);
-                _useCaseExecutor.ExecuteCommand(command, applicationUserCase);
+                RoleUserCase roleCase = _useCaseExecutor.ExecuteQuery(query, dto);
+                _useCaseExecutor.ExecuteCommand(command, roleCase);
                 return Ok();
             }
 

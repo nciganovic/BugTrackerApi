@@ -17,6 +17,10 @@ namespace DataAccess.Configurations
                 .HasMaxLength(30)
                 .IsRequired();
 
+            builder.HasMany(r => r.RoleUserCases)
+                .WithOne(uc => uc.Role)
+                .OnDelete(DeleteBehavior.Cascade);
+
             builder.HasIndex(r => r.Name).IsUnique();
 
             builder.Property(r => r.CreatedAt).HasDefaultValueSql("GETDATE()");

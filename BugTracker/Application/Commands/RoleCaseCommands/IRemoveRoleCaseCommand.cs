@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Commands.ApplicationUserCaseCommands
+namespace Application.Commands.RoleCaseCommands
 {
-    public interface IRemoveApplicationUserCaseCommand : ICommand<ApplicationUserCase>
+    public interface IRemoveRoleCaseCommand : ICommand<RoleUserCase>
     {
 
     }

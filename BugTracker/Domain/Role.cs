@@ -11,5 +11,6 @@ namespace Domain
         public int Id { get; set; }
         public string Name { get; set; } //Admin, ProjectManager, Developer, Submitter
         public ICollection<ApplicationUser> ApplicationUsers { get; set; } = new HashSet<ApplicationUser>();
-    }
+        public ICollection<RoleUserCase> RoleUserCases { get; set; } = new HashSet<RoleUserCase>();
+     }
 }

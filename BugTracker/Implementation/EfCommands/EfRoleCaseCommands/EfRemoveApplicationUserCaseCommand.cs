@@ -1,4 +1,4 @@
-﻿using Application.Commands.ApplicationUserCaseCommands;
+﻿using Application.Commands.RoleCaseCommands;
 using DataAccess;
 using Domain;
 using System;
@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Implementation.EfCommands.EfApplicationUserCaseCommands
+namespace Implementation.EfCommands.EfRoleCaseCommands
 {
-    public class EfRemoveApplicationUserCaseCommand : IRemoveApplicationUserCaseCommand
+    public class EfRemoveApplicationUserCaseCommand : IRemoveRoleCaseCommand
     {
         private readonly BugTrackerContext _context;
 
@@ -22,7 +22,7 @@ namespace Implementation.EfCommands.EfApplicationUserCaseCommands
 
         public string Name => "Remove applicationUser case command";
 
-        public void Execute(ApplicationUserCase request)
+        public void Execute(RoleUserCase request)
         {
             _context.Remove(request);
             _context.SaveChanges();

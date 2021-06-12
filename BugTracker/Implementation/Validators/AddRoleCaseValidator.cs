@@ -9,20 +9,20 @@ using FluentValidation;
 
 namespace Implementation.Validators
 {
-    public class AddApplicationUserCaseValidator : AbstractValidator<AddApplicationUserCaseDto>
+    public class AddRoleCaseValidator : AbstractValidator<AddRoleCaseDto>
     {
         private readonly BugTrackerContext _context;
 
-        public AddApplicationUserCaseValidator(BugTrackerContext context)
+        public AddRoleCaseValidator(BugTrackerContext context)
         {
             _context = context;
 
-            RuleFor(x => x.ApplicationUserId)
+            RuleFor(x => x.RoleId)
                 .NotNull()
                 .DependentRules(() =>
                 {
-                    RuleFor(x => x.ApplicationUserId)
-                        .Must(x => ApplicationUserExists((int)x))
+                    RuleFor(x => x.RoleId)
+                        .Must(x => RoleExists((int)x))
                         .WithMessage("ApplicationUser with id = '{PropertyValue}' doesn't exist.")
                         .DependentRules(() => 
                         {
@@ -32,7 +32,7 @@ namespace Implementation.Validators
                                 {
                                     RuleFor(x => x.UseCaseId)
                                         .NotNull()
-                                        .Must((dto, caseId) => !ApplicationUserCaseExists((int)dto.ApplicationUserId, (int)dto.UseCaseId))
+                                        .Must((dto, caseId) => !RoleCaseExists((int)dto.RoleId, (int)dto.UseCaseId))
                                         .WithMessage("Entity already exists.");
                                 });
                         });
@@ -41,9 +41,9 @@ namespace Implementation.Validators
                 
         }
 
-        private bool ApplicationUserExists(int id) 
+        private bool RoleExists(int id) 
         {
-            if (_context.ApplicaitonUsers.Find(id) != null) 
+            if (_context.Roles.Find(id) != null) 
             {
                 return true;            
             }
@@ -51,10 +51,10 @@ namespace Implementation.Validators
             return false;
         }
 
-        private bool ApplicationUserCaseExists(int id, int caseId)
+        private bool RoleCaseExists(int id, int caseId)
         {
-            if (_context.ApplicationUserCases
-                .FirstOrDefault(x => x.ApplicationUserId == id 
+            if (_context.RoleCases
+                .FirstOrDefault(x => x.Id == id 
                 && x.UseCaseId == caseId) != null)
             {
                 return true;

@@ -1,4 +1,4 @@
-﻿using Application.Queries.ApplicationUserCaseQueries;
+﻿using Application.Queries.RoleCaseQueries;
 using DataAccess;
 using System;
 using System.Collections.Generic;
@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Implementation.Queries.ApplicationUserCaseQueries
+namespace Implementation.Queries.RoleCaseQueries
 {
-    public class EfGetCasesByApplicationUserIdQuery : IGetCasesByApplicationUserIdQuery
+    public class EfGetCasesByApplicationUserIdQuery : IGetCasesByRoleIdQuery
     {
         private readonly BugTrackerContext _bugTrackerContext;
 
@@ -23,9 +23,9 @@ namespace Implementation.Queries.ApplicationUserCaseQueries
 
         public IEnumerable<int> Execute(int search)
         {
-            var query = _bugTrackerContext.ApplicationUserCases.AsQueryable();
+            var query = _bugTrackerContext.RoleCases.AsQueryable();
 
-            query = query.Where(x => x.ApplicationUserId == search);
+            query = query.Where(x => x.RoleId == search);
 
             return query.Select(x => x.UseCaseId).ToList();
         }

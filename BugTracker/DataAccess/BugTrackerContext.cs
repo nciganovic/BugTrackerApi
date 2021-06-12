@@ -17,7 +17,7 @@ namespace DataAccess
         public DbSet<ProjectApplicationUser> ProjectApplicationUsers { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Comment> Comments { get; set; }
-        public DbSet<ApplicationUserCase> ApplicationUserCases { get; set; }
+        public DbSet<RoleUserCase> RoleCases { get; set; }
         public DbSet<UseCaseLog> UseCaseLogs { get; set; }
         public DbSet<Attachment> Attachments { get; set; }
 

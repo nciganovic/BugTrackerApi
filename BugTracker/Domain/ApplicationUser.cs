@@ -22,6 +22,6 @@ namespace Domain
         public ICollection<Ticket> IssuerTickets { get; set; } = new HashSet<Ticket>();
         public ICollection<Ticket> DeveloperTickets { get; set; } = new HashSet<Ticket>();
         public ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
-        public ICollection<ApplicationUserCase> ApplicationUserCases { get; set; } = new HashSet<ApplicationUserCase>();
+        public ICollection<RoleUserCase> RoleCases { get; set; } = new HashSet<RoleUserCase>();
     }
 }

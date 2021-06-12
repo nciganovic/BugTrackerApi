@@ -5,33 +5,33 @@ using System.Text;
 using System.Threading.Tasks;
 using Application;
 using Application.Dto;
-using Application.Queries.ApplicationUserCaseQueries;
+using Application.Queries.RoleCaseQueries;
 using DataAccess;
 using FluentValidation;
 
 namespace Implementation.Validators
 {
-    public class RemoveApplicationUserCaseValidator : AbstractValidator<RemoveApplicationUserCaseDto>
+    public class RemoveRoleCaseValidator : AbstractValidator<RemoveRoleCaseDto>
     {
         private readonly BugTrackerContext _context;
         private readonly UseCaseExecutor _useCaseExector;
-        private readonly IGetOneApplicationUserCaseQuery _query;
+        private readonly IGetOneRoleCaseQuery _query;
 
-        public RemoveApplicationUserCaseValidator(BugTrackerContext context
+        public RemoveRoleCaseValidator(BugTrackerContext context
             , UseCaseExecutor useCaseExector
-            , IGetOneApplicationUserCaseQuery query)
+            , IGetOneRoleCaseQuery query)
         {
             _context = context;
             _useCaseExector = useCaseExector;
             _query = query;
 
-            RuleFor(x => x.ApplicationUserId)
+            RuleFor(x => x.RoleId)
                 .Must((dto, userId) => ApplicationUserCaseExists(dto))
                 .WithMessage("Entity with given ApplicationUserId and CaseId doesn't exist");
           
         }
 
-        private bool ApplicationUserCaseExists(RemoveApplicationUserCaseDto dto) 
+        private bool ApplicationUserCaseExists(RemoveRoleCaseDto dto) 
         {
             if (_useCaseExector.ExecuteQuery(_query, dto) != null) 
             {

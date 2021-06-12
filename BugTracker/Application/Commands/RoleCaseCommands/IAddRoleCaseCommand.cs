@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Commands.ApplicationUserCaseCommands
+namespace Application.Commands.RoleCaseCommands
 {
-    public interface IAddApplicationUserCaseCommand : ICommand<ApplicationUserCase>
+    public interface IAddRoleCaseCommand : ICommand<RoleUserCase>
     {
     }
 }

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class ApplicationUserCase : BaseEntity
+    public class RoleUserCase : BaseEntity
     {
         public int Id { get; set; }
-        public int ApplicationUserId { get; set; }
+        public int RoleId { get; set; }
         public int UseCaseId { get; set; }
 
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual Role Role { get; set; }
     }
 }

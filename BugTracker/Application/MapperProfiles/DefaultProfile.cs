@@ -36,7 +36,7 @@ namespace Application.MapperProfiles
             CreateMap<ProjectApplicationUser, GetProjectApplicationUserDto>();
             CreateMap<AddProjectApplicationUserDto, ProjectApplicationUser>();
 
-            CreateMap<AddApplicationUserCaseDto, ApplicationUserCase>();
+            CreateMap<AddRoleCaseDto, RoleUserCase>();
 
             CreateMap<AddAttachmentDto, Attachment>();
             CreateMap<ChangeAttachmentDto, Attachment>();

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Application.Dto
 {
-    public class RemoveApplicationUserCaseDto
+    public class RemoveRoleCaseDto
     {
-        public int ApplicationUserId { get; set; }
+        public int RoleId { get; set; }
         public int UseCaseId { get; set; }
     }
 }

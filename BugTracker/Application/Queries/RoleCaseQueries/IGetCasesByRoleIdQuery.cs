@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Queries.ApplicationUserCaseQueries
+namespace Application.Queries.RoleCaseQueries
 {
-    public interface IGetCasesByApplicationUserIdQuery : IQuery<int, IEnumerable<int>>
+    public interface IGetCasesByRoleIdQuery : IQuery<int, IEnumerable<int>>
     {
 
     }

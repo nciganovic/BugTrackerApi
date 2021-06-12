@@ -1,5 +1,5 @@
 ﻿using Application.Dto;
-using Application.Queries.ApplicationUserCaseQueries;
+using Application.Queries.RoleCaseQueries;
 using DataAccess;
 using Domain;
 using System;
@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Implementation.Queries.ApplicationUserCaseQueries
+namespace Implementation.Queries.RoleCaseQueries
 {
-    public class EfGetOneApplicationUserCaseQuery : IGetOneApplicationUserCaseQuery
+    public class EfGetOneApplicationUserCaseQuery : IGetOneRoleCaseQuery
     {
         private readonly BugTrackerContext _context;
 
@@ -23,10 +23,10 @@ namespace Implementation.Queries.ApplicationUserCaseQueries
 
         public string Name => "Get one applicationUser case query";
 
-        public ApplicationUserCase Execute(RemoveApplicationUserCaseDto search)
+        public RoleUserCase Execute(RemoveRoleCaseDto search)
         {
-            var item = _context.ApplicationUserCases
-                .FirstOrDefault(x => x.ApplicationUserId == search.ApplicationUserId
+            var item = _context.RoleCases
+                .FirstOrDefault(x => x.RoleId == search.RoleId
                 && x.UseCaseId == search.UseCaseId);
 
             return item;

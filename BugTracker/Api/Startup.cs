@@ -49,10 +49,10 @@ using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Application.Queries.ApplicationUserCaseQueries;
-using Implementation.Queries.ApplicationUserCaseQueries;
-using Application.Commands.ApplicationUserCaseCommands;
-using Implementation.EfCommands.EfApplicationUserCaseCommands;
+using Application.Queries.RoleCaseQueries;
+using Implementation.Queries.RoleCaseQueries;
+using Application.Commands.RoleCaseCommands;
+using Implementation.EfCommands.EfRoleCaseCommands;
 using Application.Settings;
 using Application.Email;
 using Implementation.Email;
@@ -124,10 +124,10 @@ namespace Api
             services.AddTransient<IAddProjectApplicationUserCommand, EfAddProjectApplicationUserCommand>();
             services.AddTransient<IGetApplicationUsersForProjectQuery, EfGetApplicationUsersForProjectQuery>();
 
-            services.AddTransient<IGetCasesByApplicationUserIdQuery, EfGetCasesByApplicationUserIdQuery>();
-            services.AddTransient<IAddApplicationUserCaseCommand, EfAddApplicationUserCaseCommand>();
-            services.AddTransient<IGetOneApplicationUserCaseQuery, EfGetOneApplicationUserCaseQuery>();
-            services.AddTransient<IRemoveApplicationUserCaseCommand, EfRemoveApplicationUserCaseCommand>();
+            services.AddTransient<IGetCasesByRoleIdQuery, EfGetCasesByApplicationUserIdQuery>();
+            services.AddTransient<IAddRoleCaseCommand, EfAddApplicationUserCaseCommand>();
+            services.AddTransient<IGetOneRoleCaseQuery, EfGetOneApplicationUserCaseQuery>();
+            services.AddTransient<IRemoveRoleCaseCommand, EfRemoveApplicationUserCaseCommand>();
 
             services.AddTransient<IGetUseCaseLogsQuery, EfGetUseCaseLogsQuery>();
 
@@ -174,8 +174,8 @@ namespace Api
             services.AddTransient<ChangeRoleValidator>();
             services.AddTransient<AddTicketValidator>();
             services.AddTransient<ChangeTicketValidator>();
-            services.AddTransient<AddApplicationUserCaseValidator>();
-            services.AddTransient<RemoveApplicationUserCaseValidator>();
+            services.AddTransient<AddRoleCaseValidator>();
+            services.AddTransient<RemoveRoleCaseValidator>();
             services.AddTransient<AddAttachmentValidator>();
             services.AddTransient<ChangeAttachmentValidator>();
 

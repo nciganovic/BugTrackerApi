@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Queries.ApplicationUserCaseQueries
+namespace Application.Queries.RoleCaseQueries
 {
-    public interface IGetOneApplicationUserCaseQuery : IQuery<RemoveApplicationUserCaseDto, ApplicationUserCase>
+    public interface IGetOneRoleCaseQuery : IQuery<RemoveRoleCaseDto, RoleUserCase>
     {
     }
 }

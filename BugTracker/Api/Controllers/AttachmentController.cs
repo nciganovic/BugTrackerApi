@@ -19,7 +19,7 @@ using Application.Queries.AttachmentQueries;
 
 namespace Api.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AttachmentController : ControllerBase
