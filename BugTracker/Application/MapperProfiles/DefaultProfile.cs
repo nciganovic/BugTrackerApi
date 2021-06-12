@@ -21,10 +21,6 @@ namespace Application.MapperProfiles
             CreateMap<AddApplicationUserDto, ApplicationUser>();
             CreateMap<ChangeApplicationUserDto, ApplicationUser>();
 
-            CreateMap<Company, GetCompanyDto>();
-            CreateMap<AddCompanyDto, Company>();
-            CreateMap<ChangeCompanyDto, Company>();
-
             CreateMap<Project, GetProjectDto>();
             CreateMap<AddProjectDto, Project>();
             CreateMap<ChangeProjectDto, Project>();
@@ -36,10 +32,6 @@ namespace Application.MapperProfiles
             CreateMap<Comment, GetCommentDto>();
             CreateMap<AddCommentDto, Comment>();
             CreateMap<ChangeCommentDto, Comment>();
-            
-            CreateMap<CompanyApplicationUserRole, GetCompanyApplicationUserRoleDto>();
-            CreateMap<AddCompanyApplicationUserRoleDto, CompanyApplicationUserRole>();
-            CreateMap<ChangeCompanyApplicationUserRoleDto, CompanyApplicationUserRole>();
 
             CreateMap<ProjectApplicationUser, GetProjectApplicationUserDto>();
             CreateMap<AddProjectApplicationUserDto, ProjectApplicationUser>();

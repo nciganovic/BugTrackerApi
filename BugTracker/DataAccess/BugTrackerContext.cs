@@ -14,8 +14,6 @@ namespace DataAccess
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<ApplicationUser> ApplicaitonUsers { get; set; }
         public DbSet<Role> Roles { get; set; }
-        public DbSet<Company> Companies { get; set; }
-        public DbSet<CompanyApplicationUserRole> CompanyApplicationUserRoles { get; set; }
         public DbSet<ProjectApplicationUser> ProjectApplicationUsers { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Comment> Comments { get; set; }
@@ -32,8 +30,6 @@ namespace DataAccess
         {
             modelBuilder.ApplyConfiguration(new ApplicationUserConfiguration());
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
-            modelBuilder.ApplyConfiguration(new CompanyConfiguration());
-            modelBuilder.ApplyConfiguration(new CompanyApplicationUserConfiguration());
             modelBuilder.ApplyConfiguration(new ProjectConfiguration());
             modelBuilder.ApplyConfiguration(new ProjectApplicationUserConfiguration());
             modelBuilder.ApplyConfiguration(new TicketConfiguration());

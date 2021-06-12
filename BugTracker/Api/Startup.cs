@@ -16,33 +16,25 @@ using AutoMapper;
 using Domain;
 using Application.MapperProfiles;
 using Application.Commands.Roles;
-using Application.Commands.CompanyCommands;
 using Application.Commands.ProjectCommands;
 using Application.Commands.ApplicationUserCommands;
 using Application.Commands.TicketCommands;
 using Application.Commands.CommentCommands;
-using Application.Commands.CompanyApplicationUserRoleCommands;
 using Application.Commands.ProjectApplicationUserCommands;
 using Implementation.EfCommands.EfApplicationUserCommands;
 using Implementation.EfCommands.EfRoleCommands;
-using Implementation.EfCommands.EfCompanyCommands;
 using Implementation.EfCommands.EfProjectCommands;
 using Implementation.EfCommands.EfTicketCommands;
 using Implementation.EfCommands.EfCommentCommands;
-using Implementation.EfCommands.EfCompanyApplicationUserRoleCommands;
 using Implementation.EfCommands.EfProjectApplicationUserCommands;
 using Application.Queries.CommentQueries;
 using Application.Queries.ApplicationUserQueries;
-using Application.Queries.CompanyApplicationUserQueries;
-using Application.Queries.CompanyQueries;
 using Application.Queries.ProjectApplicationUserQueries;
 using Application.Queries.ProjectQueries;
 using Application.Queries.RoleQueries;
 using Application.Queries.TicketQueries;
 using Implementation.Queries.ApplicationUserQueries;
 using Implementation.Queries.CommentQueries;
-using Implementation.Queries.CompanyApplicationUserQueries;
-using Implementation.Queries.CompanyQueries;
 using Implementation.Queries.ProjectApplicationUserQueries;
 using Implementation.Queries.ProjectCommandsQueries;
 using Implementation.Queries.RoleQueries;
@@ -104,12 +96,6 @@ namespace Api
             services.AddTransient<IChangeRoleCommand, EfChangeRoleCommand>();
             services.AddTransient<IRemoveRoleCommand, EfRemoveRoleCommand>();
 
-            services.AddTransient<IGetCompaniesQuery, EfGetCompaniesQuery>();
-            services.AddTransient<IGetOneCompanyQuery, EfGetOneCompanyQuery>();
-            services.AddTransient<IAddCompanyCommand, EfAddCompanyCommand>();
-            services.AddTransient<IChangeCompanyCommand, EfChangeCompanyCommand>();
-            services.AddTransient<IRemoveCompanyCommand, EfRemoveCompanyCommand>();
-
             services.AddTransient<IGetProjectsQuery, EfGetProjectsQuery>();
             services.AddTransient<IGetOneProjectQuery, EfGetOneProjectQuery>();
             services.AddTransient<IAddProjectCommand, EfAddProjectCommand>();
@@ -134,10 +120,6 @@ namespace Api
             services.AddTransient<IGetOneCommentQuery, EfGetOneCommentQuery>();
             services.AddTransient<IChangeCommentCommand, EfChangeCommentCommand>();
             services.AddTransient<IRemoveCommentCommand, EfRemoveCommentCommand>();
-
-            services.AddTransient<IAddCompanyApplicationUserRoleCommand, EfAddCompanyApplicationUserRoleCommand>();
-            services.AddTransient<IGetOneCompanyApplicationUserRoleQuery, EfGetOneCompanyApplicationUserRoleQuery>();
-            services.AddTransient<IChangeCompanyApplicationUserRoleCommand, EfChangeCompanyApplicationUserRoleCommand>();
 
             services.AddTransient<IAddProjectApplicationUserCommand, EfAddProjectApplicationUserCommand>();
             services.AddTransient<IGetApplicationUsersForProjectQuery, EfGetApplicationUsersForProjectQuery>();
@@ -185,10 +167,6 @@ namespace Api
             services.AddTransient<LoginValidator>();
             services.AddTransient<AddCommentValidator>();
             services.AddTransient<ChangeCommentValidator>();
-            services.AddTransient<AddCompanyApplicationUserRoleValidator>();
-            services.AddTransient<ChangeCompanyApplicationUserRoleValidator>();
-            services.AddTransient<AddCompanyValidator>();
-            services.AddTransient<ChangeCompanyValidator>();
             services.AddTransient<AddProjectApplicationUserValidator>();
             services.AddTransient<AddProjectValidator>();
             services.AddTransient<ChangeProjectValidator>();

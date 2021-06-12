@@ -8,7 +8,6 @@ namespace Application.Dto
 {
     public class AddProjectDto
     {
-        public int CompanyId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
     }
