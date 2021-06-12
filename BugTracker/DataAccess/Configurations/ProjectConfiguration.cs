@@ -21,10 +21,8 @@ namespace DataAccess.Configurations
                 .HasMaxLength(150)
                 .IsRequired();
 
-            builder.HasIndex(x => new { x.Name, x.CompanyId })
+            builder.HasIndex(x => x.Name)
                 .IsUnique();
-
-            builder.HasOne(p => p.Company).WithMany(c => c.Projects);
         }
     }
 }

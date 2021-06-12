@@ -21,6 +21,9 @@ namespace DataAccess.Configurations
                 .WithMany(t => t.Attachments)
                 .HasForeignKey(x => x.TicketId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasIndex(x => x.Name)
+                .IsUnique();
         }
     }
 }
