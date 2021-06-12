@@ -34,6 +34,9 @@ namespace DataAccess.Configurations
 
             builder.Property(au => au.CreatedAt).HasDefaultValueSql("GETDATE()");
 
+            builder.HasOne(x => x.Role)
+                .WithMany(r => r.ApplicationUsers)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
