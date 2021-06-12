@@ -27,13 +27,13 @@ namespace Api.Core
 
         public string MakeToken(string email) 
         {
-            var user = _context.ApplicaitonUsers.Include(au => au.RoleCases)
+            var user = _context.ApplicaitonUsers.Include(au => au.Role).ThenInclude(r => r.RoleUserCases)
                 .FirstOrDefault(x => x.Email == email);
 
             var actor = new JwtActor
             {
                 Id = user.Id,
-                AllowedUseCases = user.RoleCases.Select(x => x.UseCaseId),
+                AllowedUseCases = user.Role.RoleUserCases.Select(x => x.UseCaseId),
                 Identity = user.Email
             };
 
