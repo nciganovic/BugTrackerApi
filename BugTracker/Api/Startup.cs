@@ -63,6 +63,8 @@ using Implementation.EfCommands.EfAttachmentCommands;
 using Application.Queries.AttachmentQueries;
 using Implementation.Queries.AttachmentQueries;
 using Api.Middleware;
+using Application.Commands.AccountCommands;
+using Implementation.EfCommands.EfAccountCommands;
 
 namespace Api
 {
@@ -137,6 +139,8 @@ namespace Api
             services.AddTransient<IGetAttachmentsByTicketIdQuery, EfGetAttachmentsByTicketIdQuery>();
             services.AddTransient<IGetOneAttachmentQuery, EfGetOneAttachmentQuery>();
 
+            services.AddTransient<IRegisterCommand, EfRegisterCommand>();
+
             services.AddTransient<IEmailSender, SmtpEmailSender>();
 
             services.AddTransient<IApplicationActor, AdminFakeApiActor>();
@@ -178,6 +182,7 @@ namespace Api
             services.AddTransient<RemoveRoleCaseValidator>();
             services.AddTransient<AddAttachmentValidator>();
             services.AddTransient<ChangeAttachmentValidator>();
+            services.AddTransient<RegisterValidator>();
 
             services.AddTransient<JwtManager>();
 
