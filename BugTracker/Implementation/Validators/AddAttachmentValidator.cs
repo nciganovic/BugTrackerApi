@@ -22,10 +22,21 @@ namespace Implementation.Validators
                 .WithMessage("Ticket with id = '{PropertyValue}' doesn't exist'.");
 
             RuleFor(x => x.Name)
-                .NotEmpty();
+                .Must(x => !IsNameAlreadyTaken(x))
+                .WithMessage("Attachment with name = '{PropertyValue}' already exists");
 
             RuleFor(x => x.File)
                 .NotNull();
+        }
+
+        private bool IsNameAlreadyTaken(string name) 
+        {
+            if (_context.Attachments.FirstOrDefault(x => x.Name == name) != null)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         private bool TicketExists(int id) 

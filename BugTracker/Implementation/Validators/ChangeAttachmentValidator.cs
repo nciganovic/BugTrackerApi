@@ -22,6 +22,10 @@ namespace Implementation.Validators
                 .Must(x => AttachmentExists(x))
                 .WithMessage("Attachment with id = '{PropertyValue}' doesn't exist'.");
 
+            RuleFor(x => x.Name)
+                .Must((dto, x) => !IsNameAlreadyTaken(dto))
+                .WithMessage("Attachment with name = '{PropertyValue}' already exists");
+
             RuleFor(x => x.TicketId)
                 .Must(x => TicketExists(x))
                 .WithMessage("Ticket with id = '{PropertyValue}' doesn't exist'.");
@@ -30,6 +34,16 @@ namespace Implementation.Validators
         private bool TicketExists(int id)
         {
             if (_context.Tickets.Find(id) != null)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool IsNameAlreadyTaken(ChangeAttachmentDto dto)
+        {
+            if (_context.Attachments.FirstOrDefault(x => x.Name == dto.Name && x.Id != dto.Id) != null)
             {
                 return true;
             }
