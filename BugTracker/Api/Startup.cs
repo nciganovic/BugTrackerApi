@@ -138,6 +138,7 @@ namespace Api
             services.AddTransient<IRemoveAttachmentCommand, EfRemoveAttachmentCommand>();
             services.AddTransient<IGetAttachmentsByTicketIdQuery, EfGetAttachmentsByTicketIdQuery>();
             services.AddTransient<IGetOneAttachmentQuery, EfGetOneAttachmentQuery>();
+            services.AddTransient<IGetAttachmentsQuery, EfGetAttachmentsQuery>();
 
             services.AddTransient<IRegisterCommand, EfRegisterCommand>();
 

@@ -14,6 +14,7 @@ using AutoMapper;
 using Domain;
 using Microsoft.AspNetCore.Authorization;
 using Application.Queries.AttachmentQueries;
+using Application.Searches;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -33,7 +34,7 @@ namespace Api.Controllers
             _mapper = mapper;
         }
 
-        // GET: api/<AttachmentController>
+        // GET: api/<AttachmentController>/GetByTicketId/5
         [HttpGet("[action]/{id}")]
         public IActionResult GetByTicketId(int id, [FromServices] IGetAttachmentsByTicketIdQuery query)
         {
@@ -41,8 +42,17 @@ namespace Api.Controllers
             return Ok(items);
         }
 
+        // GET api/<AttachmentController>
+        [HttpGet]
+        public IActionResult Get([FromQuery] AttachmentSearch search
+            , [FromServices] IGetAttachmentsQuery query)
+        {
+            IEnumerable<GetAttachmentDto> items = _useCaseExecutor.ExecuteQuery(query, search);
+            return Ok(items);
+        }
+
         // GET api/<AttachmentController>/5
-        [HttpGet("[action]/{id}")]
+        [HttpGet("{id}")]
         public IActionResult Get(int id, [FromServices] IGetOneAttachmentQuery query)
         {
             GetAttachmentDto item = _useCaseExecutor.ExecuteQuery(query, id);
