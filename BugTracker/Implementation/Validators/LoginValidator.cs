@@ -1,4 +1,5 @@
 ﻿using Application.Dto;
+using Application.Hash;
 using DataAccess;
 using FluentValidation;
 using System;
@@ -20,10 +21,15 @@ namespace Implementation.Validators
             RuleFor(x => x.Email)
                .NotEmpty()
                .Must(x => UserExists(x))
-               .WithMessage("User with email = {PropertyValue} doesn't exist.");
-
-            RuleFor(x => x.Password)
-               .NotEmpty();
+               .WithMessage("User with email = {PropertyValue} doesn't exist.")
+               .DependentRules(() => 
+               {
+                   RuleFor(x => x.Password)
+                       .NotEmpty()
+                       .Must((dto, x) => CheckPassword(dto))
+                       .WithMessage("Password is invalid.");
+               });
+            
         }
 
         private bool UserExists(string email)
@@ -31,6 +37,20 @@ namespace Implementation.Validators
             if (_context.ApplicaitonUsers.Where(x => x.Email == email).FirstOrDefault() != null)
             {
                 return true;
+            }
+
+            return false;
+        }
+
+        private bool CheckPassword(LoginDto dto) {
+            var user = _context.ApplicaitonUsers.Where(x => x.Email == dto.Email).FirstOrDefault();
+
+            if (user != null) 
+            {
+                if (Password.VerifyPassword(dto.Password, user.Password, user.Salt))
+                {
+                    return true;
+                }
             }
 
             return false;
