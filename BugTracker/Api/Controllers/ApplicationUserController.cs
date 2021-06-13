@@ -50,6 +50,14 @@ namespace Api.Controllers
             return Ok(applicationUser);
         }
 
+        // GET api/<ApplicationUserController>/GetByEmail
+        [HttpGet("[action]")]
+        public IActionResult GetByEmail(string email, [FromServices] IGetApplicationUserByEmailQuery query)
+        {
+            GetApplicationUserDto applicationUser = _useCaseExecutor.ExecuteQuery(query, email);
+            return Ok(applicationUser);
+        }
+
         // POST api/<ApplicationUserController>
         [AllowAnonymous]
         [HttpPost]
