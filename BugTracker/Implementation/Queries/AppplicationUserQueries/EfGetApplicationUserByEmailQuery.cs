@@ -28,7 +28,7 @@ namespace Implementation.Queries.ApplicationUserQueries
 
         public GetApplicationUserDto Execute(string request)
         {
-            ApplicationUser user = context.ApplicaitonUsers.Where(x => x.Email == request).FirstOrDefault();
+            ApplicationUser user = context.ApplicaitonUsers.FirstOrDefault(x => x.Email == request && x.DeletedAt == null);
 
             GetApplicationUserDto applicationUserDto = _mapper.Map<GetApplicationUserDto>(user);
             return applicationUserDto;
