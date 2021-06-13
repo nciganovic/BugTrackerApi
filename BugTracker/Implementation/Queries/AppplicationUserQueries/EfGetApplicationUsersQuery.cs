@@ -31,13 +31,30 @@ namespace Implementation.Queries.ApplicationUserQueries
         {
             var query = context.ApplicaitonUsers.AsQueryable();
 
-            if (request.Keyword != null)
+            if (request.FirstNameKeyword != null)
             {
                 query = query
                     .Where(x => 
-                    x.FirstName.ToLower().Contains(request.Keyword.ToLower()) ||
-                 x.LastName.ToLower().Contains(request.Keyword.ToLower()) ||
-                 x.Email.ToLower().Contains(request.Keyword.ToLower()));
+                    x.FirstName.ToLower().Contains(request.FirstNameKeyword.ToLower()));
+            }
+
+            if (request.LastNameKeyword != null)
+            {
+                query = query
+                        .Where(x =>
+                        x.LastName.ToLower().Contains(request.LastNameKeyword.ToLower()));
+            }
+
+            if (request.EmailKeyword != null)
+            {
+                query = query
+                        .Where(x =>
+                        x.Email.ToLower().Contains(request.EmailKeyword.ToLower()));
+            }
+
+            if (request.RoleId != null)
+            {
+                query = query.Where(x => x.RoleId == request.RoleId);
             }
 
             if (request.OnlyActive.HasValue)
