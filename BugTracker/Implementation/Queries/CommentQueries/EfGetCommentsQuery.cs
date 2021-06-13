@@ -32,8 +32,18 @@ namespace Implementation.Queries.CommentQueries
         {
             var query = context.Comments.Include(x => x.ApplicationUser).AsQueryable();
 
-            if (request.Keyword != null) {
-                query = query.Where(x => x.Text.ToLower().Contains(request.Keyword.ToLower()));
+            if (request.TextKeyword != null) {
+                query = query.Where(x => x.Text.ToLower().Contains(request.TextKeyword.ToLower()));
+            }
+
+            if (request.ApplicationUserId != null)
+            {
+                query = query.Where(x => x.ApplicationUserId == request.ApplicationUserId);
+            }
+
+            if (request.TicketId != null)
+            {
+                query = query.Where(x => x.TicketId == request.TicketId);
             }
 
             if (request.OnlyActive != null) {

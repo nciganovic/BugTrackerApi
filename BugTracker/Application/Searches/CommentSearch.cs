@@ -8,7 +8,9 @@ namespace Application.Searches
 {
     public class CommentSearch
     {
-        public string Keyword { get; set; }
+        public string TextKeyword { get; set; }
+        public int? ApplicationUserId { get; set; }
+        public int? TicketId { get; set; }
         public bool? OnlyActive { get; set; }
         public int? Page { get; set; }
         public int? ItemsPerPage { get; set; }
