@@ -141,6 +141,7 @@ namespace Api
             services.AddTransient<IGetAttachmentsQuery, EfGetAttachmentsQuery>();
 
             services.AddTransient<IRegisterCommand, EfRegisterCommand>();
+            services.AddTransient<IChangeProfileCommand, EfChangeProfileCommand>();
 
             services.AddTransient<IEmailSender, SmtpEmailSender>();
 
@@ -184,6 +185,7 @@ namespace Api
             services.AddTransient<AddAttachmentValidator>();
             services.AddTransient<ChangeAttachmentValidator>();
             services.AddTransient<RegisterValidator>();
+            services.AddTransient<ChangeProfileValidator>();
 
             services.AddTransient<JwtManager>();
 

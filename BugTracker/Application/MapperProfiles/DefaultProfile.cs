@@ -21,6 +21,7 @@ namespace Application.MapperProfiles
             CreateMap<AddApplicationUserDto, ApplicationUser>();
             CreateMap<ChangeApplicationUserDto, ApplicationUser>();
             CreateMap<RegisterDto, ApplicationUser>();
+            CreateMap<ChangeProfileDto, ApplicationUser>();
 
             CreateMap<Project, GetProjectDto>();
             CreateMap<AddProjectDto, Project>();
