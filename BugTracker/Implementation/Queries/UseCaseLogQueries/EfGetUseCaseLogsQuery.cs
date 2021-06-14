@@ -39,17 +39,17 @@ namespace Implementation.Queries.UseCaseLogQueries
 
             if (search.UseCaseNameKeyword != null)
             {
-                query = query.Where(x => x.UseCaseName.Contains(search.UseCaseNameKeyword));
+                query = query.Where(x => x.UseCaseName.ToLower().Contains(search.UseCaseNameKeyword.ToLower()));
             }
 
             if (search.DataKeyword != null)
             {
-                query = query.Where(x => x.Data.Contains(search.DataKeyword));
+                query = query.Where(x => x.Data.ToLower().Contains(search.DataKeyword.ToLower()));
             }
 
             if (search.ActorKeyword != null)
             {
-                query = query.Where(x => x.Actor.Contains(search.ActorKeyword));
+                query = query.Where(x => x.Actor.ToLower().Contains(search.ActorKeyword.ToLower()));
             }
 
             return query.ToList();
