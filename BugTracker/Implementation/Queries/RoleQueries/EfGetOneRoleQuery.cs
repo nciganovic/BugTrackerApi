@@ -32,6 +32,11 @@ namespace Implementation.Queries.RoleQueries
         {
             var role = context.Roles.Find(request);
 
+            if (role.DeletedAt != null)
+            {
+                return null;
+            }
+
             return _mapper.Map<Role, GetRoleDto>(role);
         }
     }

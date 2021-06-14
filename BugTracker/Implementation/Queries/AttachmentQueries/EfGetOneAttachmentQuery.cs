@@ -29,6 +29,12 @@ namespace Implementation.Queries.AttachmentQueries
         public GetAttachmentDto Execute(int search)
         {
             Attachment item = _context.Attachments.Find(search);
+
+            if (item.DeletedAt != null)
+            {
+                return null;
+            }
+
             return _mapper.Map<GetAttachmentDto>(item);
         }
     }

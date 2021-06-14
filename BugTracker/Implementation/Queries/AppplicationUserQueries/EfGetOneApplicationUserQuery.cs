@@ -31,6 +31,11 @@ namespace Implementation.Queries.ApplicationUserQueries
         {
             ApplicationUser user = context.ApplicaitonUsers.Find(request);
 
+            if (user.DeletedAt != null) 
+            {
+                return null;
+            }
+
             return _mapper.Map<ApplicationUser, GetApplicationUserDto>(user);
         }
     }

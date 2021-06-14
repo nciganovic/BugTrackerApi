@@ -27,7 +27,7 @@ namespace Implementation.Queries.AttachmentQueries
 
         public IEnumerable<GetAttachmentDto> Execute(int search)
         {
-            var items = _context.Attachments.Where(x => x.TicketId == search);
+            var items = _context.Attachments.Where(x => x.TicketId == search && x.DeletedAt == null);
             return items.Select(x => _mapper.Map<GetAttachmentDto>(x)).ToList();
         }
     }

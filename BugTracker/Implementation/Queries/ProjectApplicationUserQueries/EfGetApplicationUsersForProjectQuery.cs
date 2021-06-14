@@ -9,6 +9,7 @@ using AutoMapper;
 using DataAccess;
 using Domain;
 using Implementation.EfCommands;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +48,7 @@ namespace Implementation.Queries.ProjectApplicationUserQueries
             }
 
             var query = context.ProjectApplicationUsers.AsQueryable();
-            query = query.Where(x => x.ProjectId == request);
+            query = query.Include(x => x.Project).Where(x => x.ProjectId == request && x.Project.DeletedAt == null);
             
             IEnumerable<GetProjectApplicationUserDto> projectApplicationUserDtos = query.Select(x => _mapper.Map<ProjectApplicationUser, GetProjectApplicationUserDto>(x));
             List<ApplicationUser> applicationUsers = new List<ApplicationUser>();

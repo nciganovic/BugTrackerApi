@@ -31,6 +31,10 @@ namespace Implementation.Queries.TicketCommandsQueries
         {
             Ticket item = context.Tickets.Find(request);
 
+            if (item.DeletedAt != null)
+            {
+                return null;
+            }
 
             return _mapper.Map<Ticket, GetTicketDto>(item);
         }

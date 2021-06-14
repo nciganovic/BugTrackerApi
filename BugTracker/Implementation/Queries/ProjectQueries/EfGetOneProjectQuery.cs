@@ -31,6 +31,10 @@ namespace Implementation.Queries.ProjectCommandsQueries
         {
             var project = context.Projects.Find(request);
 
+            if (project.DeletedAt != null)
+            {
+                return null;
+            }
 
             return _mapper.Map<Project, GetProjectDto>(project);
         }
