@@ -1,5 +1,6 @@
 ﻿using Application.Queries.RoleCaseQueries;
 using DataAccess;
+using Implementation.EfCommands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +9,12 @@ using System.Threading.Tasks;
 
 namespace Implementation.Queries.RoleCaseQueries
 {
-    public class EfGetCasesByApplicationUserIdQuery : IGetCasesByRoleIdQuery
+    public class EfGetCasesByApplicationUserIdQuery : BaseUseCase,  IGetCasesByRoleIdQuery
     {
-        private readonly BugTrackerContext _bugTrackerContext;
 
-        public EfGetCasesByApplicationUserIdQuery(BugTrackerContext bugTrackerContext)
+        public EfGetCasesByApplicationUserIdQuery(BugTrackerContext context) : base(context)
         {
-            _bugTrackerContext = bugTrackerContext;
+
         }
 
         public int Id => 37;
@@ -23,7 +23,7 @@ namespace Implementation.Queries.RoleCaseQueries
 
         public IEnumerable<int> Execute(int search)
         {
-            var query = _bugTrackerContext.RoleCases.AsQueryable();
+            var query = context.RoleCases.AsQueryable();
 
             query = query.Where(x => x.RoleId == search);
 

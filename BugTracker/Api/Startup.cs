@@ -125,6 +125,7 @@ namespace Api
 
             services.AddTransient<IAddProjectApplicationUserCommand, EfAddProjectApplicationUserCommand>();
             services.AddTransient<IGetApplicationUsersForProjectQuery, EfGetApplicationUsersForProjectQuery>();
+            services.AddTransient<IGetProjectsForApplicationUserQuery, EfGetProjectsForApplicationUserQuery>();
 
             services.AddTransient<IGetCasesByRoleIdQuery, EfGetCasesByApplicationUserIdQuery>();
             services.AddTransient<IAddRoleCaseCommand, EfAddApplicationUserCaseCommand>();

@@ -2,6 +2,7 @@
 using Application.Queries.RoleCaseQueries;
 using DataAccess;
 using Domain;
+using Implementation.EfCommands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,11 @@ using System.Threading.Tasks;
 
 namespace Implementation.Queries.RoleCaseQueries
 {
-    public class EfGetOneApplicationUserCaseQuery : IGetOneRoleCaseQuery
+    public class EfGetOneApplicationUserCaseQuery : BaseUseCase, IGetOneRoleCaseQuery
     {
-        private readonly BugTrackerContext _context;
-
-        public EfGetOneApplicationUserCaseQuery(BugTrackerContext context)
+        public EfGetOneApplicationUserCaseQuery(BugTrackerContext context) : base(context)
         {
-            _context = context;
+
         }
 
         public int Id => 40;
@@ -25,7 +24,7 @@ namespace Implementation.Queries.RoleCaseQueries
 
         public RoleUserCase Execute(RemoveRoleCaseDto search)
         {
-            var item = _context.RoleCases
+            var item = context.RoleCases
                 .FirstOrDefault(x => x.RoleId == search.RoleId
                 && x.UseCaseId == search.UseCaseId);
 

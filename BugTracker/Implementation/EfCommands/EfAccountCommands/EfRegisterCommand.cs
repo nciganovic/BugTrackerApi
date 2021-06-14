@@ -12,14 +12,12 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfAccountCommands
 {
-    public class EfRegisterCommand : IRegisterCommand
+    public class EfRegisterCommand : BaseUseCase, IRegisterCommand
     {
-        private BugTrackerContext _context;
         private readonly IEmailSender _emailSender;
 
-        public EfRegisterCommand(BugTrackerContext context, IEmailSender emailSender)
-        {
-            _context = context;
+        public EfRegisterCommand(BugTrackerContext context, IEmailSender emailSender) : base(context)
+        { 
             _emailSender = emailSender;
         }
 
@@ -37,9 +35,9 @@ namespace Implementation.EfCommands.EfAccountCommands
             request.Salt = hashSalt.Salt;
 
             //Since user is registering for the first time on the app, his default role will be Developer
-            request.RoleId = _context.Roles.FirstOrDefault(x => x.Name == "Developer").Id;
-            _context.Add(request);
-            _context.SaveChanges();
+            request.RoleId = context.Roles.FirstOrDefault(x => x.Name == "Developer").Id;
+            context.Add(request);
+            context.SaveChanges();
 
 
             //Send email

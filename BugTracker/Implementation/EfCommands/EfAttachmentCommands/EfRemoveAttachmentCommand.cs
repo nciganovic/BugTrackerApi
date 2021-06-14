@@ -9,13 +9,12 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfAttachmentCommands
 {
-    public class EfRemoveAttachmentCommand : IRemoveAttachmentCommand
+    public class EfRemoveAttachmentCommand : BaseUseCase, IRemoveAttachmentCommand
     {
-        private readonly BugTrackerContext _context; 
 
-        public EfRemoveAttachmentCommand(BugTrackerContext context)
+        public EfRemoveAttachmentCommand(BugTrackerContext context) : base(context)
         {
-            _context = context;
+
         }
 
         public int Id => 44;
@@ -24,7 +23,7 @@ namespace Implementation.EfCommands.EfAttachmentCommands
 
         public void Execute(int request)
         {
-            var item = _context.Attachments.Find(request);
+            var item = context.Attachments.Find(request);
 
             if (item == null)
             {
@@ -32,8 +31,8 @@ namespace Implementation.EfCommands.EfAttachmentCommands
             }
 
             item.DeletedAt = DateTime.Now;
-            //_context.Attachments.Remove(item);
-            _context.SaveChanges();
+            //context.Attachments.Remove(item);
+            context.SaveChanges();
         }
     }
 }

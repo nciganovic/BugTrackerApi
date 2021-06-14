@@ -9,13 +9,12 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfRoleCaseCommands
 {
-    public class EfAddApplicationUserCaseCommand : IAddRoleCaseCommand
+    public class EfAddApplicationUserCaseCommand : BaseUseCase, IAddRoleCaseCommand
     {
 
-        private readonly BugTrackerContext _bugTrackerContext;
-        public EfAddApplicationUserCaseCommand(BugTrackerContext bugTrackerContext)
+        public EfAddApplicationUserCaseCommand(BugTrackerContext context) : base(context)
         {
-            _bugTrackerContext = bugTrackerContext;
+
         }
 
         public int Id => 38;
@@ -24,8 +23,8 @@ namespace Implementation.EfCommands.EfRoleCaseCommands
 
         public void Execute(RoleUserCase request)
         {
-            _bugTrackerContext.Add(request);
-            _bugTrackerContext.SaveChanges();
+            context.Add(request);
+            context.SaveChanges();
         }
     }
 }

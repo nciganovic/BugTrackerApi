@@ -11,15 +11,13 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfAccountCommands
 {
-    public class EfChangeProfileCommand : IChangeProfileCommand
+    public class EfChangeProfileCommand : BaseUseCase, IChangeProfileCommand
     {
-        private readonly BugTrackerContext _context;
         private readonly IApplicationActor _actor;
 
-        public EfChangeProfileCommand(BugTrackerContext context, IApplicationActor actor)
+        public EfChangeProfileCommand(BugTrackerContext context, IApplicationActor actor) : base(context)
         {
             _actor = actor;
-            _context = context;
         }
 
         public int Id => 52;
@@ -28,7 +26,7 @@ namespace Implementation.EfCommands.EfAccountCommands
 
         public void Execute(ApplicationUser request)
         {
-            var item = _context.ApplicaitonUsers.Find(_actor.Id);
+            var item = context.ApplicaitonUsers.Find(_actor.Id);
 
             if (request.FirstName != null)
             {
@@ -55,7 +53,7 @@ namespace Implementation.EfCommands.EfAccountCommands
 
             item.UpdatedAt = DateTime.Now;
 
-            _context.SaveChanges();
+            context.SaveChanges();
         }
     }
 }

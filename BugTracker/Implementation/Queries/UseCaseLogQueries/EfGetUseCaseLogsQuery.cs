@@ -2,6 +2,7 @@
 using Application.Searches;
 using DataAccess;
 using Domain;
+using Implementation.EfCommands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,12 @@ using System.Threading.Tasks;
 
 namespace Implementation.Queries.UseCaseLogQueries
 {
-    public class EfGetUseCaseLogsQuery : IGetUseCaseLogsQuery
+    public class EfGetUseCaseLogsQuery : BaseUseCase, IGetUseCaseLogsQuery
     {
-        private readonly BugTrackerContext _context;
 
-        public EfGetUseCaseLogsQuery(BugTrackerContext context)
+        public EfGetUseCaseLogsQuery(BugTrackerContext context) : base(context)
         {
-            _context = context;
+
         }
 
         public int Id => 41;
@@ -25,7 +25,7 @@ namespace Implementation.Queries.UseCaseLogQueries
 
         public IEnumerable<UseCaseLog> Execute(UseCaseLogSearch search)
         {
-            var query = _context.UseCaseLogs.AsQueryable();
+            var query = context.UseCaseLogs.AsQueryable();
 
             if (search.StartDate != null) 
             {

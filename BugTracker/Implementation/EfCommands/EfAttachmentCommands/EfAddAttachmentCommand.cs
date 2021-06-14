@@ -9,13 +9,11 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfAttachmentCommands
 {
-    public class EfAddAttachmentCommand : IAddAttachmentCommand
+    public class EfAddAttachmentCommand : BaseUseCase, IAddAttachmentCommand
     {
-        private readonly BugTrackerContext _context;
-
-        public EfAddAttachmentCommand(BugTrackerContext context)
+        public EfAddAttachmentCommand(BugTrackerContext context) : base(context)
         {
-            _context = context;
+
         }
 
         public int Id => 42;
@@ -25,8 +23,8 @@ namespace Implementation.EfCommands.EfAttachmentCommands
         public void Execute(Attachment request)
         {
             request.CreatedAt = DateTime.Now;
-            _context.Attachments.Add(request);
-            _context.SaveChanges();
+            context.Attachments.Add(request);
+            context.SaveChanges();
         }
     }
 }

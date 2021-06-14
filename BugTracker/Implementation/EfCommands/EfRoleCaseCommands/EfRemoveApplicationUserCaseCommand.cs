@@ -9,13 +9,12 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfRoleCaseCommands
 {
-    public class EfRemoveApplicationUserCaseCommand : IRemoveRoleCaseCommand
+    public class EfRemoveApplicationUserCaseCommand : BaseUseCase, IRemoveRoleCaseCommand
     {
-        private readonly BugTrackerContext _context;
 
-        public EfRemoveApplicationUserCaseCommand(BugTrackerContext context)
+        public EfRemoveApplicationUserCaseCommand(BugTrackerContext context) : base(context)
         {
-            _context = context;
+
         }
 
         public int Id => 39;
@@ -24,8 +23,8 @@ namespace Implementation.EfCommands.EfRoleCaseCommands
 
         public void Execute(RoleUserCase request)
         {
-            _context.Remove(request);
-            _context.SaveChanges();
+            context.Remove(request);
+            context.SaveChanges();
         }
     }
 }

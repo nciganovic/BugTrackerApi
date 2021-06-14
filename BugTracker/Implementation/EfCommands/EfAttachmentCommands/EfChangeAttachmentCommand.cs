@@ -9,12 +9,11 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfAttachmentCommands
 {
-    public class EfChangeAttachmentCommand : IChangeAttachmentCommand
+    public class EfChangeAttachmentCommand : BaseUseCase, IChangeAttachmentCommand
     {
-        private readonly BugTrackerContext _context;
-        public EfChangeAttachmentCommand(BugTrackerContext context)
+        public EfChangeAttachmentCommand(BugTrackerContext context) : base(context)
         {
-            _context = context;
+
         }
 
         public int Id => 43;
@@ -23,7 +22,7 @@ namespace Implementation.EfCommands.EfAttachmentCommands
 
         public void Execute(Attachment request)
         {
-            var item = _context.Attachments.Find(request.Id);
+            var item = context.Attachments.Find(request.Id);
 
             if (request.Name != null) 
             {
@@ -36,7 +35,7 @@ namespace Implementation.EfCommands.EfAttachmentCommands
 
             item.UpdatedAt = DateTime.Now;
 
-            _context.SaveChanges();
+            context.SaveChanges();
         }
     }
 }

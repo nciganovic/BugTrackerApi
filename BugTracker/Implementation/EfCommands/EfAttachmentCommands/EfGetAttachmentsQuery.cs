@@ -12,14 +12,12 @@ using System.Threading.Tasks;
 
 namespace Implementation.EfCommands.EfAttachmentCommands
 {
-    public class EfGetAttachmentsQuery : IGetAttachmentsQuery
+    public class EfGetAttachmentsQuery : BaseUseCase, IGetAttachmentsQuery
     {
-        private readonly BugTrackerContext _context;
         private readonly IMapper _mapper;
 
-        public EfGetAttachmentsQuery(BugTrackerContext context, IMapper mapper)
+        public EfGetAttachmentsQuery(BugTrackerContext context, IMapper mapper) : base(context)
         {
-            _context = context;
             _mapper = mapper;
         }
 
@@ -29,7 +27,7 @@ namespace Implementation.EfCommands.EfAttachmentCommands
 
         public IEnumerable<GetAttachmentDto> Execute(AttachmentSearch search)
         {
-            var query = _context.Attachments.AsQueryable();
+            var query = context.Attachments.AsQueryable();
 
             if (search.NameKeyword != null)
             {

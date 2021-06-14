@@ -3,6 +3,7 @@ using Application.Queries.AttachmentQueries;
 using AutoMapper;
 using DataAccess;
 using Domain;
+using Implementation.EfCommands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +12,12 @@ using System.Threading.Tasks;
 
 namespace Implementation.Queries.AttachmentQueries
 {
-    public class EfGetOneAttachmentQuery : IGetOneAttachmentQuery
+    public class EfGetOneAttachmentQuery : BaseUseCase, IGetOneAttachmentQuery
     {
-        private readonly BugTrackerContext _context;
         private readonly IMapper _mapper;
 
-        public EfGetOneAttachmentQuery(BugTrackerContext context, IMapper mapper)
+        public EfGetOneAttachmentQuery(BugTrackerContext context, IMapper mapper) : base(context)
         {
-            _context = context;
             _mapper = mapper;
         }
 
@@ -28,7 +27,7 @@ namespace Implementation.Queries.AttachmentQueries
 
         public GetAttachmentDto Execute(int search)
         {
-            Attachment item = _context.Attachments.Find(search);
+            Attachment item = context.Attachments.Find(search);
 
             if (item.DeletedAt != null)
             {
