@@ -21,15 +21,10 @@ namespace Implementation.Queries.ProjectApplicationUserQueries
     public class EfGetApplicationUsersForProjectQuery : BaseUseCase, IGetApplicationUsersForProjectQuery
     {
         private readonly IMapper _mapper;
-        private readonly IGetOneProjectQuery _getOneProjectQuery;
-        private readonly IGetOneApplicationUserQuery _getOneApplicationUserCommand;
 
-        public EfGetApplicationUsersForProjectQuery(BugTrackerContext context, IGetOneProjectQuery getOneProjectQuery, IMapper mapper,
-            IGetOneApplicationUserQuery getOneApplicationUserCommand) : base(context)
+        public EfGetApplicationUsersForProjectQuery(BugTrackerContext context, IMapper mapper) : base(context)
         {
-            _getOneProjectQuery = getOneProjectQuery;
             _mapper = mapper;
-            _getOneApplicationUserCommand = getOneApplicationUserCommand;
         }
 
         public int Id => 21;
@@ -38,28 +33,10 @@ namespace Implementation.Queries.ProjectApplicationUserQueries
 
         public IEnumerable<GetApplicationUserDto> Execute(int request)
         {
-            if (request != 0)
-            {
-                _getOneProjectQuery.Execute(request);
-            }
-            else
-            {
-                throw new Exception("ProjectId is required field and cannot be 0");
-            }
-
             var query = context.ProjectApplicationUsers.AsQueryable();
-            query = query.Include(x => x.Project).Where(x => x.ProjectId == request && x.Project.DeletedAt == null);
-            
-            IEnumerable<GetProjectApplicationUserDto> projectApplicationUserDtos = query.Select(x => _mapper.Map<ProjectApplicationUser, GetProjectApplicationUserDto>(x));
-            List<ApplicationUser> applicationUsers = new List<ApplicationUser>();
-
-            foreach (var x in projectApplicationUserDtos) { 
-                GetApplicationUserDto applicationUserDto = _getOneApplicationUserCommand.Execute(x.ApplicationUserId);
-                ApplicationUser applicationUser = _mapper.Map<GetApplicationUserDto, ApplicationUser>(applicationUserDto);
-                applicationUsers.Add(applicationUser);
-            }
-            
-            return applicationUsers.Select(x => _mapper.Map<ApplicationUser, GetApplicationUserDto>(x)).ToList();
+            query = query.Where(x => x.ProjectId == request && x.DeletedAt == null && x.Project.DeletedAt == null)
+                .Include(x => x.Project).Include(x => x.ApplicationUser);
+            return query.Select(x => _mapper.Map<GetApplicationUserDto>(x.ApplicationUser)); 
         }
     }
 }

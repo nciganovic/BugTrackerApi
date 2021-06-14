@@ -32,10 +32,18 @@ namespace Api.Controllers
 
         // GET: api/<ProjectApplicationUserController>
         [HttpGet("[action]")]
-        public IActionResult GetApplicationUsers(int projectId, [FromServices] IGetApplicationUsersForProjectQuery query)
+        public IActionResult GetApplicationUsers([FromQuery] int projectId, [FromServices] IGetApplicationUsersForProjectQuery query)
         {
             IEnumerable<GetApplicationUserDto> applicationUserDtos = _useCaseExecutor.ExecuteQuery(query, projectId);
             return Ok(applicationUserDtos);
+        }
+
+        // GET: api/<ProjectApplicationUserController>
+        [HttpGet("[action]")]
+        public IActionResult GetProjects([FromQuery] int applicationUserId, [FromServices] IGetProjectsForApplicationUserQuery query)
+        {
+            IEnumerable<GetProjectDto> projectDtos = _useCaseExecutor.ExecuteQuery(query, applicationUserId);
+            return Ok(projectDtos);
         }
 
         // GET api/<ProjectApplicationUserController>/5
