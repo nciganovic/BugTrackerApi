@@ -8,6 +8,7 @@ using AutoMapper;
 using DataAccess;
 using Domain;
 using Implementation.EfCommands;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,9 @@ namespace Implementation.Queries.TicketCommandsQueries
 
         public IEnumerable<GetTicketDto> Execute(TicketSearch request)
         {
-            var query = context.Tickets.AsQueryable();
+            var query = context.Tickets.Include(x => x.Comments).AsQueryable();
+
+            ICollection<Comment> comments = query.First().Comments;
 
             if (request.Title != null) {
                 query = query.Where(x => x.Title.ToLower().Contains(request.Title.ToLower()));
