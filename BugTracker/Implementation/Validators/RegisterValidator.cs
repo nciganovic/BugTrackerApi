@@ -30,6 +30,7 @@ namespace Implementation.Validators
                 .EmailAddress();
 
             RuleFor(x => x.Password)
+                .NotEmpty()
                 .MinimumLength(8)
                 .MaximumLength(20);
 
