@@ -19,7 +19,7 @@ namespace Implementation.Queries.UseCaseLogQueries
 
         }
 
-        public int Id => 41;
+        public int Id => 91;
 
         public string Name => "Get use case logs query";
 

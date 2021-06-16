@@ -21,7 +21,7 @@ namespace Implementation.EfCommands.EfAccountCommands
             _emailSender = emailSender;
         }
 
-        public int Id => 50;
+        public int Id => 3;
 
         public string Name => "Register user command";
 

@@ -12,7 +12,7 @@ namespace Implementation.EfCommands.EfProjectCommands
 {
     public class EfAddProjectCommand : BaseUseCase, IAddProjectCommand
     {
-        public int Id => 23;
+        public int Id => 53;
 
         public string Name => "Add project";
 

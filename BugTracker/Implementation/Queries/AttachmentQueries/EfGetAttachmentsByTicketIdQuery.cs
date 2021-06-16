@@ -20,7 +20,7 @@ namespace Implementation.Queries.AttachmentQueries
             _mapper = mapper;
         }
 
-        public int Id => 45;
+        public int Id => 21;
 
         public string Name => "Get attachments by ticket id query";
 

@@ -18,7 +18,7 @@ namespace Implementation.Queries.RoleCaseQueries
 
         }
 
-        public int Id => 40;
+        public int Id => 62;
 
         public string Name => "Get one applicationUser case query";
 

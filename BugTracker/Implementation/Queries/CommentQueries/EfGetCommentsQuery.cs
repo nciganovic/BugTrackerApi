@@ -24,7 +24,7 @@ namespace Implementation.Queries.CommentQueries
             _mapper = mapper;
         }
 
-        public int Id => 3;
+        public int Id => 31;
 
         public string Name => "Get comments";
 

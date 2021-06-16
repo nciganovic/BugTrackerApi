@@ -17,7 +17,7 @@ namespace Implementation.EfCommands.EfAttachmentCommands
 
         }
 
-        public int Id => 44;
+        public int Id => 26;
 
         public string Name => "Remove attachment command";
 

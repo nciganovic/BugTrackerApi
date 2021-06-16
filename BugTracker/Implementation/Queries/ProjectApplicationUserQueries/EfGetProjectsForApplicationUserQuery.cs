@@ -16,7 +16,7 @@ namespace Implementation.Queries.ProjectApplicationUserQueries
     {
         private readonly IMapper _mapper;
 
-        public int Id => 53;
+        public int Id => 42;
 
         public string Name => "Get projects for application user";
 

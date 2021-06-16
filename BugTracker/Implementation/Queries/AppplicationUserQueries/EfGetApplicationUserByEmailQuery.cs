@@ -22,7 +22,7 @@ namespace Implementation.Queries.ApplicationUserQueries
             _mapper = mapper;
         }
 
-        public int Id => 8;
+        public int Id => 11;
 
         public string Name => "Get applicationUser by email";
 

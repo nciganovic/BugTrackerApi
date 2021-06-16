@@ -16,7 +16,7 @@ namespace Implementation.EfCommands.EfCommentCommands
 
         }
 
-        public int Id => 5;
+        public int Id => 35;
 
         public string Name => "Remove comment";
 

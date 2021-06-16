@@ -21,7 +21,7 @@ namespace Implementation.Queries.AttachmentQueries
             _mapper = mapper;
         }
 
-        public int Id => 46;
+        public int Id => 23;
 
         public string Name => "Get one attachment query";
 

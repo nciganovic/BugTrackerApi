@@ -20,7 +20,7 @@ namespace Implementation.EfCommands.EfAccountCommands
             _actor = actor;
         }
 
-        public int Id => 52;
+        public int Id => 2;
 
         public string Name => "Change profile command";
 

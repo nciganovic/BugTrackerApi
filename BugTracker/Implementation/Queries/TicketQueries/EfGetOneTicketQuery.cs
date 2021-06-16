@@ -23,7 +23,7 @@ namespace Implementation.Queries.TicketCommandsQueries
             _mapper = mapper;
         }
 
-        public int Id => 35;
+        public int Id => 82;
 
         public string Name => "Get one ticket";
 

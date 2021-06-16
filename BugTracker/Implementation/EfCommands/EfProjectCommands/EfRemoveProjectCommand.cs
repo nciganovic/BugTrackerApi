@@ -17,7 +17,7 @@ namespace Implementation.EfCommands.EfProjectCommands
 
         }
 
-        public int Id => 27;
+        public int Id => 55;
 
         public string Name => "Remove project";
 

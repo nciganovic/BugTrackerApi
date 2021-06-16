@@ -16,7 +16,7 @@ namespace Implementation.EfCommands.EfAttachmentCommands
 
         }
 
-        public int Id => 42;
+        public int Id => 24;
 
         public string Name => "Add attachment command";
 

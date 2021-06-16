@@ -23,7 +23,7 @@ namespace Implementation.Queries.ApplicationUserQueries
             _mapper = mapper;
         }
 
-        public int Id => 9;
+        public int Id => 12;
 
         public string Name => "Get applicationUsers";
 

@@ -12,7 +12,7 @@ namespace Implementation.EfCommands.EfProjectCommands
 {
     public class EfChangeProjectCommand : BaseUseCase, IChangeProjectCommand
     {
-        public int Id => 24;
+        public int Id => 54;
 
         public string Name => "Change project";
 

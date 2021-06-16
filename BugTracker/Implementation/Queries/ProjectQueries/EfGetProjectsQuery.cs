@@ -24,7 +24,7 @@ namespace Implementation.Queries.ProjectCommandsQueries
             _mapper = mapper;
         }
 
-        public int Id => 26;
+        public int Id => 51;
 
         public string Name => "Get projects";
 

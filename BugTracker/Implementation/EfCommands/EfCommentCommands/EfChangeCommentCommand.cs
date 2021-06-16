@@ -27,7 +27,7 @@ namespace Implementation.EfCommands.EfCommentCommands
             _mapper = mapper;
         }
 
-        public int Id => 2;
+        public int Id => 34;
 
         public string Name => "Change comment";
 

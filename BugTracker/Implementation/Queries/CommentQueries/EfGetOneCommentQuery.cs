@@ -23,7 +23,7 @@ namespace Implementation.Queries.CommentQueries
             _mapper = mapper;
         }
 
-        public int Id => 4;
+        public int Id => 32;
 
         public string Name => "Get one comment";
 
