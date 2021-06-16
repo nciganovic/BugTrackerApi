@@ -20,7 +20,7 @@ using Application.Searches;
 
 namespace Api.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AttachmentController : ControllerBase

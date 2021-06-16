@@ -9,6 +9,7 @@ using AutoMapper;
 using Domain;
 using Implementation.ResponseMessages;
 using Implementation.Validators;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -73,6 +74,7 @@ namespace Api.Controllers
             return UnprocessableEntity(UnprocessableEntityResponse.Message(result.Errors));
         }
 
+        [Authorize]
         [HttpPut("[action]")]
         public IActionResult ChangeProfile([FromBody] ChangeProfileDto dto
             , [FromServices] IChangeProfileCommand command
