@@ -7,6 +7,7 @@ using AutoMapper;
 using Domain;
 using Implementation.ResponseMessages;
 using Implementation.Validators;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
