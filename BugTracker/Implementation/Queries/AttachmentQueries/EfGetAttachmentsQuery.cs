@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Implementation.EfCommands.EfAttachmentCommands
+namespace Implementation.EfCommands.EfAttachmentQueries
 {
     public class EfGetAttachmentsQuery : BaseUseCase, IGetAttachmentsQuery
     {
@@ -21,7 +21,7 @@ namespace Implementation.EfCommands.EfAttachmentCommands
             _mapper = mapper;
         }
 
-        public int Id => 51;
+        public int Id => 22;
 
         public string Name => "Get attachments query";
 
