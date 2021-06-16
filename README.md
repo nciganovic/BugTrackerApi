@@ -19,6 +19,7 @@ I will now explain what are controllers supposed to do so you can get a clear pi
 #### Account
 - Unauthorized users can preform login and register operations. If user registers successfully, he will be notified via email.
 - During registration password taken from user will be hased and and only hash and salt will be stored in database. Code for this is available at BugTracker/Application/Hash
+- If login credentials are valid user will recive his JWT token 
 - If user is authorized he can change his inforamtions at /api/account/changeProfile
 
 #### ApplicationUser
