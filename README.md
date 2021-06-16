@@ -29,3 +29,22 @@ I will now explain what are controllers supposed to do so you can get a clear pi
 - Is a pdf file or image that is used to better describe goal of the task.
 - Controller contains methods for CRUD operations.
 - Files are stored in wwwroot/images
+
+#### Comment
+- Ability to write comment for specific task.
+- Users can have dicussion.
+- Controller contains methods for CRUD operations.
+
+#### ProjectApplicationUser
+- Showing users that are working on specific project
+- Showing projects that specific user works on
+- Add user to project or vice versa
+
+#### Project
+- Project that developers are working on
+- Controller contains methods for CRUD operations.
+
+#### RoleCase
+- Connecting role ids to use case ids
+- This enables that only user with specific role can do certain actions.
+- 
