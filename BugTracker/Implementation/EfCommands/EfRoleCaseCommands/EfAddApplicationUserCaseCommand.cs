@@ -17,7 +17,7 @@ namespace Implementation.EfCommands.EfRoleCaseCommands
 
         }
 
-        public int Id => 62;
+        public int Id => 63;
 
         public string Name => "Add ApplicationUser case command";
 
