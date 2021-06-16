@@ -65,6 +65,7 @@ using Implementation.Queries.AttachmentQueries;
 using Api.Middleware;
 using Application.Commands.AccountCommands;
 using Implementation.EfCommands.EfAccountCommands;
+using Implementation.EfCommands.EfAttachmentQueries;
 
 namespace Api
 {
