@@ -47,4 +47,17 @@ I will now explain what are controllers supposed to do so you can get a clear pi
 #### RoleCase
 - Connecting role ids to use case ids
 - This enables that only user with specific role can do certain actions.
-- 
+
+#### Role
+- Role that is attached to specific user which grants his specific actions
+
+#### Ticket
+- Most imporant table in this project
+- Users can create tickets for other users
+- There are two types of updates, fake and real
+- With fake new instance will be created with reference on old one, this is done so users can see history of specific task
+- With real update, update will work as normal and new instance will not be created.
+
+#### UseCaseLog
+- When every action is executed, information will be stored in this table.
+- There is ability to fully search through use case logs.
