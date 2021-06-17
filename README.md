@@ -10,7 +10,7 @@ BugTrackerApi is api for tracking bugs. It is supposed to be used by the IT comp
 - If user is authorized he can have different roles and based on theese roles he can preform certain actions.
 
 ### Database schema
-![alt text](https://raw.githubusercontent.com/nciganovic/BugTrackerApi/main/Screenshot_3.png)
+![alt text](https://raw.githubusercontent.com/nciganovic/BugTrackerApi/main/Screenshot_4.png)
 > Ignore column types like bynary and integer. Column types can be seen under Domain project.
 
 ### Controllers
