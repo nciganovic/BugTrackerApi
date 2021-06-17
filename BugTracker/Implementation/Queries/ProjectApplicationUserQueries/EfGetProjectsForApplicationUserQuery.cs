@@ -29,7 +29,7 @@ namespace Implementation.Queries.ProjectApplicationUserQueries
         public IEnumerable<GetProjectDto> Execute(int search)
         {
             var query = context.ProjectApplicationUsers.AsQueryable();
-            query = query.Where(x => x.ApplicationUserId == search && x.DeletedAt == null && x.ApplicationUser.DeletedAt == null)
+            query = query.Where(x => x.ApplicationUserId == search && x.ApplicationUser.DeletedAt == null)
                 .Include(x => x.ApplicationUser).Include(x => x.Project);
             return query.Select(x => _mapper.Map<GetProjectDto>(x.Project));
         }

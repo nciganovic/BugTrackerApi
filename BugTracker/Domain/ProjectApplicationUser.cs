@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class ProjectApplicationUser : BaseEntity
+    public class ProjectApplicationUser
     {
         public int ProjectId { get; set; }
         public virtual Project Project { get; set; }

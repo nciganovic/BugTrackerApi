@@ -26,7 +26,6 @@ namespace Implementation.EfCommands.EfProjectApplicationUserCommands
 
         public void Execute(ProjectApplicationUser request)
         {
-            request.CreatedAt = DateTime.Now;
             context.ProjectApplicationUsers.Add(request);
             context.SaveChanges();
         }
